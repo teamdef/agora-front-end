@@ -3,8 +3,8 @@
   // "root": true /** root가 true로 설정되어 있으면 하위 프로젝트에 대해 해당 설정 적용*/,
   "env": {
     "browser": true,
-    "es2021": true,
     "es6": true,
+    "es2021": true,
     "node": true
   },
   "parser": "@typescript-eslint/parser",
@@ -25,7 +25,8 @@
       "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
-      "typescript": {}
+      "typescript": { "directory": "/src" },
+      "node": { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     }
   },
   /** build, dist, public 폴더는 eslint 검사하지 않는다 */
@@ -35,7 +36,7 @@
       "jsx": true
     },
     "project": "./tsconfig.json",
-    "ecmaVersion": 2018,
+    "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "rules": {
@@ -69,13 +70,31 @@
         "allowSeparatedGroups": true
       }
     ],
-    "prettier/prettier": "error",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "no-use-before-define": "off",
     "react/react-in-jsx-scope": "off" /** Next.js 에서는 React 자동 import 되기 때문에 에러 꺼주기*/,
+    "react/jsx-no-useless-fragment": 1 /** <></> 사용시 경고 메세지로 출력*/,
     "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/no-empty-interface": "off" /** styled-components empty interface 선언을 위해 */,
     "no-var": "error",
     "curly": ["error", "multi-line", "consistent"],
     "nonblock-statement-body-position": ["error", "beside"],
-    "react/jsx-filename-extension": 0 // ts,tsx파일에서도 jsx 문법을 사용할 수 있도록 함
+    "react/jsx-filename-extension": 0 // ts,tsx파일에서도 jsx 문법을 사용할 수 있도,
   },
   /** Next.js 에서는 React 자동 import 되기 때문에 에러 꺼주기*/
   "globals": {
