@@ -94,7 +94,9 @@
     "no-var": "error",
     "curly": ["error", "multi-line", "consistent"],
     "nonblock-statement-body-position": ["error", "beside"],
-    "react/jsx-filename-extension": 0 // ts,tsx파일에서도 jsx 문법을 사용할 수 있도,
+    "react/jsx-filename-extension": 0, // ts,tsx파일에서도 jsx 문법을 사용할 수 있도,
+    "@typescript-eslint/no-shadow": "off", // 파일 내 같은 "이름" 사용 가능 (타입사용에 문제가 생김)
+    "no-shadow": "off"
   },
   /** Next.js 에서는 React 자동 import 되기 때문에 에러 꺼주기*/
   "globals": {
