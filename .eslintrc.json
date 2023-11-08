@@ -86,6 +86,7 @@
         "endOfLine": "auto"
       }
     ],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "no-use-before-define": "off",
     "react/react-in-jsx-scope": "off" /** Next.js 에서는 React 자동 import 되기 때문에 에러 꺼주기*/,
     "react/jsx-no-useless-fragment": 1 /** <></> 사용시 경고 메세지로 출력*/,
