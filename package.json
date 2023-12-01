@@ -26,6 +26,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@tanstack/react-query-devtools": "^5.8.1",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@typescript-eslint/parser": "^6.7.2",

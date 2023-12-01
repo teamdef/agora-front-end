@@ -1,18 +1,31 @@
 import type { DefaultTheme } from 'styled-components';
 
 const fontStyle = {
+  /** 44px */
   hero_1: 'font-size: 44px;\nfont-weight: 700;\nline-height: 57px;\nletter-spacing: -0.88px;',
+  /** 36px */
   hero_2: 'font-size: 36px;\nfont-weight: 700;\nline-height: 47px;\nletter-spacing: -0.72px;',
+  /** 32px */
   hero_3: 'font-size: 32px;\nfont-weight: 700;\nline-height: 42px;\nletter-spacing: -0.64px;',
+  /** 28px */
   hero_4: 'font-size: 28px;\nfont-weight: 700;\nline-height: 36px;\nletter-spacing: -0.56px;',
+  /** 24px */
   headline_1: 'font-size: 24px;\nfont-weight: 600;\nline-height: 31px;\nletter-spacing: -0.48px;',
+  /** 20px */
   headline_2: 'font-size: 20px;\nfont-weight: 600;\nline-height: 26px;\nletter-spacing: -0.4px;',
+  /** 18px */
   subtitle_1: 'font-size: 18px;\nfont-weight: 600;\nline-height: 27px;\nletter-spacing: -0.36px;',
+  /** 16px */
   subtitle_2: 'font-size: 16px;\nfont-weight: 600;\nline-height: 24px;\nletter-spacing: -0.32px;',
+  /** 16px */
   body_1: 'font-size: 16px;\nfont-weight: 500;\nline-height: 24px;\nletter-spacing: -0.32px;',
+  /** 16px */
   body_2: 'font-size: 16px;\nfont-weight: 400;\nline-height: 24px;\nletter-spacing: -0.32px;',
+  /** 14px */
   detail_1: 'font-size: 14px;\nfont-weight: 500;\nline-height: 21px;\nletter-spacing: -0.28px;',
+  /** 14px */
   detail_2: 'font-size: 14px;\nfont-weight: 400;\nline-height: 21px;\nletter-spacing: -0.28px;',
+  /** 12px */
   caption: 'font-size: 12px;\nfont-weight: 400;\nline-height: 18px;\nletter-spacing: -0.24px;',
 };
 
@@ -61,7 +74,6 @@ const colors = {
     /** #0016B3 */
     900: '#0016B3',
     /** #FBFCFF */
-    background: '#FBFCFF',
   },
   badge: {
     todo: {
@@ -153,6 +165,8 @@ const colors = {
     /** #C8111C */
     900: '#C8111C',
   },
+  background: '#FFFFFF',
+  dashboard: '#FBFCFF',
 };
 
 const fontWeight = {
