@@ -3,6 +3,9 @@ import reset from 'styled-reset';
 
 const styles = css`
   // your global styles
+  button {
+    border: none;
+  }
 `;
 
 const GlobalStyles = createGlobalStyle`
