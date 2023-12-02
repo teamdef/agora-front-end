@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
 interface CheckBoxProps {
-  name?: string;
   id: string;
   checked?: boolean;
   disabled?: boolean;
 }
 
-const CheckBox = ({ name, id, checked, disabled }: CheckBoxProps) => {
-  return <Box type="checkbox" name={name} id={id} defaultChecked={checked} disabled={disabled} />;
+const CheckBox = ({ id, checked, disabled }: CheckBoxProps) => {
+  return <Box type="checkbox" id={id} defaultChecked={checked} disabled={disabled} />;
 };
 
 const Box = styled.input`
