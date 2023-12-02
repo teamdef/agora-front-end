@@ -38,6 +38,10 @@ import TextAlignCenter from './textAlignCenter.svg';
 import TextAlignJustified from './textAlignJustified.svg';
 import TextAlignLeft from './textAlignLeft.svg';
 import TextAlignRight from './textAlignRight.svg';
+import CheckBoxFalse from './checkBoxFalse.svg';
+import CheckBoxFalseDisabled from './checkBoxFalseDisabled.svg';
+import CheckBoxTrue from './checkBoxTrue.svg';
+import CheckBoxTrueDisable from './checkBoxTrueDisabled.svg';
 
 export {
   Alarm,
@@ -80,4 +84,8 @@ export {
   TextAlignJustified,
   TextAlignLeft,
   TextAlignRight,
+  CheckBoxFalse,
+  CheckBoxFalseDisabled,
+  CheckBoxTrue,
+  CheckBoxTrueDisable,
 };

@@ -1,12 +1,14 @@
 'use client';
 
-import Button from '@/components/button/Button';
-import { ArrowDown } from 'public/assets/svgs';
+import CheckBox from '@/components/inputs/checkBox/CheckBox';
 
 export default function Page() {
   return (
     <div>
-      <Button label="취소" icon={<ArrowDown />} />
+      <CheckBox id="list-1" name="a" disabled />
+      <CheckBox id="list-2" name="a" checked disabled />
+      <CheckBox id="list-3" name="a" />
+      <CheckBox id="list-3" name="a" checked />
     </div>
   );
 }
