@@ -4,6 +4,7 @@ const buttonPainter = (outlined?: boolean, disabled?: boolean) => {
   if (!disabled) {
     if (!outlined) {
       return css`
+        cursor: pointer;
         background-color: ${({ theme }) => theme.colors.agoraBlue[400]};
         color: ${({ theme }) => theme.colors.background};
         & svg path {
@@ -21,6 +22,7 @@ const buttonPainter = (outlined?: boolean, disabled?: boolean) => {
     } else {
       return css`
         background-color: white;
+        cursor: pointer;
         border: 1px solid ${({ theme }) => theme.colors.agoraBlue[400]};
         & span {
           color: ${({ theme }) => theme.colors.agoraBlue[400]};
@@ -51,6 +53,7 @@ const buttonPainter = (outlined?: boolean, disabled?: boolean) => {
   } else {
     if (!outlined) {
       return css`
+        cursor: default;
         background-color: ${({ theme }) => theme.colors.agoraBlue[100]};
         color: ${({ theme }) => theme.colors.background};
         & svg path {
@@ -60,6 +63,7 @@ const buttonPainter = (outlined?: boolean, disabled?: boolean) => {
     } else {
       return css`
         background-color: white;
+        cursor: default;
         color: ${({ theme }) => theme.colors.agoraBlack[600]};
         border: 1px solid ${({ theme }) => theme.colors.agoraBlack[600]};
         & svg path {
