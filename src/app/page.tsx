@@ -9,6 +9,12 @@ export default function Page() {
     <div>
       <Radio id="1" name="a" disabled />
       <Radio id="2" name="a" checked disabled />
+      <Button label="확인" disabled />
+      <Button label="확인" outlined />
+      <Button label="확인" />
+      <Button label="확인" small />
+      <Button label="확인" small disabled />
+      <Button label="확인" small outlined />
     </div>
   );
 }
