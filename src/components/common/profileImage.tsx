@@ -5,18 +5,18 @@ interface ProfileImageProps {
   src?: string;
   size?: string;
 }
+
 const ProfileImage = ({ src, size }: ProfileImageProps) => {
   const DEFAULT_IMG = '/assets/svgs/UserProfile.svg';
-  const isSrc = src || DEFAULT_IMG;
 
   const onErrorHandler = (e: SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = DEFAULT_IMG;
   };
 
-  return <ProfileImageBox $size={size} src={isSrc} onError={onErrorHandler} alt="유저프로필이미지" />;
+  return <Box $size={size} src={src || DEFAULT_IMG} onError={onErrorHandler} alt="유저프로필이미지" />;
 };
 
-const ProfileImageBox = styled.img<{ $size?: string }>`
+const Box = styled.img<{ $size?: ProfileImageProps['size'] }>`
   width: ${({ $size }) => $size || '32px'};
   height: ${({ $size }) => $size || '32px'};
   object-fit: cover;
