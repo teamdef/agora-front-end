@@ -1,7 +1,6 @@
 'use client';
 
 import Button from '@/components/inputs/button/Button';
-import CheckBox from '@/components/inputs/checkBox/CheckBox';
 import Radio from '@/components/inputs/radio/Radio';
 
 export default function Page() {

@@ -1,6 +1,6 @@
+'use client';
+
 import { styled } from 'styled-components';
-import { RuleSet } from 'styled-components/dist/types';
-import buttonPainter from '@/utils/buttonPainter';
 import { ReactNode } from 'react';
 
 export interface ButtonProps {
@@ -12,22 +12,21 @@ export interface ButtonProps {
   small?: boolean;
 }
 
-const Button = ({ label, icon, outlined, small, disabled }: ButtonProps) => {
-  const buttonStyle = buttonPainter(outlined, disabled);
+type ButtonStyleProps = Pick<ButtonProps, 'outlined' | 'small' | 'disabled'>;
 
+const Button = ({ label, icon, outlined, small, disabled }: ButtonProps) => {
   return (
-    <ButtonBox $buttonStyle={buttonStyle} small={small}>
+    <ButtonBox $style={{ outlined, small, disabled }}>
       <span>{label}</span>
       {icon}
     </ButtonBox>
   );
 };
 
-const ButtonBox = styled.button<{ $buttonStyle: RuleSet<object>; small?: boolean }>`
+const ButtonBox = styled.button<{ $style: ButtonStyleProps }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  ${({ $buttonStyle }) => $buttonStyle}
   border-radius: 6px;
   cursor: pointer;
   & span {
@@ -36,8 +35,82 @@ const ButtonBox = styled.button<{ $buttonStyle: RuleSet<object>; small?: boolean
   & svg {
     margin-left: 8px;
   }
-  width: ${({ small }) => (small ? '120px' : '168px')};
-  height: ${({ small }) => (small ? '36px' : '44px')};
+  width: ${({ $style }) => ($style.small ? '120px' : '168px')};
+  height: ${({ $style }) => ($style.small ? '36px' : '44px')};
+
+  ${({ $style, theme }) => {
+    if (!$style.disabled) {
+      if (!$style.outlined) {
+        return `
+          cursor: pointer;
+          background-color: ${theme.colors.agoraBlue[400]};
+          color: ${theme.colors.background};
+          & svg path {
+            fill: ${theme.colors.background};
+          }
+          &:hover {
+            background-color: ${theme.colors.agoraBlue[600]};
+            color: ${theme.colors.background};
+          }
+          &:active {
+            background-color: ${theme.colors.agoraBlue[700]};
+            color: ${theme.colors.background};
+          }
+        `;
+      } else {
+        return `
+          background-color: white;
+          cursor: pointer;
+          border: 1px solid ${theme.colors.agoraBlue[400]};
+          & span {
+            color: ${theme.colors.agoraBlue[400]};
+          }
+          & svg path {
+            fill: ${theme.colors.agoraBlue[400]};
+          }
+          &:hover {
+            border: 1px solid ${theme.colors.agoraBlue[600]};
+            & span {
+              color: ${theme.colors.agoraBlue[600]};
+            }
+            & svg path {
+              fill: ${theme.colors.agoraBlue[600]};
+            }
+          }
+          &:active {
+            background-color: ${theme.colors.agoraBlue[700]};
+            & span {
+              color: ${theme.colors.background};
+            }
+            & svg path {
+              fill: ${theme.colors.background};
+            }
+          }
+        `;
+      }
+    } else {
+      if (!$style.outlined) {
+        return `
+          cursor: default;
+          background-color: ${theme.colors.agoraBlue[100]};
+          color: ${theme.colors.background};
+          & svg path {
+            fill: ${theme.colors.background};
+          }
+        `;
+      } else {
+        return `
+          background-color: white;
+          cursor: default;
+          color: ${theme.colors.agoraBlack[600]};
+          border: 1px solid ${theme.colors.agoraBlack[600]};
+          & svg path {
+            fill: ${theme.colors.agoraBlack[600]};
+          }
+        `;
+      }
+    }
+  }}
 `;
 
 export default Button;
