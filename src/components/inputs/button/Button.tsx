@@ -16,14 +16,14 @@ type ButtonStyleProps = Pick<ButtonProps, 'outlined' | 'small' | 'disabled'>;
 
 const Button = ({ label, icon, outlined, small, disabled }: ButtonProps) => {
   return (
-    <ButtonBox $style={{ outlined, small, disabled }}>
+    <Box $style={{ outlined, small, disabled }}>
       <span>{label}</span>
       {icon}
-    </ButtonBox>
+    </Box>
   );
 };
 
-const ButtonBox = styled.button<{ $style: ButtonStyleProps }>`
+const Box = styled.button<{ $style: ButtonStyleProps }>`
   display: flex;
   justify-content: center;
   align-items: center;

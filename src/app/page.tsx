@@ -1,5 +1,6 @@
 'use client';
 
+import ProfileImage from '@/components/common/profileImage';
 import Button from '@/components/inputs/button/Button';
 import Radio from '@/components/inputs/radio/Radio';
 
@@ -8,6 +9,7 @@ export default function Page() {
     <div>
       <Radio id="1" name="a" disabled />
       <Radio id="2" name="a" checked disabled />
+      <ProfileImage />
       <Button label="확인" disabled />
       <Button label="확인" outlined />
       <Button label="확인" />
