@@ -1,5 +1,6 @@
-import { css } from 'styled-components';
+'use client';
 
+import { css } from 'styled-components';
 const buttonPainter = (outlined?: boolean, disabled?: boolean) => {
   if (!disabled) {
     if (!outlined) {

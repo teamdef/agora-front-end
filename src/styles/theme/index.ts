@@ -54,7 +54,7 @@ const colors = {
   },
   agoraBlue: {
     /** #E7EAFD */
-    50: '#E7EAFD',
+    a50: '#E7EAFD',
     /** #C2C9FA */
     100: '#C2C9FA',
     /** #96A6F7 */
