@@ -1,21 +1,13 @@
 'use client';
 
 import ProfileImage from '@/components/common/profileImage';
-import Button from '@/components/inputs/button/Button';
-import Radio from '@/components/inputs/radio/Radio';
+import Badge from '@/components/display/Badge';
 
 export default function Page() {
   return (
     <div>
-      <Radio id="1" name="a" disabled />
-      <Radio id="2" name="a" checked disabled />
       <ProfileImage />
-      <Button label="확인" disabled />
-      <Button label="확인" outlined />
-      <Button label="확인" />
-      <Button label="확인" small />
-      <Button label="확인" small disabled />
-      <Button label="확인" small outlined />
+      <Badge label="시작 전" status="inProgress" />
     </div>
   );
 }
