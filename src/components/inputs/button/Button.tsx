@@ -10,13 +10,14 @@ export interface ButtonProps {
   icon?: ReactNode;
   disabled?: boolean;
   small?: boolean;
+  onClick?: () => void;
 }
 
 type ButtonStyleProps = Pick<ButtonProps, 'outlined' | 'small' | 'disabled'>;
 
-const Button = ({ label, icon, outlined, small, disabled }: ButtonProps) => {
+const Button = ({ label, icon, outlined, small, disabled, onClick }: ButtonProps) => {
   return (
-    <Box $style={{ outlined, small, disabled }}>
+    <Box $style={{ outlined, small, disabled }} onClick={onClick}>
       <span>{label}</span>
       {icon}
     </Box>
