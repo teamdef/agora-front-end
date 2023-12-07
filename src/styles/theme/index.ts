@@ -77,7 +77,7 @@ const colors = {
   },
   badge: {
     todo: {
-      /** #FFEADA */
+      /** #FFEADA bgColor*/
       50: '#FFEADA',
       /** #FCCAA6 */
       100: '#FCCAA6',
@@ -99,7 +99,7 @@ const colors = {
       900: '#C20016',
     },
     inProgress: {
-      /** #FCF7C480 */
+      /** #FCF7C480 bgColor*/
       50: '#FCF7C480',
       /** #FCF7C4 */
       100: '#FCF7C4',
@@ -121,7 +121,7 @@ const colors = {
       900: '#EA7C1A',
     },
     done: {
-      /** #E4FCE6 */
+      /** #E4FCE6 bgColor*/
       50: '#E4FCE6',
       /** #C7F3CA */
       100: '#C7F3CA',
