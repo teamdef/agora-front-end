@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 
 interface TextField {
@@ -8,14 +8,35 @@ interface TextField {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   maxLength: number;
   placeholder?: string;
+  onBlur: () => void;
 }
-const NormalTextField = ({ value, onChange, maxLength, placeholder }: TextField) => {
+
+const ContentTextField = ({ value, onChange, maxLength, placeholder, onBlur }: TextField) => {
+  const [isFocus, setIsFocus] = useState<boolean>(true);
+  const onBlurHandler = () => {
+    onBlur();
+    setIsFocus(false);
+  };
+
+  const onFocusHandler = () => {
+    setIsFocus(true);
+  };
   return (
     <Box>
-      <input value={value} onChange={onChange} placeholder={placeholder} maxLength={maxLength} />
-      <span>
-        {value.length} / {maxLength}
-      </span>
+      <input
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        onBlur={onBlurHandler}
+        onFocus={onFocusHandler}
+      />
+      {isFocus ||
+        (!value && (
+          <span>
+            {value.length} / {maxLength}
+          </span>
+        ))}
     </Box>
   );
 };
@@ -32,9 +53,11 @@ const Box = styled.div`
     ${({ theme }) => theme.fontStyle.body_2}
     outline-style: none;
     border-bottom: 1px solid ${({ theme }) => theme.colors.agoraBlack[200]};
+
     &:focus {
       border-bottom: 1px solid ${({ theme }) => theme.colors.agoraBlue[300]};
     }
+
     &::placeholder {
       ${({ theme }) => theme.fontStyle.body_2}
       color: ${({ theme }) => theme.colors.agoraBlack[200]};
@@ -49,4 +72,4 @@ const Box = styled.div`
   }
 `;
 
-export default NormalTextField;
+export default ContentTextField;
