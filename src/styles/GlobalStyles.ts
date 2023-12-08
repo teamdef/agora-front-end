@@ -24,6 +24,9 @@ const styles = css`
   button {
     border: none;
   }
+  input {
+    padding: 0;
+  }
 `;
 
 const GlobalStyles = createGlobalStyle`
