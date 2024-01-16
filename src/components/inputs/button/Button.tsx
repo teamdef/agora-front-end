@@ -2,7 +2,7 @@
 
 import { styled } from 'styled-components';
 import { ReactNode } from 'react';
-import buttonPainter from '@/utils/buttonPainter';
+import buttonPainter from '~/utils/buttonPainter';
 
 export interface ButtonProps {
   label: string;

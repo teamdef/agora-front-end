@@ -1,20 +1,33 @@
 'use client';
 
+import { FontStyleType } from '~/styles/theme';
 import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 
 interface TextField {
   value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (value: string) => void;
   maxLength: number;
-  placeholder?: string;
   onBlur: () => void;
+  placeholder?: string;
+  fontStyle?: FontStyleType;
 }
 
 const TitleTextField = ({ value, onChange, maxLength, placeholder, onBlur }: TextField) => {
+  const [count, setCount] = useState<number>(value.length);
+
+  const valueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.length >= maxLength && count >= maxLength) {
+      return null;
+    } else if (e.target.value.length > maxLength) {
+      e.target.value = e.target.value.slice(0, maxLength);
+    }
+    onChange(e.target.value);
+    setCount(e.target.value.length);
+  };
   return (
     <Box>
-      <input value={value} onChange={onChange} placeholder={placeholder} maxLength={maxLength} onBlur={onBlur} />
+      <input value={value} onChange={valueHandler} placeholder={placeholder} maxLength={maxLength} onBlur={onBlur} />
     </Box>
   );
 };

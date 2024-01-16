@@ -1,20 +1,35 @@
 'use client';
 
-import { ChangeEvent } from 'react';
+import { FontStyleType } from '~/styles/theme';
+import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 
 interface TextField {
   value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   maxLength: number;
+  onChange: (value: string) => void;
   placeholder?: string;
+  fontStyle?: FontStyleType;
 }
+
 const NormalTextField = ({ value, onChange, maxLength, placeholder }: TextField) => {
+  const [count, setCount] = useState<number>(0);
+
+  const valueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.length >= maxLength && count >= maxLength) {
+      return null;
+    } else if (e.target.value.length > maxLength) {
+      e.target.value = e.target.value.slice(0, maxLength);
+    }
+    onChange(e.target.value);
+    setCount(e.target.value.length);
+  };
+
   return (
     <Box>
-      <input value={value} onChange={onChange} placeholder={placeholder} maxLength={maxLength} />
+      <input value={value} onChange={valueHandler} placeholder={placeholder} maxLength={maxLength} />
       <span>
-        {value.length} / {maxLength}
+        {count} / {maxLength}
       </span>
     </Box>
   );
@@ -33,6 +48,7 @@ const Box = styled.div`
     outline-style: none;
     border-bottom: 1px solid ${({ theme }) => theme.colors.agoraBlack[200]};
     &:focus {
+      transition: 0.5s border-color ease;
       border-bottom: 1px solid ${({ theme }) => theme.colors.agoraBlue[300]};
     }
     &::placeholder {
