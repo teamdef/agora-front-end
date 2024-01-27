@@ -42,6 +42,8 @@ import CheckBoxFalse from './checkBoxFalse.svg';
 import CheckBoxFalseDisabled from './checkBoxFalseDisabled.svg';
 import CheckBoxTrue from './checkBoxTrue.svg';
 import CheckBoxTrueDisable from './checkBoxTrueDisabled.svg';
+import ArrowFirst from './arrowFirst.svg';
+import ArrowLast from './arrowLast.svg';
 
 export {
   Alarm,
