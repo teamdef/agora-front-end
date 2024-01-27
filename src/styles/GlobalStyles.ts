@@ -27,6 +27,9 @@ const styles = css`
   input {
     padding: 0;
   }
+  button {
+    cursor: pointer;
+  }
 `;
 
 const GlobalStyles = createGlobalStyle`
