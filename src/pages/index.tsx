@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Pagination from '~/components/common/navigation/Pagination';
 import { ReactElement } from 'react';
+import Illust from '~/components/common/display/Illust';
 import GNBLayout from '~/components/layout/GNBLayout';
 import LNBLayout from '~/components/layout/LNBLayout';
 
