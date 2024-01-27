@@ -13,7 +13,7 @@ const createMap = (destPath, createPath) => {
         } else {
           const parentDirname = path.basename(path.dirname(newPath));
           const key = `${parentDirname}/${file.name.split('.')[0]}`;
-          const value = newPath;
+          const value = newPath.substring(9);
           dirObj[key] = value;
         }
       });
