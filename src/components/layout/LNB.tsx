@@ -1,59 +1,44 @@
 import styled from 'styled-components';
 import Text from '~/components/common/typo/Text';
+import { LNB_MENUS } from './constant';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 const LNB = () => {
+  const { pathname } = useRouter();
   return (
     <Wrapper>
       <Text variant="detail_2" className="menu-title">
         Menu
       </Text>
-      <Group>
-        <GroupTitle>
-          <div>아</div>
-          <Text variant="headline_2">대시보드</Text>
-        </GroupTitle>
-      </Group>
-      <Group>
-        <GroupTitle>
-          <div>아</div>
-          <Text variant="headline_2">목표관리</Text>
-        </GroupTitle>
-        <GroupList>
-          <GroupItem>
-            <Text variant="body_1">비전</Text>
-          </GroupItem>
-          <GroupItem>
-            <Text variant="body_1">OKR</Text>
-          </GroupItem>
-        </GroupList>
-      </Group>
-      <Group>
-        <GroupTitle>
-          <div>아</div>
-          <Text variant="headline_2">회고</Text>
-        </GroupTitle>
-        <GroupList>
-          <GroupItem>
-            <Text variant="body_1">분기회고</Text>
-          </GroupItem>
-          <GroupItem>
-            <Text variant="body_1">스프린트 회고</Text>
-          </GroupItem>
-        </GroupList>
-      </Group>
-      <Group>
-        <GroupTitle>
-          <div>아</div>
-          <Text variant="headline_2">관리</Text>
-        </GroupTitle>
-        <GroupList>
-          <GroupItem>
-            <Text variant="body_1">스프린트 관리</Text>
-          </GroupItem>
-          <GroupItem>
-            <Text variant="body_1">멤버</Text>
-          </GroupItem>
-        </GroupList>
-      </Group>
+      {LNB_MENUS.map((menu) => {
+        const isMatch = pathname === menu.path;
+        const hasSubMenu = menu?.subMenu;
+        return (
+          <Group key={menu.path}>
+            <Link href={menu.path} className={isMatch && !hasSubMenu ? 'active' : ''}>
+              <GroupTitle>
+                {menu.icon}
+                <Text variant="headline_2">{menu.title}</Text>
+              </GroupTitle>
+            </Link>
+
+            {menu?.subMenu && (
+              <GroupList>
+                {menu.subMenu.map((subMenu) => {
+                  const isMatch = pathname === subMenu.path;
+                  return (
+                    <Link href={subMenu.path} key={subMenu.path}>
+                      <GroupItem className={isMatch ? 'active' : ''}>
+                        <Text variant="body_1">{subMenu.title}</Text>
+                      </GroupItem>
+                    </Link>
+                  );
+                })}
+              </GroupList>
+            )}
+          </Group>
+        );
+      })}
     </Wrapper>
   );
 };
@@ -67,6 +52,13 @@ const Wrapper = styled.div`
   gap: 32px;
   .menu-title {
     padding: 0 10px;
+  }
+  a {
+    text-decoration: none;
+  }
+  .active {
+    border-radius: 6px;
+    background-color: ${({ theme }) => theme.colors.agoraBlack[50]};
   }
 `;
 
@@ -96,6 +88,9 @@ const GroupList = styled.div`
 const GroupItem = styled.li`
   padding: 6px 10px;
   border-radius: 6px;
+  .active {
+    background-color: ${({ theme }) => theme.colors.agoraBlack[50]};
+  }
   &:hover {
     cursor: pointer;
     background-color: ${({ theme }) => theme.colors.agoraBlack[50]};
