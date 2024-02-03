@@ -49,6 +49,7 @@ import DropdownArrowUp from './DropdownArrowUp.svg';
 import OrangeCircle from './OrangeCircle.svg';
 import YellowCircle from './YellowCircle.svg';
 import GreenCircle from './GreenCircle.svg';
+import UserImage from './UserImage.svg';
 
 export {
   Alarm,
@@ -102,4 +103,5 @@ export {
   OrangeCircle,
   YellowCircle,
   GreenCircle,
+  UserImage,
 };

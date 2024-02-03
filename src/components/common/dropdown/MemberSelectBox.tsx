@@ -18,6 +18,7 @@ const MemberSelectBox = ({ memberList, value, valueHandler, closeHandler }: Memb
     closeHandler();
   };
 
+  const DEFAULT_IMG = '/assets/svgs/UserImage.svg';
   return (
     <Wrapper $isBlur={memberList.length > 4}>
       <SelectBox>
@@ -27,7 +28,7 @@ const MemberSelectBox = ({ memberList, value, valueHandler, closeHandler }: Memb
           return (
             <Option key={`MemberSelectBox-${uuid}`} onClick={() => onClickOption(member)} $isActive={isActive}>
               <Content>
-                <img src={member.profileImage} alt="프로필 이미지" />
+                <img src={member.profileImage !== '' ? member.profileImage : DEFAULT_IMG} alt="프로필 이미지" />
                 <span>{member.nickname}</span>
               </Content>
               {isActive && <Check viewBox="0 0 25 25" color={theme.colors.agoraBlue[400]} width={18} height={18} />}
@@ -44,7 +45,7 @@ const Wrapper = styled.div<{ $isBlur: boolean }>`
   border: 1px solid ${({ theme }) => theme.colors.agoraBlack[50]};
   background: ${({ theme }) => theme.colors.background};
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.09);
-  height: 180px;
+  height: 184px;
   overflow-y: scroll;
   // 스크롤 시 blur 처리
   /* &::before {
@@ -60,22 +61,30 @@ const Wrapper = styled.div<{ $isBlur: boolean }>`
 `;
 const SelectBox = styled.ul``;
 const Option = styled.li<{ $isActive: boolean }>`
-  padding: 12px 18px 12px 12px;
+  padding: 7px 18px 7px 12px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   cursor: pointer;
   color: ${({ theme, $isActive }) => ($isActive ? theme.colors.agoraBlack[800] : theme.colors.agoraBlack[600])};
 
   &:hover {
     color: ${({ theme }) => theme.colors.agoraBlack[800]};
+    border-radius: 4px;
+    background: rgba(231, 234, 253, 0.5);
+  }
+  &:hover {
+    span {
+      ${({ theme }) => theme.fontStyle.body_1}
+    }
   }
 `;
 const Content = styled.span`
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 12px;
   span {
-    ${({ theme }) => theme.fontStyle.detail_2}
+    ${({ theme }) => theme.fontStyle.body_2}
   }
 `;
 export default MemberSelectBox;

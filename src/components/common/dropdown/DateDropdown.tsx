@@ -41,12 +41,15 @@ const PlaceHolderBox = styled.div<{ $isOpen: boolean; $value: string | null }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14.5px 16px;
+  padding: 0 16px;
+  height: 50px;
   user-select: none;
   border-radius: 8px;
   border: 1px solid ${({ theme, $isOpen }) => ($isOpen ? theme.colors.agoraBlue[300] : theme.colors.agoraBlack[100])};
   background-color: ${({ theme }) => theme.colors.background};
   color: ${({ theme, $value }) => ($value ? theme.colors.agoraBlack[800] : theme.colors.agoraBlack[300])};
+
+  ${({ theme, $value }) => ($value ? theme.fontStyle.detail_1 : theme.fontStyle.detail_2)}
   cursor: pointer;
 `;
 export default DateDropdown;

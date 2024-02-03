@@ -45,6 +45,7 @@ const Page = () => {
   };
 
   const memberDropHandler = (value: DropdownMemberStatus) => {
+    console.log(value.id);
     const hasValue = memberDrop.find((member) => member.id === value.id);
     if (hasValue) {
       setMemberDrop(memberDrop.filter((user) => user.id !== value.id));
