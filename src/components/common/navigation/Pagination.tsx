@@ -1,7 +1,7 @@
 'use client';
 
 import { ArrowFirst, ArrowLast, ArrowLeft, ArrowRight } from 'public/assets/svgs';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import styled from 'styled-components';
 import { theme } from '~/styles/theme';
 
@@ -52,9 +52,13 @@ const Pagination = ({ totalPage, currentPage, pagehandler }: PaginationProps) =>
         )}
       </PrevButtonBox>
       <PaginationList>
-        {pageArray.map((num) => {
+        {pageArray.map((num, idx) => {
           return (
-            <PaginationItem $isActive={currentPage === num} onClick={() => pagehandler(num)}>
+            <PaginationItem
+              $isActive={currentPage === num}
+              onClick={() => pagehandler(num)}
+              key={`PaginationItem-${idx}`}
+            >
               {num}
             </PaginationItem>
           );

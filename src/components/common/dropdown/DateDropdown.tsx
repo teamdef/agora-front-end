@@ -1,28 +1,18 @@
 'use client';
 
 import styled from 'styled-components';
-import DateListBox from './DateListBox';
-import MemberListBox from './MemberListBox';
-import TimeSelectBox from './TimeSelectBox';
+import TimeSelectBox from './DateSelectBox';
 import { useState } from 'react';
 import { DropdownArrowDown, DropdownArrowUp } from 'public/assets/svgs';
 import useOutsideClick from '~/hooks/useOutsideClick';
 
-// interface DropdownMemberStatus {
-//   profileImage: string;
-//   nickname: string;
-// }
-
 interface DropdownProps {
-  type: 'time' | 'user';
   placeHolder: string;
   value: string | null;
   valueHandler: (value: string) => void;
-  scrollPerView?: number;
-  //   userData?: DropdownMemberStatus[];
 }
 
-const Dropdown = ({ type, valueHandler, value, placeHolder, scrollPerView }: DropdownProps) => {
+const DateDropdown = ({ valueHandler, value, placeHolder }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleIsOpenHandler = () => setIsOpen((prev) => !prev);
@@ -36,14 +26,7 @@ const Dropdown = ({ type, valueHandler, value, placeHolder, scrollPerView }: Dro
         {value ?? placeHolder}
         {isOpen ? <DropdownArrowUp /> : <DropdownArrowDown />}
       </PlaceHolderBox>
-      {isOpen && type === 'time' && (
-        <TimeSelectBox
-          value={value}
-          valueHandler={valueHandler}
-          closeHandler={closeHandler}
-          scrollPerView={scrollPerView}
-        />
-      )}
+      {isOpen && <TimeSelectBox value={value} valueHandler={valueHandler} closeHandler={closeHandler} />}
     </Wrapper>
   );
 };
@@ -66,4 +49,4 @@ const PlaceHolderBox = styled.div<{ $isOpen: boolean; $value: string | null }>`
   color: ${({ theme, $value }) => ($value ? theme.colors.agoraBlack[800] : theme.colors.agoraBlack[300])};
   cursor: pointer;
 `;
-export default Dropdown;
+export default DateDropdown;
