@@ -1,4 +1,5 @@
 'use client';
+import { GreenCircle, OrangeCircle, YellowCircle } from 'public/assets/svgs';
 import styled from 'styled-components';
 
 interface BadgeProps {
@@ -8,6 +9,9 @@ interface BadgeProps {
 const Badge = ({ label, status }: BadgeProps) => {
   return (
     <Box $status={status}>
+      {status === 'todo' && <OrangeCircle />}
+      {status === 'inProgress' && <YellowCircle />}
+      {status === 'done' && <GreenCircle />}
       <span>{label}</span>
     </Box>
   );
@@ -15,12 +19,19 @@ const Badge = ({ label, status }: BadgeProps) => {
 
 const Box = styled.span<{ $status: BadgeProps['status'] }>`
   position: relative;
-  display: inline-block;
+  display: inline-flex;
   justify-content: center;
+  gap: 6px;
   align-items: center;
   padding: 2px 12px;
   background-color: ${({ theme }) => theme.colors.badge.todo[50]};
   border-radius: 12.5px;
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ${({ theme }) => theme.fontStyle.detail_2}
+  }
   ${({ theme, $status }) => {
     switch ($status) {
       case 'todo':
@@ -31,30 +42,5 @@ const Box = styled.span<{ $status: BadgeProps['status'] }>`
         return `background-color: ${theme.colors.badge.done[50]};`;
     }
   }}
-  span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    ${({ theme }) => theme.fontStyle.detail_2}
-    &::before {
-      content: '';
-      position: relative;
-      display: block;
-      margin-right: 6px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      ${({ theme, $status }) => {
-        switch ($status) {
-          case 'todo':
-            return `background-color: ${theme.colors.badge.todo[300]};`;
-          case 'inProgress':
-            return `background-color: ${theme.colors.badge.inProgress[500]};`;
-          case 'done':
-            return `background-color: ${theme.colors.badge.done[300]};`;
-        }
-      }}
-    }
-  }
 `;
 export default Badge;
