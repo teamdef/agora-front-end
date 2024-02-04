@@ -6,6 +6,7 @@ import Pagination from '~/components/common/navigation/Pagination';
 import { ReactElement } from 'react';
 import GNBLayout from '~/components/layout/GNBLayout';
 import LNBLayout from '~/components/layout/LNBLayout';
+import Tab from '~/components/common/navigation/Tab';
 
 const mockData: DropdownMemberStatus[] = [
   {
@@ -30,20 +31,26 @@ const mockData: DropdownMemberStatus[] = [
   },
 ];
 
+const TAB_MENU = ['이번 회고록', '지난 회고록'];
 const Page = () => {
   const [current, setCurrent] = useState(110);
   const [dropdown, setDropdown] = useState<string | null>(null);
   const [memberDrop, setMemberDrop] = useState<DropdownMemberStatus[]>([]);
+  const [tab, setTab] = useState<number>(0);
 
   const totalPage = 115;
 
   const currentHandler = (idx: number) => {
     setCurrent(idx);
   };
+
   const dropdownHandler = (value: string) => {
     setDropdown(value);
   };
 
+  const tabHandler = (idx: number) => {
+    setTab(idx);
+  };
   const memberDropHandler = (value: DropdownMemberStatus) => {
     console.log(value.id);
     const hasValue = memberDrop.find((member) => member.id === value.id);
@@ -55,7 +62,7 @@ const Page = () => {
   };
 
   return (
-    <div style={{ padding: '100px' }}>
+    <div style={{ padding: '100px', display: 'flex', flexDirection: 'column', gap: '30px' }}>
       <Badge label="시작 전" status="todo" />
       <Pagination currentPage={current} pagehandler={currentHandler} totalPage={totalPage} />
       <DateDropdown value={dropdown} placeHolder="시간을 선택해주세요." valueHandler={dropdownHandler} />
@@ -65,6 +72,7 @@ const Page = () => {
         valueHandler={memberDropHandler}
         memberList={mockData}
       />
+      <Tab current={tab} handler={tabHandler} menu={TAB_MENU} />
     </div>
   );
 };

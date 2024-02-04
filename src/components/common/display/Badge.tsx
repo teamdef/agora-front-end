@@ -20,6 +20,7 @@ const Badge = ({ label, status }: BadgeProps) => {
 const Box = styled.span<{ $status: BadgeProps['status'] }>`
   position: relative;
   display: inline-flex;
+  align-self: flex-start;
   justify-content: center;
   gap: 6px;
   align-items: center;
