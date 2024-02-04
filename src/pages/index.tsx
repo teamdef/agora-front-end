@@ -44,30 +44,24 @@ const Page = () => {
     setCurrent(idx);
   };
 
-  const dropdownHandler = (value: string) => {
+  const dropdownHandler = (value: string | null) => {
     setDropdown(value);
   };
 
   const tabHandler = (idx: number) => {
     setTab(idx);
   };
-  const memberDropHandler = (value: DropdownMemberStatus) => {
-    console.log(value.id);
-    const hasValue = memberDrop.find((member) => member.id === value.id);
-    if (hasValue) {
-      setMemberDrop(memberDrop.filter((user) => user.id !== value.id));
-    } else {
-      setMemberDrop((prev) => [...prev, value]);
-    }
+  const memberDropHandler = (newData: DropdownMemberStatus[]) => {
+    setMemberDrop(newData);
   };
 
   return (
-    <div style={{ padding: '100px', display: 'flex', flexDirection: 'column', gap: '30px' }}>
+    <div style={{ padding: '100px', display: 'flex', flexDirection: 'column', gap: '300px' }}>
       <Badge label="시작 전" status="todo" />
       <Pagination currentPage={current} pagehandler={currentHandler} totalPage={totalPage} />
       <DateDropdown value={dropdown} placeHolder="시간을 선택해주세요." valueHandler={dropdownHandler} />
       <MemberDropdown
-        value={memberDrop}
+        selected={memberDrop}
         placeHolder="회고의 참여자를 선택해주세요."
         valueHandler={memberDropHandler}
         memberList={mockData}

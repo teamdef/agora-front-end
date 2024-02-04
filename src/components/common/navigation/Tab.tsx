@@ -11,8 +11,9 @@ const Tab = ({ current, handler, menu }: TabProps) => {
   return (
     <Wrapper>
       {menu.map((item, idx) => {
+        const uuid = self.crypto.randomUUID();
         return (
-          <TabButton onClick={() => handler(idx)} $isFocus={idx === current}>
+          <TabButton key={`TabButton-${uuid}`} onClick={() => handler(idx)} $isFocus={idx === current}>
             <span>{item}</span>
           </TabButton>
         );

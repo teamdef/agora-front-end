@@ -7,12 +7,12 @@ import { DropdownMemberStatus } from './MemberDropdown';
 
 interface MemberSelectBoxProps {
   memberList: DropdownMemberStatus[];
-  value: DropdownMemberStatus[] | null;
-  valueHandler: (value: DropdownMemberStatus) => void;
+  selected: DropdownMemberStatus[];
+  valueHandler: (_value: DropdownMemberStatus) => void;
   closeHandler: () => void;
 }
 
-const MemberSelectBox = ({ memberList, value, valueHandler, closeHandler }: MemberSelectBoxProps) => {
+const MemberSelectBox = ({ memberList, selected, valueHandler, closeHandler }: MemberSelectBoxProps) => {
   const onClickOption = (_value: DropdownMemberStatus) => {
     valueHandler(_value);
     closeHandler();
@@ -24,7 +24,7 @@ const MemberSelectBox = ({ memberList, value, valueHandler, closeHandler }: Memb
       <SelectBox>
         {memberList.map((member: DropdownMemberStatus) => {
           const uuid = self.crypto.randomUUID();
-          const isActive = value ? value.includes(member) : false;
+          const isActive = selected ? selected.includes(member) : false;
           return (
             <Option key={`MemberSelectBox-${uuid}`} onClick={() => onClickOption(member)} $isActive={isActive}>
               <Content>
@@ -40,13 +40,17 @@ const MemberSelectBox = ({ memberList, value, valueHandler, closeHandler }: Memb
   );
 };
 const Wrapper = styled.div<{ $isBlur: boolean }>`
+  position: absolute;
+  top: 100%;
   padding: 0 8px;
+  width: calc(100% - 16px);
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.agoraBlack[50]};
   background: ${({ theme }) => theme.colors.background};
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.09);
   height: 184px;
   overflow-y: scroll;
+  z-index: 1;
   // 스크롤 시 blur 처리
   /* &::before {
     content: '';

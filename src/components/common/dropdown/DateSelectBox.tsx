@@ -5,25 +5,26 @@ import styled from 'styled-components';
 import { theme } from '~/styles/theme';
 
 interface DateSelectBoxProps {
-  value: string | null;
-  valueHandler: (value: string) => void;
+  selected: string | null;
+  valueHandler: (value: string | null) => void;
   closeHandler: () => void;
 }
 
-const TIME_OPTIONS: string[] = ['5분 전', '10분 전', '15분 전', '20분 전', '30분 전', '1시간 전', '없음'];
+const DATE_OPTIONS: string[] = ['5분 전', '10분 전', '15분 전', '20분 전', '30분 전', '1시간 전', '없음'];
 
-const DateSelectBox = ({ value, valueHandler, closeHandler }: DateSelectBoxProps) => {
+const DateSelectBox = ({ selected, valueHandler, closeHandler }: DateSelectBoxProps) => {
   const onClickOption = (value: string) => {
-    valueHandler(value);
+    if (selected === value) valueHandler(null);
+    else valueHandler(value);
     closeHandler();
   };
 
   return (
-    <Wrapper $isBlur={TIME_OPTIONS.length > 4}>
+    <Wrapper $isBlur={DATE_OPTIONS.length > 4}>
       <SelectBox>
-        {TIME_OPTIONS.map((option: string) => {
+        {DATE_OPTIONS.map((option: string) => {
           const uuid = self.crypto.randomUUID();
-          const isActive = value === option;
+          const isActive = selected === option;
           return (
             <Option key={`DateSelectBox-${uuid}`} onClick={() => onClickOption(option)} $isActive={isActive}>
               <Content>
@@ -39,6 +40,9 @@ const DateSelectBox = ({ value, valueHandler, closeHandler }: DateSelectBoxProps
   );
 };
 const Wrapper = styled.div<{ $isBlur: boolean }>`
+  position: absolute;
+  top: 100%;
+  width: calc(100% - 16px);
   padding: 0 8px;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.agoraBlack[50]};
@@ -46,6 +50,7 @@ const Wrapper = styled.div<{ $isBlur: boolean }>`
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.09);
   height: 180px;
   overflow-y: scroll;
+  z-index: 1;
   // 스크롤 시 blur 처리
   /* &::before {
     content: '';
@@ -58,7 +63,10 @@ const Wrapper = styled.div<{ $isBlur: boolean }>`
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, #fff 100%);
   } */
 `;
-const SelectBox = styled.ul``;
+const SelectBox = styled.ul`
+  display: flex;
+  flex-direction: column;
+`;
 const Option = styled.li<{ $isActive: boolean }>`
   padding: 12px 18px 12px 12px;
   display: flex;

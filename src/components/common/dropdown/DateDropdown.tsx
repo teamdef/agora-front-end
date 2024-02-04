@@ -1,21 +1,25 @@
 'use client';
 
 import styled from 'styled-components';
-import TimeSelectBox from './DateSelectBox';
-import { useState } from 'react';
+import DateSelectBox from './DateSelectBox';
+import { MouseEvent, useState } from 'react';
 import { DropdownArrowDown, DropdownArrowUp } from 'public/assets/svgs';
 import useOutsideClick from '~/hooks/useOutsideClick';
 
 interface DropdownProps {
   placeHolder: string;
   value: string | null;
-  valueHandler: (value: string) => void;
+  valueHandler: (value: string | null) => void;
 }
 
 const DateDropdown = ({ valueHandler, value, placeHolder }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const toggleIsOpenHandler = () => setIsOpen((prev) => !prev);
+  const toggleIsOpenHandler = (e: MouseEvent) => {
+    setIsOpen((prev) => !prev);
+    e.stopPropagation();
+  };
+
   const closeHandler = () => setIsOpen(false);
 
   const wrapper = useOutsideClick(closeHandler);
@@ -26,7 +30,7 @@ const DateDropdown = ({ valueHandler, value, placeHolder }: DropdownProps) => {
         {value ?? placeHolder}
         {isOpen ? <DropdownArrowUp /> : <DropdownArrowDown />}
       </PlaceHolderBox>
-      {isOpen && <TimeSelectBox value={value} valueHandler={valueHandler} closeHandler={closeHandler} />}
+      {isOpen && <DateSelectBox selected={value} valueHandler={valueHandler} closeHandler={closeHandler} />}
     </Wrapper>
   );
 };

@@ -16,16 +16,26 @@ export interface DropdownMemberStatus {
 interface DropdownProps {
   memberList: DropdownMemberStatus[];
   placeHolder: string;
-  value: DropdownMemberStatus[];
-  valueHandler: (value: DropdownMemberStatus) => void;
+  selected: DropdownMemberStatus[];
+  valueHandler: (value: DropdownMemberStatus[]) => void;
 }
 
-const MemberDropdown = ({ memberList, valueHandler, value, placeHolder }: DropdownProps) => {
+const MemberDropdown = ({ memberList, valueHandler, selected, placeHolder }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleIsOpenHandler = (e: MouseEvent) => {
     setIsOpen((prev) => !prev);
     e.stopPropagation();
+  };
+  const toggleNewData = (_value: DropdownMemberStatus) => {
+    const hasValue = selected.find((user) => user.id === _value.id);
+    let newData: DropdownMemberStatus[] = [];
+    if (hasValue) {
+      newData = selected.filter((user) => user.id !== _value.id);
+    } else {
+      newData = [...selected, _value];
+    }
+    valueHandler(newData);
   };
   const closeHandler = () => setIsOpen(false);
   const wrapper = useOutsideClick(closeHandler);
@@ -33,21 +43,21 @@ const MemberDropdown = ({ memberList, valueHandler, value, placeHolder }: Dropdo
   return (
     <Wrapper ref={wrapper}>
       <PlaceHolderBox onClick={toggleIsOpenHandler} $isOpen={isOpen}>
-        {value.length > 0 && (
+        {selected.length > 0 && (
           <SelectedMember>
-            {value.map((member) => {
+            {selected.map((member) => {
               const uuid = self.crypto.randomUUID();
-              return <ProfileBadge key={`MemberDropdown-${uuid}`} memberState={member} closeFn={valueHandler} />;
+              return <ProfileBadge key={`MemberDropdown-${uuid}`} memberState={member} closeFn={toggleNewData} />;
             })}
           </SelectedMember>
         )}
-        {value.length === 0 && <PlaceHolderText>{placeHolder}</PlaceHolderText>}
+        {selected.length === 0 && <PlaceHolderText>{placeHolder}</PlaceHolderText>}
         {isOpen ? <DropdownArrowUp /> : <DropdownArrowDown />}
       </PlaceHolderBox>
       {isOpen && (
         <MemberSelectBox
-          value={value}
-          valueHandler={valueHandler}
+          selected={selected}
+          valueHandler={toggleNewData}
           closeHandler={closeHandler}
           memberList={memberList}
         />
