@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "next lint --fix"
+    "lint:fix": "next lint --fix",
+    "script":"node ./src/data/script.js"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.8.1",

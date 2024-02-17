@@ -107,11 +107,6 @@ const PaginationItem = styled.li<{ $isActive: boolean }>`
   justify-content: center;
   align-items: center;
   width: 18px;
-  user-select: none; /* standard syntax */
-  -webkit-user-select: none; /* webkit (safari, chrome) browsers */
-  -moz-user-select: none; /* mozilla browsers */
-  -khtml-user-select: none; /* webkit (konqueror) browsers */
-  -ms-user-select: none; /* IE10+ */
   height: 24px;
   cursor: pointer;
   color: ${({ $isActive, theme }) => ($isActive ? theme.colors.agoraBlue[400] : theme.colors.agoraBlack[700])};
