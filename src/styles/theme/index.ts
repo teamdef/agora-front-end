@@ -29,7 +29,7 @@ const fontStyle = {
   caption: 'font-size: 12px;\nfont-weight: 400;\nline-height: 18px;\nletter-spacing: -0.24px;',
 };
 
-const colors = {
+export const colors = {
   agoraBlack: {
     /** #E7E7EB */
     50: '#E7E7EB',
@@ -54,7 +54,7 @@ const colors = {
   },
   agoraBlue: {
     /** #E7EAFD */
-    a50: '#E7EAFD',
+    50: '#E7EAFD',
     /** #C2C9FA */
     100: '#C2C9FA',
     /** #96A6F7 */
