@@ -17,7 +17,7 @@ const DASHBOARD_PATHS = {
 
 const REVIEW_PATHS = {
   REVIEW_QUARTER: '/review/quarter',
-  REVIEW_WEEKLY: '/review/weekly',
+  REVIEW_SPRINT: '/review/sprint',
 };
 
 const SETTING_PATHS = {

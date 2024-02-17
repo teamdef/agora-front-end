@@ -30,8 +30,8 @@ export const LNB_MENUS: Menu[] = [
     path: Paths.REVIEW_QUARTER,
     icon: <Folder />,
     subMenu: [
+      { title: '스프린트회고', path: Paths.REVIEW_SPRINT },
       { title: '분기회고', path: Paths.REVIEW_QUARTER },
-      { title: '주간회고', path: Paths.REVIEW_WEEKLY },
     ],
   },
   {
