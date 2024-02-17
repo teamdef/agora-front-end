@@ -53,11 +53,12 @@ const Pagination = ({ totalPage, currentPage, pagehandler }: PaginationProps) =>
       </PrevButtonBox>
       <PaginationList>
         {pageArray.map((num, idx) => {
+          const uuid = crypto.randomUUID();
           return (
             <PaginationItem
               $isActive={currentPage === num}
               onClick={() => pagehandler(num)}
-              key={`PaginationItem-${idx}`}
+              key={`PaginationItem-${uuid}`}
             >
               {num}
             </PaginationItem>

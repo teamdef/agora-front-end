@@ -23,7 +23,7 @@ const MemberSelectBox = ({ memberList, selected, valueHandler, closeHandler }: M
     <Wrapper $isBlur={memberList.length > 4}>
       <SelectBox>
         {memberList.map((member: DropdownMemberStatus) => {
-          const uuid = self.crypto.randomUUID();
+          const uuid = crypto.randomUUID();
           const isActive = selected ? selected.includes(member) : false;
           return (
             <Option key={`MemberSelectBox-${uuid}`} onClick={() => onClickOption(member)} $isActive={isActive}>

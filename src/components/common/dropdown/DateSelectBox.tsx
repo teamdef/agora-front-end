@@ -23,7 +23,7 @@ const DateSelectBox = ({ selected, valueHandler, closeHandler }: DateSelectBoxPr
     <Wrapper $isBlur={DATE_OPTIONS.length > 4}>
       <SelectBox>
         {DATE_OPTIONS.map((option: string) => {
-          const uuid = self.crypto.randomUUID();
+          const uuid = crypto.randomUUID();
           const isActive = selected === option;
           return (
             <Option key={`DateSelectBox-${uuid}`} onClick={() => onClickOption(option)} $isActive={isActive}>
