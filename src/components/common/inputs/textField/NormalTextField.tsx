@@ -1,5 +1,3 @@
-'use client';
-
 import { FontStyleType } from '~/styles/theme';
 import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';

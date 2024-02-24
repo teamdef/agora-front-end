@@ -1,6 +1,5 @@
-'use client';
-
 import { ArrowFirst, ArrowLast, ArrowLeft, ArrowRight } from 'public/assets/svgs';
+import { useMemo } from 'react';
 import styled from 'styled-components';
 import { theme } from '~/styles/theme';
 
@@ -11,9 +10,17 @@ interface PaginationProps {
 }
 
 const Pagination = ({ totalPage, currentPage, pagehandler }: PaginationProps) => {
-  const firstNum = Math.floor((currentPage - 1) / 10) * 10 + 1;
-  const arrLength = firstNum + 9 > totalPage ? totalPage - firstNum + 1 : 10;
-  const pageArray = Array.from(new Array(arrLength), (x, i) => firstNum + i);
+  const firstNum: number = useMemo(() => {
+    return Math.floor((currentPage - 1) / 10) * 10 + 1;
+  }, [currentPage]);
+
+  const arrLength: number = useMemo(() => {
+    return firstNum + 9 > totalPage ? totalPage - firstNum + 1 : 10;
+  }, [firstNum, totalPage]);
+
+  const pageArray: number[] = useMemo(() => {
+    return Array.from(new Array(arrLength), (x, i) => firstNum + i);
+  }, [firstNum, arrLength]);
 
   const firstPage = () => pagehandler(1);
   const prevPage = () => pagehandler(currentPage - 10);
@@ -43,9 +50,14 @@ const Pagination = ({ totalPage, currentPage, pagehandler }: PaginationProps) =>
         )}
       </PrevButtonBox>
       <PaginationList>
-        {pageArray.map((num) => {
+        {pageArray.map((num, idx) => {
+          const uuid = crypto.randomUUID();
           return (
-            <PaginationItem $isActive={currentPage === num} onClick={() => pagehandler(num)}>
+            <PaginationItem
+              $isActive={currentPage === num}
+              onClick={() => pagehandler(num)}
+              key={`PaginationItem-${uuid}`}
+            >
               {num}
             </PaginationItem>
           );

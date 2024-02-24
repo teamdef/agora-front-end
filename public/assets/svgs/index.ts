@@ -44,6 +44,12 @@ import CheckBoxFalse from './CheckBoxFalse.svg';
 import CheckBoxFalseDisabled from './CheckBoxFalseDisabled.svg';
 import CheckBoxTrue from './CheckBoxTrue.svg';
 import CheckBoxTrueDisable from './CheckBoxTrueDisabled.svg';
+import DropdownArrowDown from './DropdownArrowDown.svg';
+import DropdownArrowUp from './DropdownArrowUp.svg';
+import OrangeCircle from './OrangeCircle.svg';
+import YellowCircle from './YellowCircle.svg';
+import GreenCircle from './GreenCircle.svg';
+import UserImage from './UserImage.svg';
 
 export {
   Alarm,
@@ -92,4 +98,10 @@ export {
   CheckBoxFalseDisabled,
   CheckBoxTrue,
   CheckBoxTrueDisable,
+  DropdownArrowDown,
+  DropdownArrowUp,
+  OrangeCircle,
+  YellowCircle,
+  GreenCircle,
+  UserImage,
 };
