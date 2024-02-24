@@ -1,5 +1,3 @@
-'use client';
-
 import { styled } from 'styled-components';
 import { ReactNode } from 'react';
 import buttonPainter from '~/utils/buttonPainter';

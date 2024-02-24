@@ -1,4 +1,3 @@
-'use client';
 import { Cancel } from 'public/assets/svgs';
 import styled from 'styled-components';
 import { DropdownMemberStatus } from '../dropdown/MemberDropdown';

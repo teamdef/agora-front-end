@@ -1,5 +1,3 @@
-'use client';
-
 import { ArrowFirst, ArrowLast, ArrowLeft, ArrowRight } from 'public/assets/svgs';
 import { useMemo } from 'react';
 import styled from 'styled-components';

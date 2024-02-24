@@ -1,4 +1,3 @@
-'use client';
 import { useState } from 'react';
 import Badge from '~/components/common/display/Badge';
 import DateDropdown from '~/components/common/dropdown/DateDropdown';

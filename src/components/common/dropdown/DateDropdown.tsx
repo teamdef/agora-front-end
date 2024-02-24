@@ -1,5 +1,3 @@
-'use client';
-
 import styled from 'styled-components';
 import DateSelectBox from './DateSelectBox';
 import { MouseEvent, useState } from 'react';

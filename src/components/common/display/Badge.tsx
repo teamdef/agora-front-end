@@ -1,4 +1,3 @@
-'use client';
 import { GreenCircle, OrangeCircle, YellowCircle } from 'public/assets/svgs';
 import styled from 'styled-components';
 

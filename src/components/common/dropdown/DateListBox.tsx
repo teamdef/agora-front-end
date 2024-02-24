@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 import styled from 'styled-components';
 // 시간 15 분 10 분
