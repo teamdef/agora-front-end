@@ -31,6 +31,7 @@ const styles = css`
   }
   input {
     padding: 0;
+    caret-color: ${({ theme }) => theme.colors.agoraBlue[400]};
   }
   button {
     cursor: pointer;

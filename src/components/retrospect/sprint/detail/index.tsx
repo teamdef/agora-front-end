@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import TitleTextField from '~/components/common/inputs/textField/TitleTextField';
+import { theme } from '~/styles/theme';
 
-const mockData = {
+const mock = {
   title: '스프린트 48 회고',
   date: '2023.10.18 17:00',
   creator: '장원석',
@@ -58,8 +59,21 @@ const mockData = {
   },
 };
 const RetrospectSprintDetail = () => {
-  return <Wrapper></Wrapper>;
+  return (
+    <Wrapper>
+      <TitleTextField
+        value={mock.title}
+        maxLength={20}
+        fontStyle={theme.fontStyle.headline_1}
+        placeholder={mock.title}
+        onChange={() => console.log('값 변경')}
+        onBlur={() => console.log('저장')}
+      />
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div``;
 export default RetrospectSprintDetail;
+
+RetrospectSprintDetail.displayName = 'RetrospectSprintDetail';

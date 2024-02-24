@@ -7,10 +7,10 @@ interface TextField {
   maxLength: number;
   onChange: (value: string) => void;
   placeholder?: string;
-  fontStyle?: FontStyleType;
+  fontStyle?: string;
 }
 
-const NormalTextField = ({ value, onChange, maxLength, placeholder }: TextField) => {
+const NormalTextField = ({ value, onChange, maxLength, placeholder, fontStyle }: TextField) => {
   const [count, setCount] = useState<number>(0);
 
   const valueHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +24,7 @@ const NormalTextField = ({ value, onChange, maxLength, placeholder }: TextField)
   };
 
   return (
-    <Box>
+    <Box $fontStyle={fontStyle}>
       <input value={value} onChange={valueHandler} placeholder={placeholder} maxLength={maxLength} />
       <span>
         {count} / {maxLength}
@@ -32,7 +32,7 @@ const NormalTextField = ({ value, onChange, maxLength, placeholder }: TextField)
     </Box>
   );
 };
-const Box = styled.div`
+const Box = styled.div<{ $fontStyle?: string }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -42,7 +42,7 @@ const Box = styled.div`
     border: none;
     padding-right: 10px;
     padding-bottom: 5px;
-    ${({ theme }) => theme.fontStyle.body_2}
+    ${({ theme, $fontStyle }) => $fontStyle ?? theme.fontStyle.body_2}
     outline-style: none;
     border-bottom: 1px solid ${({ theme }) => theme.colors.agoraBlack[200]};
     &:focus {

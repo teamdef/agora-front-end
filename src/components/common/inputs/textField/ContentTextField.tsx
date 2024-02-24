@@ -8,10 +8,10 @@ interface TextField {
   maxLength: number;
   onBlur: () => void;
   placeholder?: string;
-  fontStyle?: FontStyleType;
+  fontStyle?: string;
 }
 
-const ContentTextField = ({ value, onChange, maxLength, placeholder, onBlur }: TextField) => {
+const ContentTextField = ({ value, onChange, maxLength, placeholder, onBlur, fontStyle }: TextField) => {
   const [isFocus, setIsFocus] = useState<boolean>(true);
   const [count, setCount] = useState<number>(value.length);
   const textarea = useRef<HTMLTextAreaElement>(null);
@@ -40,7 +40,7 @@ const ContentTextField = ({ value, onChange, maxLength, placeholder, onBlur }: T
   };
 
   return (
-    <Box $value={value} $isFocus={isFocus}>
+    <Box $value={value} $isFocus={isFocus} $fontStyle={fontStyle}>
       <textarea
         ref={textarea}
         value={value}
@@ -60,7 +60,7 @@ const ContentTextField = ({ value, onChange, maxLength, placeholder, onBlur }: T
     </Box>
   );
 };
-const Box = styled.div<{ $value: string; $isFocus: boolean }>`
+const Box = styled.div<{ $value: string; $isFocus: boolean; $fontStyle?: string }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -70,7 +70,7 @@ const Box = styled.div<{ $value: string; $isFocus: boolean }>`
     display: block;
     border: none;
     padding: none;
-    ${({ theme }) => theme.fontStyle.body_2}
+    ${({ theme, $fontStyle }) => $fontStyle ?? theme.fontStyle.body_2}
     outline-style: none;
     resize: none;
     cursor: ${({ $value }) => ($value ? 'pointer' : 'auto')};
