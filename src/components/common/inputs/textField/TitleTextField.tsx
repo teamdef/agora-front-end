@@ -23,9 +23,18 @@ const TitleTextField = ({ value, onChange, maxLength, placeholder, onBlur, fontS
     onChange(e.target.value);
     setCount(e.target.value.length);
   };
+  const onBlurHandler = () => {
+    if (value !== placeholder) onBlur();
+  };
   return (
     <Box $fontStyle={fontStyle}>
-      <input value={value} onChange={valueHandler} placeholder={placeholder} maxLength={maxLength} onBlur={onBlur} />
+      <input
+        value={value}
+        onChange={valueHandler}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        onBlur={onBlurHandler}
+      />
     </Box>
   );
 };
