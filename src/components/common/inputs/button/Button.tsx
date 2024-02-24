@@ -35,7 +35,7 @@ const Box = styled.button<{ $style: ButtonStyleProps }>`
   & svg {
     margin-left: 8px;
   }
-  width: ${({ $style }) => ($style.small ? '120px' : '168px')};
+  padding: 0 ${({ $style }) => ($style.small ? '24px' : '48px')};
   height: ${({ $style }) => ($style.small ? '36px' : '44px')};
   ${({ $style }) => buttonPainter($style.outlined, $style.disabled)}
 `;

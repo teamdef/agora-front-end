@@ -1,19 +1,5 @@
-import { Delete, More } from 'public/assets/svgs';
-import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import MoreDropdown from '~/components/common/dropdown/MoreDropdown';
-import TitleTextField from '~/components/common/inputs/textField/TitleTextField';
-import { theme } from '~/styles/theme';
-import RetrospectInfo from './RetrospectInfo';
-import RetrospectContent from './RetrospectContent';
-
-const moreList = [
-  {
-    icon: <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />,
-    title: '삭제',
-    onClick: () => console.log('삭제버튼 클릭'),
-  },
-];
+import KeepItem from './KeepItem';
 
 const mock = {
   // 회고 기본 정보
@@ -117,64 +103,33 @@ const mock = {
   },
 };
 
-export type GetRetrospectDtoMock = typeof mock;
-const RetrospectSprintDetail = () => {
-  const [isOpenMore, setIsOpenMore] = useState<boolean>(false);
-  const moreButtonRef = useRef<HTMLButtonElement>(null);
-
-  const toggleMore = () => setIsOpenMore((prev) => !prev);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      console.log(moreButtonRef.current?.contains(event.target as Node));
-      console.log(moreButtonRef.current);
-      if (moreButtonRef.current && !moreButtonRef.current.contains(event.target as Node)) {
-        setIsOpenMore(false);
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [moreButtonRef, setIsOpenMore]);
-
+const KeepList = () => {
   return (
     <Wrapper>
-      <TitleBox>
-        <TitleTextField
-          value={mock.title}
-          maxLength={20}
-          fontStyle={theme.fontStyle.headline_1}
-          placeholder={mock.title}
-          onChange={() => console.log('값 변경')}
-          onBlur={() => console.log('저장')}
-        />
-        <button onClick={toggleMore} ref={moreButtonRef}>
-          <More />
-        </button>
-        {isOpenMore && <MoreDropdown items={moreList} toggleMore={toggleMore} />}
-      </TitleBox>
-      <RetrospectInfo info={mock} />
-      <RetrospectContent />
+      <Title>지속하고 싶은 점은 무엇인가요?</Title>
+      <Content>
+        {mock.retrospective.keep.map((item) => {
+          return <KeepItem data={item} />;
+        })}
+      </Content>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
-  padding: 0 32px;
-`;
-const TitleBox = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+const Wrapper = styled.div``;
+const Title = styled.h3`
+  margin-top: 28px;
   padding-left: 24px;
-  margin-bottom: 41px;
-  svg {
-    cursor: pointer;
-  }
+  ${({ theme }) => theme.fontStyle.subtitle_1};
+  color: ${({ theme }) => theme.colors.agoraBlack[800]};
+  margin-bottom: 16px;
 `;
-export default RetrospectSprintDetail;
 
-RetrospectSprintDetail.displayName = 'RetrospectSprintDetail';
+const Content = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`;
+
+export default KeepList;
+
+KeepList.displayName = 'KeepList';

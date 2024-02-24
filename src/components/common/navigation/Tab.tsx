@@ -4,7 +4,7 @@ import styled from 'styled-components';
 interface TabProps {
   current: number;
   handler: (idx: number) => void;
-  menu: string[];
+  menu: readonly string[];
 }
 const Tab = ({ current, handler, menu }: TabProps) => {
   return (
