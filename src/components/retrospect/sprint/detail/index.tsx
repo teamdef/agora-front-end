@@ -1,9 +1,10 @@
 import { Delete, More } from 'public/assets/svgs';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import MoreDropdown from '~/components/common/dropdown/MoreDropdown';
 import TitleTextField from '~/components/common/inputs/textField/TitleTextField';
 import { theme } from '~/styles/theme';
+import RetrospectInfo from './RetrospectInfo';
 
 const moreList = [
   {
@@ -18,13 +19,49 @@ const mock = {
   projectId: 0,
   reviewId: 0,
   title: '스프린트 48 회고',
-  date: '2023.10.18 17:00',
-  creator: '장원석',
-  member: ['이승원', '장원석', '김성은', '진현우', '배광호', '전하영'],
+  createTime: '2024-02-24T05:29:21.835Z',
+  creator: {
+    id: 0,
+    profileImage: '',
+    nickname: '장원석',
+  },
+  members: [
+    {
+      id: 1,
+      profileImage: '',
+      nickname: '이승원',
+    },
+    {
+      id: 2,
+      profileImage: '',
+      nickname: '장원석',
+    },
+    {
+      id: 3,
+      profileImage: '',
+      nickname: '김성은',
+    },
+    {
+      id: 4,
+      profileImage: '',
+      nickname: '진현우',
+    },
+    {
+      id: 5,
+      profileImage: '',
+      nickname: '배광호',
+    },
+    {
+      id: 6,
+      profileImage: '',
+      nickname: '전하영',
+    },
+  ],
   // 회고록 부분
   retrospective: {
     keep: [
       {
+        id: 0,
         profileImage: '',
         creator: '이승원',
         content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
@@ -33,11 +70,13 @@ const mock = {
     mission: [
       {
         status: 'problem',
+        id: 0,
         profileImage: '',
         creator: '이승원',
         content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
         comments: [
           {
+            id: 0,
             profileImage: '',
             nickname: '진현우',
             content: '이렇게 해결 해봐요',
@@ -46,11 +85,13 @@ const mock = {
       },
       {
         status: 'try',
+        id: 0,
         profileImage: '',
         creator: '이승원',
         content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
         comments: [
           {
+            id: 0,
             profileImage: '',
             nickname: '진현우',
             content: '이렇게 해결 해봐요',
@@ -59,6 +100,7 @@ const mock = {
       },
       {
         status: 'solve',
+        id: 0,
         profileImage: '',
         creator: '이승원',
         content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
@@ -73,10 +115,28 @@ const mock = {
     ],
   },
 };
+
+export type GetRetrospectDtoMock = typeof mock;
 const RetrospectSprintDetail = () => {
   const [isOpenMore, setIsOpenMore] = useState<boolean>(false);
+  const moreButtonRef = useRef<HTMLButtonElement>(null);
 
   const toggleMore = () => setIsOpenMore((prev) => !prev);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      console.log(moreButtonRef.current?.contains(event.target as Node));
+      console.log(moreButtonRef.current);
+      if (moreButtonRef.current && !moreButtonRef.current.contains(event.target as Node)) {
+        setIsOpenMore(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [moreButtonRef, setIsOpenMore]);
 
   return (
     <Wrapper>
@@ -89,9 +149,12 @@ const RetrospectSprintDetail = () => {
           onChange={() => console.log('값 변경')}
           onBlur={() => console.log('저장')}
         />
-        <More onClick={toggleMore} />
+        <button onClick={toggleMore} ref={moreButtonRef}>
+          <More />
+        </button>
         {isOpenMore && <MoreDropdown items={moreList} toggleMore={toggleMore} />}
       </TitleBox>
+      <RetrospectInfo info={mock} />
     </Wrapper>
   );
 };
@@ -102,6 +165,8 @@ const TitleBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-left: 24px;
+  margin-bottom: 41px;
   svg {
     cursor: pointer;
   }

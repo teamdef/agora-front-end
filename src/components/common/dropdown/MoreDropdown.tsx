@@ -38,7 +38,7 @@ const Wrapper = styled.ul`
   right: -12px;
   border-radius: 6px;
   border: 1px solid ${({ theme }) => theme.colors.agoraBlack[100]};
-  background: '#fff';
+  background-color: #fff;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.09);
   z-index: 1;
 `;

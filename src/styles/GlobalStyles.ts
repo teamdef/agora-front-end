@@ -27,6 +27,8 @@ const styles = css`
     -ms-user-select: none; /* IE10+ */
   }
   button {
+    background-color: transparent;
+    padding: 0;
     border: none;
   }
   input {
