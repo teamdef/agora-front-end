@@ -1,5 +1,3 @@
-'use client';
-
 import { Check } from 'public/assets/svgs';
 import styled from 'styled-components';
 import { theme } from '~/styles/theme';

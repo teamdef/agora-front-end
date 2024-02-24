@@ -1,5 +1,3 @@
-'use client';
-
 import styled from 'styled-components';
 import { MouseEvent, useState } from 'react';
 import { DropdownArrowDown, DropdownArrowUp } from 'public/assets/svgs';
