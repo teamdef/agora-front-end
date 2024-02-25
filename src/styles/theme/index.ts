@@ -77,7 +77,7 @@ export const colors = {
     /** #FBFCFF */
   },
   badge: {
-    todo: {
+    problem: {
       /** #FFEADA bgColor*/
       50: '#FFEADA',
       /** #FCCAA6 */
@@ -99,7 +99,7 @@ export const colors = {
       /** #C20016 */
       900: '#C20016',
     },
-    inProgress: {
+    try: {
       /** #FCF7C480 bgColor*/
       50: '#FCF7C480',
       /** #FCF7C4 */
@@ -121,7 +121,7 @@ export const colors = {
       /** #EA7C1A */
       900: '#EA7C1A',
     },
-    done: {
+    solve: {
       /** #E4FCE6 bgColor*/
       50: '#E4FCE6',
       /** #C7F3CA */

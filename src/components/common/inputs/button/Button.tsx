@@ -9,14 +9,15 @@ export interface ButtonProps {
   icon?: ReactNode;
   disabled?: boolean;
   small?: boolean;
+  large?: boolean;
   onClick?: () => void;
 }
 
-type ButtonStyleProps = Pick<ButtonProps, 'outlined' | 'small' | 'disabled'>;
+type ButtonStyleProps = Pick<ButtonProps, 'outlined' | 'small' | 'large' | 'disabled'>;
 
-const Button = ({ label, icon, outlined, small, disabled, onClick }: ButtonProps) => {
+const Button = ({ label, icon, outlined, large, small, disabled, onClick }: ButtonProps) => {
   return (
-    <Box $style={{ outlined, small, disabled }} onClick={onClick}>
+    <Box $style={{ outlined, small, large, disabled }} onClick={onClick}>
       <span>{label}</span>
       {icon}
     </Box>
@@ -28,16 +29,17 @@ const Box = styled.button<{ $style: ButtonStyleProps }>`
   justify-content: center;
   align-items: center;
   border-radius: 6px;
-  cursor: pointer;
   & span {
-    ${({ theme }) => theme.fontStyle.body_1}
+    ${({ theme }) => theme.fontStyle.body_1};
   }
   & svg {
     margin-left: 8px;
   }
-  padding: 0 ${({ $style }) => ($style.small ? '24px' : '48px')};
+  white-space: nowrap;
+  padding: 0 ${({ $style }) => ($style.small ? '24px' : $style.large ? 0 : '48px')};
   height: ${({ $style }) => ($style.small ? '36px' : '44px')};
-  ${({ $style }) => buttonPainter($style.outlined, $style.disabled)}
+  width: ${({ $style }) => ($style.large ? '100%' : 'auto')};
+  ${({ $style }) => buttonPainter($style.outlined, $style.disabled)};
 `;
 
 export default Button;

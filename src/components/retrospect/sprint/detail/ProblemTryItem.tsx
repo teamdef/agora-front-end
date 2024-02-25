@@ -2,13 +2,13 @@ import { Delete, Enlarge } from 'public/assets/svgs';
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
 import Button from '~/components/common/inputs/button/Button';
-import { KeepItemData, ProblemTryData } from '~/types/retro/sprint';
+import { ProblemTryData } from '~/types/retro/sprint';
 
-interface KeepItemProps {
-  data: KeepItemData;
+interface ProblemTryProps {
+  data: ProblemTryData;
 }
 
-const KeepItem = ({ data }: KeepItemProps) => {
+const ProblemTryItem = ({ data }: ProblemTryProps) => {
   return (
     <Wrapper>
       <Title>
@@ -16,11 +16,22 @@ const KeepItem = ({ data }: KeepItemProps) => {
         <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />
       </Title>
       <Content>{data.content}</Content>
-      <Button
-        large
-        label="자세히 보기"
-        icon={<Enlarge style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />}
-      />
+      <BottomBox>
+        <CommentBox>
+          <CommentBoxTitle>
+            <h4>무엇을 시도할 수 있나요?</h4>
+            <span>전체 {data.comments.length}</span>
+          </CommentBoxTitle>
+          {data.comments.map((comment) => {
+            return <CommentItem>{comment.content}</CommentItem>;
+          })}
+        </CommentBox>
+        <Button
+          large
+          label="자세히 보기"
+          icon={<Enlarge style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />}
+        />
+      </BottomBox>
     </Wrapper>
   );
 };
@@ -85,4 +96,4 @@ const CommentItem = styled.div`
   border-radius: 6px;
   border: 1px solid ${({ theme }) => theme.colors.agoraBlack[200]};
 `;
-export default KeepItem;
+export default ProblemTryItem;

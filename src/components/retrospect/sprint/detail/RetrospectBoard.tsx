@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import KeepList from './KeepList';
+import KeepBox from './KeepBox';
+import ProblemTryBoard from './ProblemTryBoard';
 
 const RetrospectBoard = () => {
   return (
     <Wrapper>
-      <KeepList />
+      <KeepBox />
+      <ProblemTryBoard />
     </Wrapper>
   );
 };

@@ -57,7 +57,7 @@ const Page = () => {
 
   return (
     <div style={{ padding: '100px', display: 'flex', flexDirection: 'column', gap: '300px' }}>
-      <Badge label="시작 전" status="todo" />
+      <Badge label="시작 전" status="problem" />
       <Pagination currentPage={current} pagehandler={currentHandler} totalPage={totalPage} />
       <DateDropdown value={dropdown} placeHolder="시간을 선택해주세요." valueHandler={dropdownHandler} />
       <MemberDropdown

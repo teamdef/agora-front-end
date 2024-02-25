@@ -16,14 +16,12 @@ const CreateItemBox = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-self: flex-start;
   justify-content: center;
   align-items: center;
   gap: 4px;
   padding: 22px 0;
   border-radius: 15px;
-  border: 1.2px solid ${({ theme }) => theme.colors.agoraBlue[100]};
-  background: ${({ theme }) => theme.colors.agoraBlue.bg};
+  background-color: #fff;
   cursor: pointer;
 `;
 const Title = styled.h3`
