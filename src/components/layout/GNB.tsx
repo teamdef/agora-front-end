@@ -17,7 +17,9 @@ const Wrapper = styled.div`
   box-shadow: 0px 3px 2px 0px #e7eafc;
   display: flex;
   justify-content: space-between;
-  padding-left: 32px;
+  > img {
+    padding-left: 32px;
+  }
 `;
 
 export default GNB;
