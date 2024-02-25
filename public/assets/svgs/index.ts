@@ -17,7 +17,7 @@ import File from './File.svg';
 import Folder from './Folder.svg';
 import Heart from './Heart.svg';
 import History from './History.svg';
-import History1 from './History1.svg';
+import Pencil from './Pencil.svg';
 import Home from './Home.svg';
 import Icon from './Icon.svg';
 import Image from './Image.svg';
@@ -71,7 +71,7 @@ export {
   Folder,
   Heart,
   History,
-  History1,
+  Pencil,
   Home,
   Icon,
   Image,

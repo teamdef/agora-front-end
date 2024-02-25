@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import KeepItem from './KeepItem';
+import CreateItemBox from './CreateItemBox';
 
 const mock = {
   // 회고 기본 정보
@@ -47,6 +48,24 @@ const mock = {
   // 회고록 부분
   retrospective: {
     keep: [
+      {
+        id: 0,
+        profileImage: '',
+        creator: '이승원',
+        content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
+      },
+      {
+        id: 0,
+        profileImage: '',
+        creator: '이승원',
+        content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
+      },
+      {
+        id: 0,
+        profileImage: '',
+        creator: '이승원',
+        content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
+      },
       {
         id: 0,
         profileImage: '',
@@ -111,6 +130,7 @@ const KeepList = () => {
         {mock.retrospective.keep.map((item) => {
           return <KeepItem data={item} />;
         })}
+        <CreateItemBox />
       </Content>
     </Wrapper>
   );
@@ -128,6 +148,7 @@ const Title = styled.h3`
 const Content = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 `;
 
 export default KeepList;

@@ -53,6 +53,7 @@ export const colors = {
     900: '#0E0D35',
   },
   agoraBlue: {
+    bg: '#FBFCFF',
     /** #E7EAFD */
     50: '#E7EAFD',
     /** #C2C9FA */
