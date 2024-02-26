@@ -17,8 +17,8 @@ const ProfileBadge = ({ memberState, closeFn }: ProfileBadgeProps) => {
 
   return (
     <Wrapper>
-      <img src={memberState.profileImage !== '' ? memberState.profileImage : DEFAULT_IMG} alt="프로필뱃지 이미지" />
-      <span>{memberState.nickname}</span>
+      <img src={memberState.profileImg !== '' ? memberState.profileImg : DEFAULT_IMG} alt="프로필뱃지 이미지" />
+      <span>{memberState.name}</span>
       {closeFn && <Cancel onClick={(e: MouseEvent) => onCloseHandler(e, memberState)} />}
     </Wrapper>
   );
@@ -33,6 +33,13 @@ const Wrapper = styled.div`
   &:hover {
     ${({ theme }) => theme.fontStyle.body_1}
     color: ${({ theme }) => theme.colors.agoraBlack[800]};
+  }
+  white-space: nowrap;
+  img {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
   }
 `;
 export default ProfileBadge;

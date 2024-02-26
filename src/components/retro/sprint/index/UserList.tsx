@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ProfileImage from '~/components/common/profileImage';
+import ProfileBadge from '~/components/common/display/ProfileBadge';
 import Text from '~/components/common/typo/Text';
 import { colors } from '~/styles/theme';
 
@@ -25,14 +25,7 @@ const UserList = () => {
     <Wrapper>
       <UserListWrapper>
         {userDummy.slice(0, 4).map((user) => {
-          return (
-            <UserItem key={user.id}>
-              <ProfileImage src={user.profileImg} />
-              <Text variant="body_2" color={colors.agoraBlack[700]}>
-                {user.name}
-              </Text>
-            </UserItem>
-          );
+          return <ProfileBadge memberState={user} />;
         })}
       </UserListWrapper>
       {userDummy.length > 4 && (
@@ -53,12 +46,6 @@ const Wrapper = styled.div`
 const UserListWrapper = styled.div`
   display: flex;
   gap: 16px;
-`;
-
-const UserItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
 `;
 
 const Ellipsis = styled.div`

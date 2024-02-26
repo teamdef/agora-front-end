@@ -27,10 +27,13 @@ const styles = css`
     -ms-user-select: none; /* IE10+ */
   }
   button {
+    background-color: transparent;
+    padding: 0;
     border: none;
   }
   input {
     padding: 0;
+    caret-color: ${({ theme }) => theme.colors.agoraBlue[400]};
   }
   button {
     cursor: pointer;

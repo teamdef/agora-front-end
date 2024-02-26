@@ -26,8 +26,8 @@ const MemberSelectBox = ({ memberList, selected, valueHandler, closeHandler }: M
           return (
             <Option key={`MemberSelectBox-${uuid}`} onClick={() => onClickOption(member)} $isActive={isActive}>
               <Content>
-                <img src={member.profileImage !== '' ? member.profileImage : DEFAULT_IMG} alt="프로필 이미지" />
-                <span>{member.nickname}</span>
+                <img src={member.profileImg !== '' ? member.profileImg : DEFAULT_IMG} alt="프로필 이미지" />
+                <span>{member.name}</span>
               </Content>
               {isActive && <Check viewBox="0 0 25 25" color={theme.colors.agoraBlue[400]} width={18} height={18} />}
             </Option>

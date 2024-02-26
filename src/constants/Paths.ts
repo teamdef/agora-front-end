@@ -15,10 +15,10 @@ const DASHBOARD_PATHS = {
   DASHBOARD: '/dashboard',
 };
 
-const RETROSPECT_PATHS = {
-  RETROSPECT_QUARTER: '/retrospect/quarter',
-  RETROSPECT_SPRINT: '/retrospect/sprint',
-  RETROSPECT_SPRINT_CREATE: '/retrospect/sprint/create',
+const RETRO_PATHS = {
+  RETRO_QUARTER: '/retro/quarter',
+  RETRO_SPRINT: '/retro/sprint',
+  RETRO_SPRINT_CREATE: '/retro/sprint/create',
 };
 
 const SETTING_PATHS = {
@@ -30,7 +30,7 @@ export const Paths = {
   ...ROOT_PATHS,
   ...PROJECT_PATHS,
   ...DASHBOARD_PATHS,
-  ...RETROSPECT_PATHS,
+  ...RETRO_PATHS,
   ...SETTING_PATHS,
   ...OBJECTIVE_PATHS,
 };

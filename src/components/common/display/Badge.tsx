@@ -1,16 +1,17 @@
 import { GreenCircle, OrangeCircle, YellowCircle } from 'public/assets/svgs';
 import styled from 'styled-components';
 
+export type BadgeStatus = 'problem' | 'try' | 'solve';
 interface BadgeProps {
   label: string;
-  status: 'todo' | 'inProgress' | 'done';
+  status: BadgeStatus;
 }
 const Badge = ({ label, status }: BadgeProps) => {
   return (
     <Box $status={status}>
-      {status === 'todo' && <OrangeCircle />}
-      {status === 'inProgress' && <YellowCircle />}
-      {status === 'done' && <GreenCircle />}
+      {status === 'problem' && <OrangeCircle />}
+      {status === 'try' && <YellowCircle />}
+      {status === 'solve' && <GreenCircle />}
       <span>{label}</span>
     </Box>
   );
@@ -24,7 +25,7 @@ const Box = styled.span<{ $status: BadgeProps['status'] }>`
   gap: 6px;
   align-items: center;
   padding: 2px 12px;
-  background-color: ${({ theme }) => theme.colors.badge.todo[50]};
+  background-color: ${({ theme }) => theme.colors.badge.problem[50]};
   border-radius: 12.5px;
   span {
     display: flex;
@@ -34,12 +35,12 @@ const Box = styled.span<{ $status: BadgeProps['status'] }>`
   }
   ${({ theme, $status }) => {
     switch ($status) {
-      case 'todo':
-        return `background-color: ${theme.colors.badge.todo[50]};`;
-      case 'inProgress':
-        return `background-color: ${theme.colors.badge.inProgress[50]};`;
-      case 'done':
-        return `background-color: ${theme.colors.badge.done[50]};`;
+      case 'problem':
+        return `background-color: ${theme.colors.badge.problem[50]};`;
+      case 'try':
+        return `background-color: ${theme.colors.badge.try[50]};`;
+      case 'solve':
+        return `background-color: ${theme.colors.badge.solve[50]};`;
     }
   }}
 `;

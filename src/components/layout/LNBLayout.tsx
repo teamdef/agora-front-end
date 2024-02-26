@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import LNB from './LNB';
 import { PropsWithChildren } from 'react';
+import Container from './Container';
 
 interface Props {
   bgColor?: string;
@@ -8,8 +9,10 @@ interface Props {
 const LNBLayout = ({ bgColor, children }: PropsWithChildren<Props>) => {
   return (
     <Wrapper bgColor={bgColor}>
-      <LNB />
-      <div className="children">{children}</div>
+      <Container>
+        <LNB />
+        <div className="children">{children}</div>
+      </Container>
     </Wrapper>
   );
 };
