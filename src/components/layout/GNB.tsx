@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Illust from '../common/display/Illust';
+import { zIndex } from '~/styles/mixin';
 
 const GNB = () => {
   return (
@@ -10,8 +11,9 @@ const GNB = () => {
 };
 
 const Wrapper = styled.div`
+  position: relative;
+  ${zIndex.gnb}
   height: 68px;
-  width: 100%;
   box-shadow: 0px 3px 2px 0px #e7eafc;
   display: flex;
   justify-content: space-between;

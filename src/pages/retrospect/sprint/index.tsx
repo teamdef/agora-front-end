@@ -1,15 +1,17 @@
 import { ReactElement } from 'react';
 import GNBLayout from '~/components/layout/GNBLayout';
 import LNBLayout from '~/components/layout/LNBLayout';
+import RetrospectSprint from '~/components/retrospect/sprint/index';
+import { colors } from '~/styles/theme';
 
 const Page = () => {
-  return <div>회고 - 주간회고 준비중입니다.</div>;
+  return <RetrospectSprint />;
 };
 
 Page.getLayout = function getLayout(page: ReactElement) {
   return (
     <GNBLayout>
-      <LNBLayout>{page}</LNBLayout>
+      <LNBLayout bgColor={colors.dashboard}>{page}</LNBLayout>
     </GNBLayout>
   );
 };
