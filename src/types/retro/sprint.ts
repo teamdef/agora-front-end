@@ -42,7 +42,7 @@ export const mock: Mock = {
     },
   ],
   // 회고록 부분
-  retrospective: {
+  retro: {
     keep: [
       {
         id: 0,
@@ -172,7 +172,7 @@ interface Mock {
   creator: User;
   members: User[];
   // 회고록 부분
-  retrospective: {
+  retro: {
     keep: KeepItemData[];
     mission: ProblemTryData[];
   };

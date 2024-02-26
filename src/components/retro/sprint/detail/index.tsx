@@ -58,7 +58,6 @@ const RetroSprintDetail = () => {
 };
 
 const Wrapper = styled.div`
-  padding: 0 56px;
   padding-bottom: 120px;
 `;
 const TitleBox = styled.div`

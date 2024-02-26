@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import SprintReviewList from './RetrospectSprintList';
 import Text from '~/components/common/typo/Text';
 import { colors } from '~/styles/theme';
 import Button from '~/components/common/inputs/button/Button';
 import Pagination from '~/components/common/navigation/Pagination';
 import Link from 'next/link';
 import { Paths } from '~/constants/Paths';
+import RetroSprintList from './RetroSprintList';
 
-export interface RetrospectListItem {}
-const sprintReviewDummy: RetrospectListItem[] = [];
+export interface RetroListItem {}
+const retroSprintDummy: RetroListItem[] = [];
 
-const SprintReview = () => {
+const RetroSprint = () => {
   return (
     <Wrapper>
       <HeaderSection>
@@ -19,12 +19,12 @@ const SprintReview = () => {
         </Text>
       </HeaderSection>
       <ListSection>
-        <SprintReviewList list={sprintReviewDummy} />
+        <RetroSprintList list={retroSprintDummy} />
       </ListSection>
       <BottomSection>
         <div></div>
         <Pagination totalPage={10} currentPage={1} pagehandler={() => console.log(1)} />
-        <Link href={Paths.RETROSPECT_SPRINT_CREATE}>
+        <Link href={Paths.RETRO_SPRINT_CREATE}>
           <Button label="새로만들기" small />
         </Link>
       </BottomSection>
@@ -45,4 +45,4 @@ const BottomSection = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-export default SprintReview;
+export default RetroSprint;

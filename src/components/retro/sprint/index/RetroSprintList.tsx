@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import { RetrospectListItem } from '.';
+import { RetroListItem } from '.';
 import { colors } from '~/styles/theme';
 import Text from '~/components/common/typo/Text';
 import UserList from './UserList';
 import Radio from '~/components/common/inputs/radio/Radio';
 
 interface Props {
-  list: RetrospectListItem[];
+  list: RetroListItem[];
 }
-const RetrospectSprintList = ({ list }: Props) => {
+const RetroSprintList = ({ list }: Props) => {
   return (
     <Wrapper>
       <ListHeader>
@@ -167,4 +167,4 @@ const ListBodyEmptyItem = styled(ListBodyItem)`
   cursor: default;
 `;
 
-export default RetrospectSprintList;
+export default RetroSprintList;

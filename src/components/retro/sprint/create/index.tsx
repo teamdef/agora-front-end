@@ -4,7 +4,7 @@ import Text from '~/components/common/typo/Text';
 import { colors } from '~/styles/theme';
 import CreateForm from './CreateForm';
 
-const RetrospectSprintCreate = () => {
+const RetroSprintCreate = () => {
   return (
     <Wrapper>
       <HeaderSection>
@@ -14,7 +14,7 @@ const RetrospectSprintCreate = () => {
         <MenuDepth menuDepth={['스프린트회고', '새로만들기']} />
       </HeaderSection>
       <ContentSection>
-        <CreateForm/>
+        <CreateForm />
       </ContentSection>
     </Wrapper>
   );
@@ -28,4 +28,4 @@ const HeaderSection = styled.div`
 `;
 
 const ContentSection = styled.div``;
-export default RetrospectSprintCreate;
+export default RetroSprintCreate;

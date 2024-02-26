@@ -20,7 +20,7 @@ const CreateForm = () => {
 
 const Wrapper = styled.div``;
 
-const RetrospectDateForm = styled.div`
+const RetroDateForm = styled.div`
   .label {
   }
 `;

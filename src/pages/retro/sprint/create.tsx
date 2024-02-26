@@ -1,17 +1,16 @@
 import { ReactElement } from 'react';
 import GNBLayout from '~/components/layout/GNBLayout';
 import LNBLayout from '~/components/layout/LNBLayout';
-import RetrospectSprint from '~/components/retrospect/sprint/index';
-import { colors } from '~/styles/theme';
+import RetroSprintCreate from '~/components/retro/sprint/create';
 
 const Page = () => {
-  return <RetrospectSprint />;
+  return <RetroSprintCreate />;
 };
 
 Page.getLayout = function getLayout(page: ReactElement) {
   return (
     <GNBLayout>
-      <LNBLayout bgColor={colors.dashboard}>{page}</LNBLayout>
+      <LNBLayout>{page}</LNBLayout>
     </GNBLayout>
   );
 };

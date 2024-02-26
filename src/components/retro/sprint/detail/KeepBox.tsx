@@ -8,7 +8,7 @@ const KeepBox = () => {
     <Wrapper>
       <Title>지속하고 싶은 점은 무엇인가요?</Title>
       <Content>
-        {mock.retrospective.keep.map((item) => {
+        {mock.retro.keep.map((item) => {
           return <KeepItem data={item} />;
         })}
         <CreateItemBox />

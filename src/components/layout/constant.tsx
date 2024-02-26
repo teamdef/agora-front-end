@@ -27,11 +27,11 @@ export const LNB_MENUS: Menu[] = [
   },
   {
     title: '회고',
-    path: Paths.RETROSPECT_SPRINT,
+    path: Paths.RETRO_SPRINT,
     icon: <Folder />,
     subMenu: [
-      { title: '스프린트회고', path: Paths.RETROSPECT_SPRINT },
-      { title: '분기회고', path: Paths.RETROSPECT_QUARTER },
+      { title: '스프린트회고', path: Paths.RETRO_SPRINT },
+      { title: '분기회고', path: Paths.RETRO_QUARTER },
     ],
   },
   {
