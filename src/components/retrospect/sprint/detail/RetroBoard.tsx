@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import KeepBox from './KeepBox';
 import ProblemTryBoard from './ProblemTryBoard';
 
-const RetrospectBoard = () => {
+const RetroBoard = () => {
   return (
     <Wrapper>
       <KeepBox />
@@ -13,6 +13,6 @@ const RetrospectBoard = () => {
 
 const Wrapper = styled.div``;
 
-export default RetrospectBoard;
+export default RetroBoard;
 
-RetrospectBoard.displayName = 'RetrospectBoard';
+RetroBoard.displayName = 'RetroBoard';

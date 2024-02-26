@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import MoreDropdown from '~/components/common/dropdown/MoreDropdown';
 import TitleTextField from '~/components/common/inputs/textField/TitleTextField';
 import { theme } from '~/styles/theme';
-import RetrospectInfo from './RetrospectInfo';
-import RetrospectContent from './RetrospectContent';
+import RetroInfo from './RetroInfo';
+import RetroContent from './RetroContent';
 import { mock } from '~/types/retro/sprint';
 
 const moreList = [
@@ -16,7 +16,7 @@ const moreList = [
   },
 ];
 
-const RetrospectSprintDetail = () => {
+const RetroSprintDetail = () => {
   const [isOpenMore, setIsOpenMore] = useState<boolean>(false);
   const moreButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -51,14 +51,14 @@ const RetrospectSprintDetail = () => {
         </button>
         {isOpenMore && <MoreDropdown items={moreList} toggleMore={toggleMore} />}
       </TitleBox>
-      <RetrospectInfo info={mock} />
-      <RetrospectContent />
+      <RetroInfo />
+      <RetroContent />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  padding: 0 32px;
+  padding: 0 56px;
   padding-bottom: 120px;
 `;
 const TitleBox = styled.div`
@@ -66,12 +66,11 @@ const TitleBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 24px;
   margin-bottom: 41px;
   svg {
     cursor: pointer;
   }
 `;
-export default RetrospectSprintDetail;
+export default RetroSprintDetail;
 
-RetrospectSprintDetail.displayName = 'RetrospectSprintDetail';
+RetroSprintDetail.displayName = 'RetroSprintDetail';

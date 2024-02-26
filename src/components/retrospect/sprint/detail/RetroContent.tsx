@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import Tab from '~/components/common/navigation/Tab';
-import RetrospectBoard from './RetrospectBoard';
+import RetroBoard from './RetroBoard';
 
 const SPRINT_TAB_MENU = ['이번 회고록', '지난 회고록'] as const;
 
-const RetrospectContent = () => {
+const RetroContent = () => {
   const [currentTab, setCurrentTab] = useState<number>(0);
 
   const currentTabHandler = (idx: number) => setCurrentTab(idx);
@@ -14,7 +14,7 @@ const RetrospectContent = () => {
     <Wrapper>
       <Title>회고록</Title>
       <Tab menu={SPRINT_TAB_MENU} current={currentTab} handler={currentTabHandler} />
-      <RetrospectBoard />
+      <RetroBoard />
     </Wrapper>
   );
 };
@@ -30,6 +30,6 @@ const Title = styled.h2`
   color: ${({ theme }) => theme.colors.agoraBlack[900]};
 `;
 
-export default RetrospectContent;
+export default RetroContent;
 
-RetrospectContent.displayName = 'RetrospectContent';
+RetroContent.displayName = 'RetroContent';

@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
 import GNBLayout from '~/components/layout/GNBLayout';
 import LNBLayout from '~/components/layout/LNBLayout';
-import RetrospectSprintDetail from '~/components/retrospect/sprint/detail';
+import RetroSprintDetail from '~/components/retrospect/sprint/detail';
 
-const Page = () => <RetrospectSprintDetail />;
+const Page = () => <RetroSprintDetail />;
 
 Page.getLayout = function getLayout(page: ReactElement) {
   return (

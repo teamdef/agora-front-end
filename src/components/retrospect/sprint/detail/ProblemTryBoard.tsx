@@ -30,7 +30,6 @@ const ProblemTryBoard = () => {
 
 const Wrapper = styled.div``;
 const Title = styled.div`
-  padding-left: 24px;
   ${({ theme }) => theme.fontStyle.subtitle_1};
   color: ${({ theme }) => theme.colors.agoraBlack[800]};
 `;

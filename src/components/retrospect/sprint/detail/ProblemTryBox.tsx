@@ -30,9 +30,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 16px;
 `;
-const StatusBox = styled.div`
-  padding-left: 20px;
-`;
+const StatusBox = styled.div``;
 
 const Content = styled.div`
   display: flex;

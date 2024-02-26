@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { GetRetrospectDtoMock } from '.';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
+import { mock } from '~/types/retro/sprint';
 
-const RetrospectInfo = ({ info }: { info: GetRetrospectDtoMock }) => {
-  const CreatedAt = new Date(info.createTime);
+const RetroInfo = () => {
+  const CreatedAt = new Date(mock.createTime);
   const year = CreatedAt.getFullYear();
   const month = String(CreatedAt.getMonth() + 1).padStart(2, '0');
   const day = String(CreatedAt.getDate()).padStart(2, '0');
@@ -19,12 +19,12 @@ const RetrospectInfo = ({ info }: { info: GetRetrospectDtoMock }) => {
       </li>
       <li>
         <h3>작성자</h3>
-        <ProfileBadge memberState={info.creator} />
+        <ProfileBadge memberState={mock.creator} />
       </li>
       <li>
         <h3>참여자</h3>
         <MemberList>
-          {info.members.map((member) => {
+          {mock.members.map((member) => {
             return <ProfileBadge memberState={member} />;
           })}
         </MemberList>
@@ -64,6 +64,6 @@ const MemberList = styled.div`
   flex-wrap: wrap;
   gap: 12px;
 `;
-export default RetrospectInfo;
+export default RetroInfo;
 
-RetrospectInfo.displayName = 'RetrospectInfo';
+RetroInfo.displayName = 'RetroInfo';
