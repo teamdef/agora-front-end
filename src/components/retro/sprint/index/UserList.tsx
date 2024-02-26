@@ -48,12 +48,6 @@ const UserListWrapper = styled.div`
   gap: 16px;
 `;
 
-const UserItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
-`;
-
 const Ellipsis = styled.div`
   height: 24px;
   margin-left: 10px;

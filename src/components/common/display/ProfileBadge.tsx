@@ -34,5 +34,12 @@ const Wrapper = styled.div`
     ${({ theme }) => theme.fontStyle.body_1}
     color: ${({ theme }) => theme.colors.agoraBlack[800]};
   }
+  white-space: nowrap;
+  img {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+  }
 `;
 export default ProfileBadge;
