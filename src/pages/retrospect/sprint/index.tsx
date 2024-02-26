@@ -1,11 +1,11 @@
 import { ReactElement } from 'react';
 import GNBLayout from '~/components/layout/GNBLayout';
 import LNBLayout from '~/components/layout/LNBLayout';
-import SprintReview from '~/components/retrospect/sprint';
+import RetrospectSprint from '~/components/retrospect/sprint/index';
 import { colors } from '~/styles/theme';
 
 const Page = () => {
-  return <SprintReview />;
+  return <RetrospectSprint />;
 };
 
 Page.getLayout = function getLayout(page: ReactElement) {

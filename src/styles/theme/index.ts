@@ -1,6 +1,6 @@
 import type { DefaultTheme } from 'styled-components';
 
-const fontStyle = {
+export const fontStyle = {
   /** 44px */
   hero_1: 'font-size: 44px;\nfont-weight: 700;\nline-height: 57px;\nletter-spacing: -0.88px;',
   /** 36px */

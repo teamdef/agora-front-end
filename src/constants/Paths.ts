@@ -18,6 +18,7 @@ const DASHBOARD_PATHS = {
 const RETROSPECT_PATHS = {
   RETROSPECT_QUARTER: '/retrospect/quarter',
   RETROSPECT_SPRINT: '/retrospect/sprint',
+  RETROSPECT_SPRINT_CREATE: '/retrospect/sprint/create',
 };
 
 const SETTING_PATHS = {
