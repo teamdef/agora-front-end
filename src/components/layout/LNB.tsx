@@ -45,7 +45,7 @@ const LNB = () => {
 
 const Wrapper = styled.div`
   width: fit-content;
-  padding: 48px 32px 0px 16px;
+  padding: 48px 16px 0px 16px;
   border-right: solid 1px #e7eafc;
   display: flex;
   flex-direction: column;

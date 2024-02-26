@@ -11,23 +11,23 @@ import Tab from '~/components/common/navigation/Tab';
 const mockData: DropdownMemberStatus[] = [
   {
     id: 1,
-    profileImage: '',
-    nickname: '진현우',
+    profileImg: '',
+    name: '진현우',
   },
   {
     id: 2,
-    profileImage: '',
-    nickname: '진현우',
+    profileImg: '',
+    name: '진현우',
   },
   {
     id: 3,
-    profileImage: '',
-    nickname: '진현우',
+    profileImg: '',
+    name: '진현우',
   },
   {
     id: 4,
-    profileImage: '',
-    nickname: '진현우',
+    profileImg: '',
+    name: '진현우',
   },
 ];
 

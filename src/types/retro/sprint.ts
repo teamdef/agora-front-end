@@ -7,38 +7,38 @@ export const mock: Mock = {
   creator: {
     id: 0,
     profileImage: '',
-    nickname: '장원석',
+    name: '장원석',
   },
   members: [
     {
       id: 1,
       profileImage: '',
-      nickname: '이승원',
+      name: '이승원',
     },
     {
       id: 2,
       profileImage: '',
-      nickname: '장원석',
+      name: '장원석',
     },
     {
       id: 3,
       profileImage: '',
-      nickname: '김성은',
+      name: '김성은',
     },
     {
       id: 4,
       profileImage: '',
-      nickname: '진현우',
+      name: '진현우',
     },
     {
       id: 5,
       profileImage: '',
-      nickname: '배광호',
+      name: '배광호',
     },
     {
       id: 6,
       profileImage: '',
-      nickname: '전하영',
+      name: '전하영',
     },
   ],
   // 회고록 부분
@@ -49,7 +49,7 @@ export const mock: Mock = {
         creator: {
           id: 0,
           profileImage: '',
-          nickname: '이승원',
+          name: '이승원',
         },
         content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
       },
@@ -61,7 +61,7 @@ export const mock: Mock = {
         creator: {
           id: 0,
           profileImage: '',
-          nickname: '이승원',
+          name: '이승원',
         },
         content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
         comments: [
@@ -70,7 +70,7 @@ export const mock: Mock = {
             creator: {
               id: 0,
               profileImage: '',
-              nickname: '이승원',
+              name: '이승원',
             },
             content: '이렇게 해결 해봐요',
           },
@@ -82,7 +82,7 @@ export const mock: Mock = {
         creator: {
           id: 0,
           profileImage: '',
-          nickname: '이승원',
+          name: '이승원',
         },
         content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
         comments: [
@@ -91,7 +91,7 @@ export const mock: Mock = {
             creator: {
               id: 0,
               profileImage: '',
-              nickname: '이승원',
+              name: '이승원',
             },
             content: '이렇게 해결 해봐요',
           },
@@ -103,7 +103,7 @@ export const mock: Mock = {
         creator: {
           id: 0,
           profileImage: '',
-          nickname: '이승원',
+          name: '이승원',
         },
         content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
         comments: [
@@ -112,7 +112,7 @@ export const mock: Mock = {
             creator: {
               id: 0,
               profileImage: '',
-              nickname: '이승원',
+              name: '이승원',
             },
             content: '이렇게 해결 해봐요',
           },
@@ -124,7 +124,7 @@ export const mock: Mock = {
         creator: {
           id: 0,
           profileImage: '',
-          nickname: '이승원',
+          name: '이승원',
         },
         content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
         comments: [
@@ -133,7 +133,7 @@ export const mock: Mock = {
             creator: {
               id: 0,
               profileImage: '',
-              nickname: '이승원',
+              name: '이승원',
             },
             content: '이렇게 해결 해봐요',
           },
@@ -145,7 +145,7 @@ export const mock: Mock = {
         creator: {
           id: 0,
           profileImage: '',
-          nickname: '이승원',
+          name: '이승원',
         },
         content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
         comments: [
@@ -154,7 +154,7 @@ export const mock: Mock = {
             creator: {
               id: 0,
               profileImage: '',
-              nickname: '이승원',
+              name: '이승원',
             },
             content: '이렇게 해결 해봐요',
           },
@@ -181,7 +181,7 @@ interface Mock {
 export interface User {
   id: number;
   profileImage: string;
-  nickname: string;
+  name: string;
 }
 export interface Comment {
   id: number;

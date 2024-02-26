@@ -16,7 +16,6 @@ const Img = styled.img<Omit<Props, 'src'>>`
   width: ${({ width }) => width ?? 'auto'};
   height: ${({ height }) => height ?? 'auto'};
   object-fit: cover;
-  align-self: center;
 `;
 
 export default Illust;
