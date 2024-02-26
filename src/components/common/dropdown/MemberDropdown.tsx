@@ -7,8 +7,8 @@ import ProfileBadge from '../display/ProfileBadge';
 
 export interface DropdownMemberStatus {
   id: number;
-  profileImage: string;
-  nickname: string;
+  profileImg?: string;
+  name: string;
 }
 
 interface DropdownProps {

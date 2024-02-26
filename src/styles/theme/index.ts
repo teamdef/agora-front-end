@@ -1,6 +1,6 @@
 import type { DefaultTheme } from 'styled-components';
 
-const fontStyle = {
+export const fontStyle = {
   /** 44px */
   hero_1: 'font-size: 44px;\nfont-weight: 700;\nline-height: 57px;\nletter-spacing: -0.88px;',
   /** 36px */
@@ -29,7 +29,7 @@ const fontStyle = {
   caption: 'font-size: 12px;\nfont-weight: 400;\nline-height: 18px;\nletter-spacing: -0.24px;',
 };
 
-const colors = {
+export const colors = {
   agoraBlack: {
     /** #E7E7EB */
     50: '#E7E7EB',
@@ -53,8 +53,9 @@ const colors = {
     900: '#0E0D35',
   },
   agoraBlue: {
+    bg: '#FBFCFF',
     /** #E7EAFD */
-    a50: '#E7EAFD',
+    50: '#E7EAFD',
     /** #C2C9FA */
     100: '#C2C9FA',
     /** #96A6F7 */
@@ -76,7 +77,7 @@ const colors = {
     /** #FBFCFF */
   },
   badge: {
-    todo: {
+    problem: {
       /** #FFEADA bgColor*/
       50: '#FFEADA',
       /** #FCCAA6 */
@@ -98,7 +99,7 @@ const colors = {
       /** #C20016 */
       900: '#C20016',
     },
-    inProgress: {
+    try: {
       /** #FCF7C480 bgColor*/
       50: '#FCF7C480',
       /** #FCF7C4 */
@@ -120,7 +121,7 @@ const colors = {
       /** #EA7C1A */
       900: '#EA7C1A',
     },
-    done: {
+    solve: {
       /** #E4FCE6 bgColor*/
       50: '#E4FCE6',
       /** #C7F3CA */

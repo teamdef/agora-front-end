@@ -8,10 +8,10 @@ interface TextField {
   maxLength: number;
   onBlur: () => void;
   placeholder?: string;
-  fontStyle?: FontStyleType;
+  fontStyle?: string;
 }
 
-const TitleTextField = ({ value, onChange, maxLength, placeholder, onBlur }: TextField) => {
+const TitleTextField = ({ value, onChange, maxLength, placeholder, onBlur, fontStyle }: TextField) => {
   const [count, setCount] = useState<number>(value.length);
 
   const valueHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -23,22 +23,30 @@ const TitleTextField = ({ value, onChange, maxLength, placeholder, onBlur }: Tex
     onChange(e.target.value);
     setCount(e.target.value.length);
   };
+  const onBlurHandler = () => {
+    if (value !== placeholder) onBlur();
+  };
   return (
-    <Box>
-      <input value={value} onChange={valueHandler} placeholder={placeholder} maxLength={maxLength} onBlur={onBlur} />
+    <Box $fontStyle={fontStyle}>
+      <input
+        value={value}
+        onChange={valueHandler}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        onBlur={onBlurHandler}
+      />
     </Box>
   );
 };
-const Box = styled.div`
+const Box = styled.div<{ $fontStyle?: string }>`
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 10px 0 5px;
   input {
     display: block;
     border: none;
     padding-right: 10px;
-    ${({ theme }) => theme.fontStyle.body_1}
+    ${({ theme, $fontStyle }) => $fontStyle ?? theme.fontStyle.body_1}
     outline-style: none;
     &::placeholder {
       ${({ theme }) => theme.fontStyle.body_1}

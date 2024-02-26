@@ -15,9 +15,10 @@ const DASHBOARD_PATHS = {
   DASHBOARD: '/dashboard',
 };
 
-const REVIEW_PATHS = {
-  REVIEW_QUARTER: '/review/quarter',
-  REVIEW_WEEKLY: '/review/weekly',
+const RETRO_PATHS = {
+  RETRO_QUARTER: '/retro/quarter',
+  RETRO_SPRINT: '/retro/sprint',
+  RETRO_SPRINT_CREATE: '/retro/sprint/create',
 };
 
 const SETTING_PATHS = {
@@ -29,7 +30,7 @@ export const Paths = {
   ...ROOT_PATHS,
   ...PROJECT_PATHS,
   ...DASHBOARD_PATHS,
-  ...REVIEW_PATHS,
+  ...RETRO_PATHS,
   ...SETTING_PATHS,
   ...OBJECTIVE_PATHS,
 };
