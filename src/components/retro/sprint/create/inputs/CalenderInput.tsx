@@ -7,11 +7,11 @@ import { ko } from 'date-fns/locale';
 import { colors } from '~/styles/theme';
 
 interface Props {
+  date: Date | null | undefined;
+  onDateChange: (date: Date | null) => void;
   className?: string;
 }
-const CalendarInput = ({ className }: Props) => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>();
-
+const CalendarInput = ({ date, onDateChange, className }: Props) => {
   const CustomInput = forwardRef((props: any, ref) => {
     return (
       <CalenderWrapper className={className}>
@@ -25,8 +25,8 @@ const CalendarInput = ({ className }: Props) => {
       shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
       minDate={new Date('2000-01-01')} // minDate 이전 날짜 선택 불가
       // maxDate={new Date()} // maxDate 이후 날짜 선택 불가
-      selected={selectedDate}
-      onChange={(date) => setSelectedDate(date)}
+      selected={date}
+      onChange={onDateChange}
       customInput={<CustomInput />}
       locale={ko}
       dateFormat="yyyy.MM.dd"

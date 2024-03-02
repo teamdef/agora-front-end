@@ -8,7 +8,10 @@ import FormRow from './FormRow';
 import TimeInput from './inputs/TimeInput';
 import CalendarInput from './inputs/CalenderInput';
 import NormalTextField from '~/components/common/inputs/textField/NormalTextField';
-import { useState } from 'react';
+import useTextFieldInput from '~/hooks/useTextFieldInput';
+import useMemberDrop from '~/hooks/useMemberDrop';
+import useDateAndTime from '~/hooks/useDateAndTime';
+import { useRouter } from 'next/router';
 
 const mockData: DropdownMemberStatus[] = [
   {
@@ -39,11 +42,20 @@ const mockData: DropdownMemberStatus[] = [
 ];
 
 const RetroSprintCreate = () => {
-  const [memberDrop, setMemberDrop] = useState<DropdownMemberStatus[]>([]);
-  const memberDropHandler = (newData: DropdownMemberStatus[]) => {
-    setMemberDrop(newData);
+  const router = useRouter();
+  const [title, handleTitleChange] = useTextFieldInput('');
+  const { initMembers, selectedMembers, memberDropHandler } = useMemberDrop({ init: mockData });
+  const { date, handleDateChange, time, handleTimeChange, getDateAndTime } = useDateAndTime();
+
+  const handleCancel = () => {
+    /** 정말로 취소하시겠습니까? 작성하신 정보는 저장되지 않습니다. */
+    router.back();
   };
 
+  const handleSubmit = () => {
+    /** 새로만들기 api 호출  */
+  };
+  const disabled = !title || !date || !time || selectedMembers.length === 0;
   return (
     <Wrapper>
       <HeaderSection>
@@ -54,27 +66,29 @@ const RetroSprintCreate = () => {
       </HeaderSection>
       <ContentSection>
         <FormRow label="제목" required>
-          <NormalTextField value={''} maxLength={20} onChange={(e) => console.log(e)} />
+          <RetroTitleForm>
+            <NormalTextField value={title} maxLength={20} onChange={handleTitleChange} />
+          </RetroTitleForm>
         </FormRow>
 
         <FormRow label="회고날짜" required>
           <RetroDateForm>
-            <CalendarInput className="calender-input" />
-            <TimeInput className="time-input" />
+            <CalendarInput date={date} onDateChange={handleDateChange} className="calender-input" />
+            <TimeInput time={time} onTimeChange={handleTimeChange} className="time-input" />
           </RetroDateForm>
         </FormRow>
         <FormRow label="참여자" required>
           <MemberDropdown
-            selected={memberDrop}
+            selected={selectedMembers}
             placeHolder="회고의 참여자를 선택해주세요."
             valueHandler={memberDropHandler}
-            memberList={mockData}
+            memberList={initMembers}
           />
         </FormRow>
       </ContentSection>
       <ButtonGroupSection>
-        <Button label="취소" outlined />
-        <Button label="등록" disabled />
+        <Button label="취소" outlined onClick={handleCancel} />
+        <Button label="등록" disabled={disabled} onClick={handleSubmit} />
       </ButtonGroupSection>
     </Wrapper>
   );
@@ -105,7 +119,9 @@ const ButtonGroupSection = styled.div`
   position: absolute;
   bottom: 120px;
 `;
-
+const RetroTitleForm = styled.div`
+  margin-top: 23px;
+`;
 const RetroDateForm = styled.div`
   display: flex;
   .calender-input {
