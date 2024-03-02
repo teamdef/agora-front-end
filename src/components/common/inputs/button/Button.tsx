@@ -29,6 +29,7 @@ const Box = styled.button<{ $style: ButtonStyleProps }>`
   justify-content: center;
   align-items: center;
   border-radius: 6px;
+
   & span {
     ${({ theme }) => theme.fontStyle.body_1};
   }
