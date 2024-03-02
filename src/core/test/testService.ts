@@ -3,7 +3,7 @@
  * 타입추론이 될 수 있도록 params 또는 payload의 타입과 response의 타입을 명시적으로 지정해줍니다.
  */
 
-import apiClient from '../../apiClient';
+import apiClient from '../api/apiClient';
 
 import type * as types from './testService.types';
 
