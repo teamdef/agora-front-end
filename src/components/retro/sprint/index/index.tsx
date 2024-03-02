@@ -25,7 +25,9 @@ const RetroSprint = () => {
         <div></div>
         <Pagination totalPage={10} currentPage={1} pagehandler={() => console.log(1)} />
         <Link href={Paths.RETRO_SPRINT_CREATE}>
-          <Button label="새로만들기" small />
+          <ButtonWrapper>
+            <Button label="새로만들기" small />
+          </ButtonWrapper>
         </Link>
       </BottomSection>
     </Wrapper>
@@ -44,5 +46,11 @@ const BottomSection = styled.div`
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
+  & a {
+    text-decoration: none;
+  }
+`;
+const ButtonWrapper = styled.div`
+  width: 120px;
 `;
 export default RetroSprint;
