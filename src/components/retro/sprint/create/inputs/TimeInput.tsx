@@ -1,16 +1,20 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
 import DatePicker from 'react-datepicker';
 import styled from 'styled-components';
 import 'react-datepicker/dist/react-datepicker.css';
 import { History } from 'public/assets/svgs';
 import { ko } from 'date-fns/locale';
 import { colors } from '~/styles/theme';
-const TimeInput = () => {
-  const [selectedTime, setSelectedTime] = useState<Date | null>(); // const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
+interface Props {
+  time: Date | null | undefined;
+  onTimeChange: (date: Date | null) => void;
+  className?: string;
+}
+const TimeInput = ({ time, onTimeChange, className }: Props) => {
   const CustomInput = forwardRef((props: any, ref) => {
     return (
-      <CalenderWrapper>
+      <CalenderWrapper className={className}>
         <input {...props} ref={ref} type="text" readOnly placeholder="HH:MM" />
         <History width="24px" height="24px" fill={colors.agoraBlack[300]} />
       </CalenderWrapper>
@@ -19,8 +23,8 @@ const TimeInput = () => {
   return (
     <DatePicker
       shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
-      selected={selectedTime}
-      onChange={(time) => setSelectedTime(time)}
+      selected={time}
+      onChange={onTimeChange}
       customInput={<CustomInput />}
       locale={ko}
       showPopperArrow={false}

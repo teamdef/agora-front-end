@@ -5,12 +5,16 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Calendar } from 'public/assets/svgs';
 import { ko } from 'date-fns/locale';
 import { colors } from '~/styles/theme';
-const CalendarInput = () => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>();
 
+interface Props {
+  date: Date | null | undefined;
+  onDateChange: (date: Date | null) => void;
+  className?: string;
+}
+const CalendarInput = ({ date, onDateChange, className }: Props) => {
   const CustomInput = forwardRef((props: any, ref) => {
     return (
-      <CalenderWrapper>
+      <CalenderWrapper className={className}>
         <input {...props} ref={ref} type="text" readOnly placeholder="YYYY.MM.DD" />
         <Calendar width="24px" height="24px" fill={colors.agoraBlack[300]} />
       </CalenderWrapper>
@@ -21,8 +25,8 @@ const CalendarInput = () => {
       shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
       minDate={new Date('2000-01-01')} // minDate 이전 날짜 선택 불가
       // maxDate={new Date()} // maxDate 이후 날짜 선택 불가
-      selected={selectedDate}
-      onChange={(date) => setSelectedDate(date)}
+      selected={date}
+      onChange={onDateChange}
       customInput={<CustomInput />}
       locale={ko}
       dateFormat="yyyy.MM.dd"
