@@ -27,5 +27,7 @@ const HeaderSection = styled.div`
   justify-content: space-between;
 `;
 
-const ContentSection = styled.div``;
+const ContentSection = styled.div`
+  margin-top: 80px;
+`;
 export default RetroSprintCreate;

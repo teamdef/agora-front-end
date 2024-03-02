@@ -5,12 +5,16 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Calendar } from 'public/assets/svgs';
 import { ko } from 'date-fns/locale';
 import { colors } from '~/styles/theme';
-const CalendarInput = () => {
+
+interface Props {
+  className?: string;
+}
+const CalendarInput = ({ className }: Props) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>();
 
   const CustomInput = forwardRef((props: any, ref) => {
     return (
-      <CalenderWrapper>
+      <CalenderWrapper className={className}>
         <input {...props} ref={ref} type="text" readOnly placeholder="YYYY.MM.DD" />
         <Calendar width="24px" height="24px" fill={colors.agoraBlack[300]} />
       </CalenderWrapper>

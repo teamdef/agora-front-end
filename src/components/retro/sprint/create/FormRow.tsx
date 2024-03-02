@@ -13,15 +13,23 @@ const FormRow = ({ label, required, children }: PropsWithChildren<Props>) => {
       <Text variant="subtitle_1" className="label">
         {label}
       </Text>
-      <div>{children}</div>
+      <div className="input">{children}</div>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div<Pick<Props, 'required'>>`
-display:flex;
-width:100%;
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  .label {
+    width: 80px;
+  }
+  .input {
+    width: 100%;
+    max-width: 936px;
+  }
   ${({ required, theme }) =>
     required &&
     css`
