@@ -1,15 +1,17 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import { ReactNode } from 'react';
 import buttonPainter from '~/utils/buttonPainter';
+
+// default spac
+// min-width: 168px height 44px padding: 0 48px
 
 export interface ButtonProps {
   label: string;
   outlined?: boolean;
-  color?: string;
   icon?: ReactNode;
   disabled?: boolean;
-  small?: boolean;
-  large?: boolean;
+  small?: boolean; // 작은 버튼일 때 min-width: 120px, height: 36px
+  large?: boolean; // button width 100% 로 만들고 싶을때 height = default
   onClick?: () => void;
 }
 
@@ -38,6 +40,7 @@ const Box = styled.button<{ $style: ButtonStyleProps }>`
   white-space: nowrap;
   padding: 0 ${({ $style }) => ($style.small ? '24px' : $style.large ? 0 : '48px')};
   height: ${({ $style }) => ($style.small ? '36px' : '44px')};
+  min-width: ${({ $style }) => ($style.small ? '120px' : '168px')};
   width: ${({ $style }) => ($style.large ? '100%' : 'auto')};
   ${({ $style }) => buttonPainter($style.outlined, $style.disabled)};
 `;

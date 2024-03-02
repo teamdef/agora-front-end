@@ -14,7 +14,6 @@ const ProfileBadge = ({ memberState, closeFn }: ProfileBadgeProps) => {
     if (closeFn) closeFn(value);
     e.stopPropagation();
   };
-
   return (
     <Wrapper>
       <img src={memberState.profileImg !== '' ? memberState.profileImg : DEFAULT_IMG} alt="프로필뱃지 이미지" />
