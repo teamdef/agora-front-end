@@ -31,7 +31,7 @@ const TimeInput = ({ time, onTimeChange, className }: Props) => {
       showTimeSelect
       showTimeSelectOnly // 오직 시간만 선택할 수 있도록 설정
       timeIntervals={15} // 시간 간격 설정 (기본값은 30분)
-      dateFormat="hh:mm" // 시간만 표시하는 형식 설정
+      dateFormat="HH:mm" // 시간만 표시하는 형식 설정 HH는 24시간 hh는 12시간
     />
   );
 };
