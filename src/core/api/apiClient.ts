@@ -6,4 +6,4 @@ import HTTPProvider from './httpProvider';
  */
 class ApiClient extends HTTPProvider {}
 
-export default new ApiClient();
+export default ApiClient;
