@@ -13,7 +13,6 @@ import useMemberDrop from '~/hooks/useMemberDrop';
 import useDateAndTime from '~/hooks/useDateAndTime';
 import { useRouter } from 'next/router';
 import { useCreateRetroMutation } from '~/query/retro/retroQueries';
-import { CreateRetroDTO } from '~/core/retro/retroService.types';
 
 const mockData: DropdownMemberStatus[] = [
   {
@@ -47,33 +46,35 @@ const RetroSprintCreate = () => {
   const router = useRouter();
   const [title, handleTitleChange] = useTextFieldInput('');
   const { initMembers, selectedMembers, memberDropHandler } = useMemberDrop({ init: mockData });
-  const { date, handleDateChange, time, handleTimeChange, getDateAndTime } = useDateAndTime();
+  const { selectedDate, handleDateChange, selectedTime, handleTimeChange, getDateAndTimeISOString } = useDateAndTime();
 
   const createRetroMutation = useCreateRetroMutation();
   const handleCancel = () => {
-    /** 정말로 취소하시겠습니까? 작성하신 정보는 저장되지 않습니다. */
+    /** 페이지 나가기 감지 필요 */
+    const isCancel = window.confirm('정말로 취소하시겠습니까? 작성하신 정보는 저장되지 않습니다.');
+    if (isCancel) {
+      router.back();
+    }
+  };
+
+  const handleSubmit = async () => {
+    const payload = {
+      projectId: 1,
+      createMemberId: 1,
+      title,
+      content: '이건뭐지',
+      joinMemberIds: [1, 2, 3, 4],
+      createTime: getDateAndTimeISOString(),
+    };
+    await createRetroMutation.mutateAsync(payload, { onSuccess: () => console.log('등록 성공!!') });
+    /** 목록 refetch 필요 */
+    window.alert('회고 생성에 성공하였습니다. 목록 화면으로 이동합니다.');
     router.back();
   };
 
-  const handleSubmit = () => {
-    /** 새로만들기 api 호출  */
-  };
-
-  const test = () => {
-    const payload: CreateRetroDTO = {
-      projectId: 0,
-      createMemberId: 0,
-      title: '테스트',
-      content: '이건뭐지',
-      joinMemberIds: [0],
-      createTime: '2024.03.03T15:39:00Z',
-    };
-    createRetroMutation.mutate(payload, { onSuccess: (data) => console.log(data) });
-  };
-  const disabled = !title || !date || !time || selectedMembers.length === 0;
+  const disabled = !title || !selectedDate || !selectedTime || selectedMembers.length === 0;
   return (
     <Wrapper>
-      <button onClick={test}>xfdfff</button>
       <HeaderSection>
         <Text variant="headline_1" color={colors.agoraBlack[900]}>
           새로만들기
@@ -89,8 +90,8 @@ const RetroSprintCreate = () => {
 
         <FormRow label="회고날짜" required>
           <RetroDateForm>
-            <CalendarInput date={date} onDateChange={handleDateChange} className="calender-input" />
-            <TimeInput time={time} onTimeChange={handleTimeChange} className="time-input" />
+            <CalendarInput date={selectedDate} onDateChange={handleDateChange} className="calender-input" />
+            <TimeInput time={selectedTime} onTimeChange={handleTimeChange} className="time-input" />
           </RetroDateForm>
         </FormRow>
         <FormRow label="참여자" required>

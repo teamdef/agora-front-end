@@ -1,14 +1,13 @@
 import styled from 'styled-components';
-import { RetroListItem } from '.';
 import { colors } from '~/styles/theme';
 import Text from '~/components/common/typo/Text';
 import UserList from './UserList';
-import Radio from '~/components/common/inputs/radio/Radio';
+import { SprintRetroListItemType } from '~/query/retro/retroQueries.types';
 
 interface Props {
-  list: RetroListItem[];
+  retroList: SprintRetroListItemType[];
 }
-const RetroSprintList = ({ list }: Props) => {
+const RetroSprintList = ({ retroList }: Props) => {
   return (
     <Wrapper>
       <ListHeader>
@@ -23,102 +22,27 @@ const RetroSprintList = ({ list }: Props) => {
         </Text>
       </ListHeader>
       <ListBody>
-        <ListBodyItem>
-          <Text className="col-1" variant="detail_1" color={colors.agoraBlack[700]}>
-            회고 제목은 20자 까지
-          </Text>
-          <Text className="col-2" variant="detail_2" color={colors.agoraBlack[700]}>
-            2024.02.17
-          </Text>
-          <UserList />
-        </ListBodyItem>
-        <ListBodyItem>
-          <Text className="col-1" variant="detail_1" color={colors.agoraBlack[700]}>
-            회고 제목은 20자 까지
-          </Text>
-          <Text className="col-2" variant="detail_2" color={colors.agoraBlack[700]}>
-            2024.02.17
-          </Text>
-          <UserList />
-        </ListBodyItem>
-        <ListBodyItem>
-          <Text className="col-1" variant="detail_1" color={colors.agoraBlack[700]}>
-            회고 제목은 20자 까지
-          </Text>
-          <Text className="col-2" variant="detail_2" color={colors.agoraBlack[700]}>
-            2024.02.17
-          </Text>
-          <UserList />
-        </ListBodyItem>
-        <ListBodyItem>
-          <Text className="col-1" variant="detail_1" color={colors.agoraBlack[700]}>
-            회고 제목은 20자 까지
-          </Text>
-          <Text className="col-2" variant="detail_2" color={colors.agoraBlack[700]}>
-            2024.02.17
-          </Text>
-          <UserList />
-        </ListBodyItem>
-        <ListBodyItem>
-          <Text className="col-1" variant="detail_1" color={colors.agoraBlack[700]}>
-            회고 제목은 20자 까지
-          </Text>
-          <Text className="col-2" variant="detail_2" color={colors.agoraBlack[700]}>
-            2024.02.17
-          </Text>
-          <UserList />
-        </ListBodyItem>
-        <ListBodyItem>
-          <Text className="col-1" variant="detail_1" color={colors.agoraBlack[700]}>
-            회고 제목은 20자 까지
-          </Text>
-          <Text className="col-2" variant="detail_2" color={colors.agoraBlack[700]}>
-            2024.02.17
-          </Text>
-          <UserList />
-        </ListBodyItem>
-        <ListBodyItem>
-          <Text className="col-1" variant="detail_1" color={colors.agoraBlack[700]}>
-            회고 제목은 20자 까지
-          </Text>
-          <Text className="col-2" variant="detail_2" color={colors.agoraBlack[700]}>
-            2024.02.17
-          </Text>
-          <UserList />
-        </ListBodyItem>
-        <ListBodyItem>
-          <Text className="col-1" variant="detail_1" color={colors.agoraBlack[700]}>
-            회고 제목은 20자 까지
-          </Text>
-          <Text className="col-2" variant="detail_2" color={colors.agoraBlack[700]}>
-            2024.02.17
-          </Text>
-          <UserList />
-        </ListBodyItem>
-        <ListBodyItem>
-          <Text className="col-1" variant="detail_1" color={colors.agoraBlack[700]}>
-            회고 제목은 20자 까지
-          </Text>
-          <Text className="col-2" variant="detail_2" color={colors.agoraBlack[700]}>
-            2024.02.17
-          </Text>
-          <UserList />
-        </ListBodyItem>
-        <ListBodyItem>
-          <Text className="col-1" variant="detail_1" color={colors.agoraBlack[700]}>
-            회고 제목은 20자 까지
-          </Text>
-          <Text className="col-2" variant="detail_2" color={colors.agoraBlack[700]}>
-            2024.02.17
-          </Text>
-          <UserList />
-        </ListBodyItem>
-
-        {/* <ListBodyEmptyItem>
-          <Text className="col-3" variant="body_2" color={colors.agoraBlack[300]}>
-            등록된 회고가 없습니다.
-          </Text>
-        </ListBodyEmptyItem> */}
+        {retroList.length === 0 && (
+          <ListBodyEmptyItem>
+            <Text className="col-3" variant="body_2" color={colors.agoraBlack[300]}>
+              등록된 회고가 없습니다.
+            </Text>
+          </ListBodyEmptyItem>
+        )}
+        {retroList.length > 0 &&
+          retroList.map((retro) => {
+            return (
+              <ListBodyItem key={retro.id}>
+                <Text className="col-1" variant="detail_1" color={colors.agoraBlack[700]}>
+                  {retro.title}
+                </Text>
+                <Text className="col-2" variant="detail_2" color={colors.agoraBlack[700]}>
+                  {retro.createTime.substring(0, 10)}
+                </Text>
+                <UserList members={retro.members} />
+              </ListBodyItem>
+            );
+          })}
       </ListBody>
     </Wrapper>
   );
