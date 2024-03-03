@@ -6,11 +6,16 @@ import Pagination from '~/components/common/navigation/Pagination';
 import Link from 'next/link';
 import { Paths } from '~/constants/Paths';
 import RetroSprintList from './RetroSprintList';
-
-export interface RetroListItem {}
-const retroSprintDummy: RetroListItem[] = [];
+import { useReadSprintRetroListQuery } from '~/query/retro/retroQueries';
 
 const RetroSprint = () => {
+  const currentPageNo = 1;
+  const totalPageCount = 10;
+  const readSprintRetroListQuery = useReadSprintRetroListQuery({ pageNo: currentPageNo, listSize: 20, projectId: 1 });
+
+  if (!readSprintRetroListQuery.isSuccess) {
+    return null;
+  }
   return (
     <Wrapper>
       <HeaderSection>
@@ -19,11 +24,11 @@ const RetroSprint = () => {
         </Text>
       </HeaderSection>
       <ListSection>
-        <RetroSprintList list={retroSprintDummy} />
+        <RetroSprintList retroList={readSprintRetroListQuery.data} />
       </ListSection>
       <BottomSection>
         <div></div>
-        <Pagination totalPage={10} currentPage={1} pagehandler={() => console.log(1)} />
+        <Pagination totalPage={totalPageCount} currentPage={currentPageNo} pagehandler={() => console.log(1)} />
         <Link href={Paths.RETRO_SPRINT_CREATE}>
           <ButtonWrapper>
             <Button label="새로만들기" small />

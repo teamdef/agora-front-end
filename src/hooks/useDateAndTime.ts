@@ -1,20 +1,20 @@
 import { useState } from 'react';
 
 const useDateAndTime = () => {
-  const [date, setDate] = useState<Date | null>();
-  const [time, setTime] = useState<Date | null>();
+  const [selectedDate, setSelectedDate] = useState<Date | null>();
+  const [selectedTime, setSelectedTime] = useState<Date | null>();
 
   const handleDateChange = (date: Date | null) => {
-    setDate(date);
+    setSelectedDate(date);
   };
 
   const handleTimeChange = (time: Date | null) => {
-    setTime(time);
+    setSelectedTime(time);
   };
 
-  const getDateAndTime = (selectedDate?: Date | null, selectedTime?: Date | null) => {
+  const getDateAndTimeISOString = () => {
     if (!selectedDate || !selectedTime) {
-      return;
+      return new Date().toISOString();
     }
     const year = selectedDate.getFullYear();
     const month = selectedDate.getMonth();
@@ -22,11 +22,13 @@ const useDateAndTime = () => {
     const hour = selectedTime.getHours();
     const minute = selectedTime.getMinutes();
 
-    const result = new Date(year, month, date, hour, minute);
-    return result;
+    const koreaTimeOffset = 9 * 60 * 60 * 1000; // 한국은 UTC+9
+    const selected = new Date(year, month, date, hour, minute);
+    const result = new Date(selected.getTime() + koreaTimeOffset);
+    return result.toISOString();
   };
 
-  return { date, handleDateChange, time, handleTimeChange, getDateAndTime };
+  return { selectedDate, handleDateChange, selectedTime, handleTimeChange, getDateAndTimeISOString };
 };
 
 export default useDateAndTime;

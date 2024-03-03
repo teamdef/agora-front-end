@@ -1,10 +1,13 @@
 export const RETRO = 'COMMON';
+export const SPRINT = 'SPRINT';
 export const EXAMPLE_KEY = 'HOUSE_INFO';
 export const CREATE = 'CREATE';
+export const LIST = 'LIST';
 
 const RETRO_QUERY_KEYS = {
   RETRO_EXAMPLE: [RETRO, EXAMPLE_KEY],
-  RETRO_CREATE: [RETRO, CREATE],
+  SPRINT_RETRO_CREATE: [SPRINT, RETRO, CREATE],
+  SPRINT_RETRO_LIST: [SPRINT, RETRO, LIST],
 };
 
 export default RETRO_QUERY_KEYS;

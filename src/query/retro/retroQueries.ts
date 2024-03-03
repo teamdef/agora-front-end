@@ -5,8 +5,14 @@ import RetroService from '~/core/retro/retroService';
 
 const retroService = new RetroService({ isMock: false });
 
+export const useReadSprintRetroListQuery = (params: types.UseReadSprintRetroParams) =>
+  useQuery({
+    queryKey: [RETRO_QUERY_KEYS.SPRINT_RETRO_LIST, params.projectId],
+    queryFn: () => retroService.readSprintRetroList(params),
+  });
+
 export const useCreateRetroMutation = () =>
   useMutation({
-    mutationFn: (payload: types.UseCreateRetroPayload) => retroService.createRetro(payload),
-    mutationKey: RETRO_QUERY_KEYS.RETRO_CREATE,
+    mutationKey: RETRO_QUERY_KEYS.SPRINT_RETRO_CREATE,
+    mutationFn: (payload: types.UseCreateSprintRetroPayload) => retroService.createSprintRetro(payload),
   });
