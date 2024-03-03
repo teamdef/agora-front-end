@@ -2,7 +2,10 @@ import axios from 'axios';
 
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-const BASE_URL = 'http://localhost:5000';
+const MOCK_BASE_URL = 'http://localhost:3000/api';
+const BASE_URL =
+  process.env.NODE_ENV === 'development' ? process.env.NEXT_PUBLIC_DEV_API_HOST : process.env.NEXT_PUBLIC_PROD_API_HOST;
+
 const TIMEOUT = 10 * 1000;
 
 /** axios 응답 타입 제어를 위해서 기존 axios client를 커스텀함.
@@ -12,9 +15,9 @@ const TIMEOUT = 10 * 1000;
 export default class HTTPProvider {
   private client: AxiosInstance;
 
-  constructor() {
+  constructor({ isMock }: { isMock: boolean }) {
     this.client = axios.create({
-      baseURL: BASE_URL,
+      baseURL: isMock ? MOCK_BASE_URL : BASE_URL,
       timeout: TIMEOUT,
       headers: { 'Content-Type': 'application/json' },
       responseType: 'json' as const,

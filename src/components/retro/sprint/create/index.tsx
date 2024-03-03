@@ -12,6 +12,8 @@ import useTextFieldInput from '~/hooks/useTextFieldInput';
 import useMemberDrop from '~/hooks/useMemberDrop';
 import useDateAndTime from '~/hooks/useDateAndTime';
 import { useRouter } from 'next/router';
+import { useCreateRetroMutation } from '~/query/retro/retroQueries';
+import { CreateRetroDTO } from '~/core/retro/retroService.types';
 
 const mockData: DropdownMemberStatus[] = [
   {
@@ -47,6 +49,7 @@ const RetroSprintCreate = () => {
   const { initMembers, selectedMembers, memberDropHandler } = useMemberDrop({ init: mockData });
   const { date, handleDateChange, time, handleTimeChange, getDateAndTime } = useDateAndTime();
 
+  const createRetroMutation = useCreateRetroMutation();
   const handleCancel = () => {
     /** 정말로 취소하시겠습니까? 작성하신 정보는 저장되지 않습니다. */
     router.back();
@@ -55,9 +58,22 @@ const RetroSprintCreate = () => {
   const handleSubmit = () => {
     /** 새로만들기 api 호출  */
   };
+
+  const test = () => {
+    const payload: CreateRetroDTO = {
+      projectId: 0,
+      createMemberId: 0,
+      title: '테스트',
+      content: '이건뭐지',
+      joinMemberIds: [0],
+      createTime: '2024.03.03T15:39:00Z',
+    };
+    createRetroMutation.mutate(payload, { onSuccess: (data) => console.log(data) });
+  };
   const disabled = !title || !date || !time || selectedMembers.length === 0;
   return (
     <Wrapper>
+      <button onClick={test}>xfdfff</button>
       <HeaderSection>
         <Text variant="headline_1" color={colors.agoraBlack[900]}>
           새로만들기
