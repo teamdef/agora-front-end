@@ -9,7 +9,7 @@ const KeepBox = () => {
       <Title>지속하고 싶은 점은 무엇인가요?</Title>
       <Content>
         {mock.retro.keep.map((item) => {
-          return <KeepItem data={item} />;
+          return <KeepItem key={`KeepItem-${crypto.randomUUID()}`} data={item} />;
         })}
         <CreateItemBox />
       </Content>

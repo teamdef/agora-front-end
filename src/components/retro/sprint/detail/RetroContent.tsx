@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 `;
 const Title = styled.h2`
   position: relative;
-  padding: 0 0 24px 24px;
+  margin-bottom: 30px;
   ${({ theme }) => theme.fontStyle.headline_2};
   color: ${({ theme }) => theme.colors.agoraBlack[900]};
 `;
