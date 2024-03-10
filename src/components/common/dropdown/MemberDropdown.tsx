@@ -42,12 +42,14 @@ const MemberDropdown = ({ memberList, valueHandler, selected, placeHolder }: Dro
     <Wrapper ref={wrapper}>
       <PlaceHolderBox onClick={toggleIsOpenHandler} $isOpen={isOpen}>
         {selected.length > 0 && (
-          <SelectedMember>
-            {selected.map((member) => {
-              const uuid = crypto.randomUUID();
-              return <ProfileBadge key={`MemberDropdown-${uuid}`} memberState={member} closeFn={toggleNewData} />;
-            })}
-          </SelectedMember>
+          <SelectedMemberWrapper>
+            <SelectedMember>
+              {selected.map((member) => {
+                const uuid = crypto.randomUUID();
+                return <ProfileBadge key={`MemberDropdown-${uuid}`} memberState={member} closeFn={toggleNewData} />;
+              })}
+            </SelectedMember>
+          </SelectedMemberWrapper>
         )}
         {selected.length === 0 && <PlaceHolderText>{placeHolder}</PlaceHolderText>}
         {isOpen ? <DropdownArrowUp /> : <DropdownArrowDown />}
@@ -71,9 +73,11 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 const PlaceHolderBox = styled.div<{ $isOpen: boolean }>`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   padding: 0 16px;
   height: 50px;
   user-select: none;
@@ -87,7 +91,15 @@ const PlaceHolderText = styled.span`
   color: ${({ theme }) => theme.colors.agoraBlack[300]};
   ${({ theme }) => theme.fontStyle.detail_2}
 `;
+const SelectedMemberWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  height: 32px;
+  overflow: hidden;
+`;
 const SelectedMember = styled.div`
+  position: absolute;
   display: flex;
   gap: 12px;
 `;

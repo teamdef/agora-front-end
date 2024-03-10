@@ -23,8 +23,10 @@ const Wrapper = styled.div<Pick<Props, 'required'>>`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  gap: 56px;
   .label {
     width: 80px;
+    flex: none;
   }
   .input {
     width: 100%;

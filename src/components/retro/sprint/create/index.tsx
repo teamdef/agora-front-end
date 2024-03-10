@@ -142,11 +142,13 @@ const RetroTitleForm = styled.div`
 const RetroDateForm = styled.div`
   display: flex;
   .calender-input {
-    width: calc(360px - 16px - 16px);
+  }
+  gap: 24px;
+  .react-datepicker-wrapper {
+    max-width: calc(360px - 16px - 16px);
+    width: 100%;
   }
   .time-input {
-    width: calc(360px - 16px - 16px);
-    margin-left: 24px;
   }
 `;
 

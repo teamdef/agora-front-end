@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 `;
 const Title = styled.h2`
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
   ${({ theme }) => theme.fontStyle.headline_2};
   color: ${({ theme }) => theme.colors.agoraBlack[900]};
 `;

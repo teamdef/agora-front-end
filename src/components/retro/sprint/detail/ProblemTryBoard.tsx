@@ -36,7 +36,7 @@ const Title = styled.div`
 const Content = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 12px;
   margin-top: 16px;
 `;
 
