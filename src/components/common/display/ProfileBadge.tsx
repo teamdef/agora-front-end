@@ -1,7 +1,7 @@
 import { Cancel } from 'public/assets/svgs';
 import styled from 'styled-components';
 import { DropdownMemberStatus } from '../dropdown/MemberDropdown';
-import { MouseEvent } from 'react';
+import { MouseEvent, SyntheticEvent } from 'react';
 
 interface ProfileBadgeProps {
   memberState: DropdownMemberStatus;
@@ -10,13 +10,22 @@ interface ProfileBadgeProps {
 const ProfileBadge = ({ memberState, closeFn }: ProfileBadgeProps) => {
   const DEFAULT_IMG = '/assets/svgs/UserImage.svg';
 
+  const onErrorHandler = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = DEFAULT_IMG;
+  };
+
   const onCloseHandler = (e: MouseEvent, value: DropdownMemberStatus) => {
     if (closeFn) closeFn(value);
     e.stopPropagation();
   };
+
   return (
     <Wrapper>
-      <img src={memberState.profileImg !== '' ? memberState.profileImg : DEFAULT_IMG} alt="프로필뱃지 이미지" />
+      <img
+        src={memberState.profileImg !== '' ? memberState.profileImg : DEFAULT_IMG}
+        onError={onErrorHandler}
+        alt="프로필뱃지 이미지"
+      />
       <span>{memberState.name}</span>
       {closeFn && <Cancel onClick={(e: MouseEvent) => onCloseHandler(e, memberState)} />}
     </Wrapper>
