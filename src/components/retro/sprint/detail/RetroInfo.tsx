@@ -25,7 +25,7 @@ const RetroInfo = () => {
         <h3>참여자</h3>
         <MemberList>
           {mock.members.map((member) => {
-            return <ProfileBadge memberState={member} />;
+            return <ProfileBadge key={`ProfileBadge-${crypto.randomUUID()}`} memberState={member} />;
           })}
         </MemberList>
       </li>

@@ -17,7 +17,7 @@ const ProblemTryBox = ({ state, items }: ProblemTryBoxProps) => {
       </StatusBox>
       <Content>
         {items.map((item) => {
-          return <RetroItem data={item} />;
+          return <RetroItem key={`RetroItem-${crypto.randomUUID()}`} data={item} />;
         })}
         {state.value === 'problem' && <CreateItemBox />}
       </Content>
