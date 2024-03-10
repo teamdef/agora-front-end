@@ -6,12 +6,12 @@ import Pagination from '~/components/common/navigation/Pagination';
 import Link from 'next/link';
 import { Paths } from '~/constants/Paths';
 import RetroSprintList from './RetroSprintList';
-import { useReadSprintRetroListQuery } from '~/query/retro/retroQueries';
+import { useReadRetroSprintListQuery } from '~/query/retro/retroQueries';
 
 const RetroSprint = () => {
   const currentPageNo = 1;
   const totalPageCount = 10;
-  const readSprintRetroListQuery = useReadSprintRetroListQuery({ pageNo: currentPageNo, listSize: 20, projectId: 1 });
+  const readSprintRetroListQuery = useReadRetroSprintListQuery({ pageNo: currentPageNo, listSize: 20, projectId: 1 });
 
   if (!readSprintRetroListQuery.isSuccess) {
     return null;

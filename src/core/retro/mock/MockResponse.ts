@@ -2,7 +2,7 @@
 import type * as types from '../retroService.types';
 export const RETRO_DETAIL = 'hello agora!';
 
-export const SPRINT_RETRO_LIST_RESPONSE: types.ReadSprintRetroListResponse = [
+export const SPRINT_RETRO_LIST_RESPONSE: types.ReadRetroSprintListResponse = [
   {
     id: 1,
     title: 'string',

@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { colors } from '~/styles/theme';
 import Text from '~/components/common/typo/Text';
 import UserList from './UserList';
-import { SprintRetroListItemType } from '~/query/retro/retroQueries.types';
+import { RetroSprintListItemType } from '~/query/retro/retroQueries.types';
 import Link from 'next/link';
 import { Paths } from '~/constants/Paths';
 
 interface Props {
-  retroList: SprintRetroListItemType[];
+  retroList: RetroSprintListItemType[];
 }
 const RetroSprintList = ({ retroList }: Props) => {
   return (
