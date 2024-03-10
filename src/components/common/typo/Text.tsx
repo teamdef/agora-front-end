@@ -18,5 +18,6 @@ const Text = ({ variant, color, children, className }: PropsWithChildren<Props>)
 const Wrapper = styled.div<Props>`
   ${({ theme, variant }) => theme.fontStyle[variant]}
   color:${({ theme, color }) => color || theme.colors.agoraBlack[900]};
+  white-space: pre-wrap;
 `;
 export default Text;

@@ -9,6 +9,8 @@ import { QueryCache, QueryClient, QueryClientProvider, HydrationBoundary } from 
 import { ErrorBoundary } from 'react-error-boundary';
 import GlobalErrorFallback from '~/components/error';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import ConfirmDialog from '~/components/common/dialog/ConfirmDialog';
+import DefaultDialog from '~/components/common/dialog/DefaultDialog';
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
@@ -43,6 +45,8 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           <GlobalStyles />
           <ErrorBoundary FallbackComponent={GlobalErrorFallback}>
             {getLayout(<Component {...pageProps} />)}
+            <ConfirmDialog />
+            <DefaultDialog />
           </ErrorBoundary>
         </ThemeProvider>
       </HydrationBoundary>
