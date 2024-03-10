@@ -15,7 +15,7 @@ const UserList = ({ members }: Props) => {
       <UserListWrapper>
         {members.slice(0, 4).map((member) => {
           const renameMember: DropdownMemberStatus = { id: member.id, profileImg: member.img, name: member.nickname };
-          return <ProfileBadge memberState={renameMember} />;
+          return <ProfileBadge key={`ProfileBadge-${crypto.randomUUID()}`} memberState={renameMember} />;
         })}
       </UserListWrapper>
       {members.length > 5 && (

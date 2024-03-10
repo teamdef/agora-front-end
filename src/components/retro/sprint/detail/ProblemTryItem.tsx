@@ -23,7 +23,7 @@ const ProblemTryItem = ({ data }: ProblemTryProps) => {
             <span>전체 {data.comments.length}</span>
           </CommentBoxTitle>
           {data.comments.map((comment) => {
-            return <CommentItem>{comment.content}</CommentItem>;
+            return <CommentItem key={`CommentItem-${crypto.randomUUID()}`}>{comment.content}</CommentItem>;
           })}
         </CommentBox>
         <Button
