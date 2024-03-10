@@ -1,12 +1,14 @@
+import { useRouter } from 'next/router';
 import { Delete, More } from 'public/assets/svgs';
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import MoreDropdown from '~/components/common/dropdown/MoreDropdown';
 import TitleTextField from '~/components/common/inputs/textField/TitleTextField';
+import { useReadSprintRetroDetailQuery } from '~/query/retro/retroQueries';
 import { theme } from '~/styles/theme';
-import RetroInfo from './RetroInfo';
-import RetroContent from './RetroContent';
 import { mock } from '~/types/retro/sprint';
+import RetroContent from './RetroContent';
+import RetroInfo from './RetroInfo';
 
 const moreList = [
   {
@@ -17,11 +19,16 @@ const moreList = [
 ];
 
 const RetroSprintDetail = () => {
+  const router = useRouter();
+  const query = router.query;
+  const readRetroSprintDetail = useReadSprintRetroDetailQuery({ sprintId: query.sprintId as unknown as number });
   const [isOpenMore, setIsOpenMore] = useState<boolean>(false);
   const moreButtonRef = useRef<HTMLButtonElement>(null);
-
   const toggleMore = () => setIsOpenMore((prev) => !prev);
 
+  if (!readRetroSprintDetail.isSuccess) {
+    return null;
+  }
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (moreButtonRef.current && !moreButtonRef.current.contains(event.target as Node)) {

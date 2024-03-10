@@ -6,7 +6,7 @@ import Pagination from '~/components/common/navigation/Pagination';
 import Link from 'next/link';
 import { Paths } from '~/constants/Paths';
 import RetroSprintList from './RetroSprintList';
-import { useReadSprintRetroListQuery } from '~/query/retro/retroQueries';
+import { useReadRetroSprintListQuery } from '~/query/retro/retroQueries';
 import { confirmDialogActions } from '~/store/dialog/confirmDialog';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 import DefaultDialog from '~/components/common/dialog/DefaultDialog';
@@ -14,7 +14,7 @@ import DefaultDialog from '~/components/common/dialog/DefaultDialog';
 const RetroSprint = () => {
   const currentPageNo = 1;
   const totalPageCount = 10;
-  const readSprintRetroListQuery = useReadSprintRetroListQuery({ pageNo: currentPageNo, listSize: 20, projectId: 1 });
+  const readSprintRetroListQuery = useReadRetroSprintListQuery({ pageNo: currentPageNo, listSize: 20, projectId: 1 });
 
   const handleOpen = () => {
     defaultDialogActions.open({ content: <DefaultDialog></DefaultDialog> });
