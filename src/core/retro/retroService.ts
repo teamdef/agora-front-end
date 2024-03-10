@@ -6,7 +6,7 @@
 import ApiClient from '~/core/api/apiClient';
 import type * as types from './retroService.types';
 
-const URLS = { READ_SPRINT_RETRO_LIST: '/reviews', CREATE_SPRINT_RETRO: '/reviews' };
+const URLS = { READ_SPRINT_RETRO_LIST: '/retro', CREATE_SPRINT_RETRO: '/retro' };
 
 export default class RetroService {
   private apiClient: ApiClient;
