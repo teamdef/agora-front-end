@@ -79,7 +79,6 @@ const ListBodyItem = styled.div`
   align-items: center;
   padding: 0 24px;
   border-bottom: solid 1px ${({ theme }) => theme.colors.agoraBlue[50]};
-  cursor: pointer;
   .col-1,
   .col-3 {
     width: 40%;

@@ -9,7 +9,7 @@ import type * as types from './retroService.types';
 const URLS = {
   READ_RETRO_SPRINT_LIST: '/retro',
   CREATE_RETRO_SPRINT: '/retro',
-  RETRO_SPRINT_DETAIL: (sprintId: types.ReadRetroSprintDetailParams) => `/retro/${sprintId}`,
+  RETRO_SPRINT_DETAIL: (sprintId: number) => `/retro/${sprintId}`,
 };
 
 export default class RetroService {
@@ -21,8 +21,8 @@ export default class RetroService {
 
   async readRetroSprintList(params: types.ReadRetroSprintListParams): Promise<types.ReadRetroSprintListResponse> {
     const renameParams = {
-      size: params.listSize,
-      page: params.pageNo,
+      pageNo: params.pageNo,
+      listSize: params.listSize,
       projectId: params.projectId,
     };
     const { data } = await this.apiClient.get<types.ReadRetroSprintListResponse>(URLS.READ_RETRO_SPRINT_LIST, {
@@ -37,7 +37,9 @@ export default class RetroService {
   }
 
   async readRetroSprintDetail(params: types.ReadRetroSprintDetailParams): Promise<types.ReadRetroSprintDetailResponse> {
-    const { data } = await this.apiClient.get<types.CreateRetroSprintResponse>(URLS.RETRO_SPRINT_DETAIL(params));
+    const { data } = await this.apiClient.get<types.ReadRetroSprintDetailResponse>(
+      URLS.RETRO_SPRINT_DETAIL(params.sprintId),
+    );
     return data;
   }
 }

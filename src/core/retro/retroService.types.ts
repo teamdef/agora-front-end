@@ -10,7 +10,7 @@ export type CreateRetroSprintPayload = CreateRetroSprintDTO;
 /** response */
 export type ReadRetroSprintListResponse = RetroSprintListItemDTO[];
 export type CreateRetroSprintResponse = CreateRetroSprintDTO;
-export type ReadRetroSprintDetailResponse = CreateRetroSprintDTO;
+export type ReadRetroSprintDetailResponse = RetroSprintDetailDTO;
 
 /** DTO */
 
@@ -35,45 +35,12 @@ export interface CreateRetroSprintDTO {
 export interface RetroSprintDetailDTO {
   id: 0;
   title: string;
-  creator: {
-    id: 0;
-    nickname: string;
-    img: string;
-  };
+  creator: UserType;
   createTime: string;
+  members: UserType[];
   projectId: 0;
-  members: [
-    {
-      id: 0;
-      nickname: string;
-      img: string;
-    },
-  ];
-  keeps: [
-    {
-      id: 0;
-      reviewId: 0;
-      content: string;
-      createMemberId: 0;
-    },
-  ];
-  problems: [
-    {
-      id: 1;
-      reviewId: 1;
-      content: string;
-      createMemberId: 1;
-      status: string;
-      tries: [
-        {
-          id: 0;
-          problemId: 0;
-          createMemberId: 0;
-          content: string;
-        },
-      ];
-    },
-  ];
+  keeps: [];
+  problems: [];
 }
 
 /** union and etc type */
@@ -86,5 +53,5 @@ export interface PaginationType {
 export interface UserType {
   id: number;
   nickname: string;
-  img?: string;
+  profileImg?: string;
 }
