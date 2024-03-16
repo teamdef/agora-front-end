@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import Badge from '~/components/common/display/Badge';
 import DateDropdown from '~/components/common/dropdown/DateDropdown';
-import MemberDropdown, { DropdownMemberStatus } from '~/components/common/dropdown/MemberDropdown';
+import MemberDropdown, { UserType } from '~/components/common/dropdown/MemberDropdown';
 import Pagination from '~/components/common/navigation/Pagination';
 import { ReactElement } from 'react';
 import GNBLayout from '~/components/layout/GNBLayout';
 import LNBLayout from '~/components/layout/LNBLayout';
 import Tab from '~/components/common/navigation/Tab';
 
-const mockData: DropdownMemberStatus[] = [
+const mockData: UserType[] = [
   {
     id: 1,
     profileImg: '',
@@ -35,7 +35,7 @@ const TAB_MENU = ['이번 회고록', '지난 회고록'];
 const Page = () => {
   const [current, setCurrent] = useState(110);
   const [dropdown, setDropdown] = useState<string | null>(null);
-  const [memberDrop, setMemberDrop] = useState<DropdownMemberStatus[]>([]);
+  const [memberDrop, setMemberDrop] = useState<UserType[]>([]);
   const [tab, setTab] = useState<number>(0);
 
   const totalPage = 115;
@@ -51,7 +51,7 @@ const Page = () => {
   const tabHandler = (idx: number) => {
     setTab(idx);
   };
-  const memberDropHandler = (newData: DropdownMemberStatus[]) => {
+  const memberDropHandler = (newData: UserType[]) => {
     setMemberDrop(newData);
   };
 

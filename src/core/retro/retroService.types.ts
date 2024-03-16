@@ -52,6 +52,7 @@ export interface PaginationType {
 
 export interface UserType {
   id: number;
+  name: string;
   nickname: string;
   profileImg?: string;
 }

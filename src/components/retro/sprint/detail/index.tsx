@@ -13,13 +13,26 @@ const RetroSprintDetail = () => {
   if (!readRetroSprintDetail.isSuccess) {
     return null;
   }
-  // const { title, createTime, members, creator } = readRetroSprintDetail.data;
+
+  const { title, createTime, members, creator, keeps, problems } = readRetroSprintDetail.data;
+
+  const retroInfoProps = {
+    creator,
+    createTime,
+    members,
+  };
+
+  const retroContentProps = {
+    members,
+    keeps,
+    problems,
+  };
 
   return (
     <Wrapper>
-      <RetroSprintTitle title={readRetroSprintDetail.data.title} />
-      <RetroInfo />
-      <RetroContent />
+      <RetroSprintTitle title={title} />
+      <RetroInfo retroInfo={retroInfoProps} />
+      <RetroContent retroContent={retroContentProps} />
     </Wrapper>
   );
 };

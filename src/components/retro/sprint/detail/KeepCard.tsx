@@ -2,20 +2,16 @@ import { Delete, Enlarge } from 'public/assets/svgs';
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
 import Button from '~/components/common/inputs/button/Button';
-import { KeepItemData, ProblemTryData } from '~/types/retro/sprint';
+import { Keep } from '~/types/retro/sprint';
 
-interface KeepItemProps {
-  data: KeepItemData;
-}
-
-const KeepItem = ({ data }: KeepItemProps) => {
+const KeepCard = ({ keep }: { keep: Keep }) => {
   return (
     <Wrapper>
       <Title>
-        <ProfileBadge memberState={data.creator} />
+        <ProfileBadge memberState={keep.creator} />
         <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />
       </Title>
-      <Content>{data.content}</Content>
+      <Content>{keep.content}</Content>
       <Button
         large
         label="자세히 보기"
@@ -55,34 +51,5 @@ const Content = styled.div`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 `;
-const BottomBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-`;
-const CommentBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-const CommentBoxTitle = styled.div`
-  h4 {
-    ${({ theme }) => theme.fontStyle.subtitle_2};
-    color: ${({ theme }) => theme.colors.agoraBlack[700]};
-  }
-  span {
-    ${({ theme }) => theme.fontStyle.detail_2};
-    color: ${({ theme }) => theme.colors.agoraBlack[400]};
-  }
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-`;
-const CommentItem = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 9.5px 12px;
-  border-radius: 6px;
-  border: 1px solid ${({ theme }) => theme.colors.agoraBlack[200]};
-`;
-export default KeepItem;
+
+export default KeepCard;
