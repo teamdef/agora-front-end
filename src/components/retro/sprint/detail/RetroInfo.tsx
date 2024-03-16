@@ -1,30 +1,31 @@
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
-import { mock } from '~/types/retro/sprint';
-
-const RetroInfo = () => {
-  const CreatedAt = new Date(mock.createTime);
-  const year = CreatedAt.getFullYear();
-  const month = String(CreatedAt.getMonth() + 1).padStart(2, '0');
-  const day = String(CreatedAt.getDate()).padStart(2, '0');
-  const hours = String(CreatedAt.getHours()).padStart(2, '0');
-  const minutes = String(CreatedAt.getMinutes()).padStart(2, '0');
-
-  const formattedDate = `${year}.${month}.${day} ${hours}:${minutes}`;
+import { UserType } from '~/core/retro/retroService.types';
+import stringToDateTextFormatter from '~/utils/time/stringToDateTextFormatter';
+interface RetroInfoProps {
+  retroInfo: {
+    creator: UserType;
+    createTime: string;
+    members: UserType[];
+  };
+}
+const RetroInfo = ({ retroInfo }: RetroInfoProps) => {
+  const { creator, createTime, members } = retroInfo;
+  const formattedCreateTime = stringToDateTextFormatter(createTime);
   return (
     <Wrapper>
       <li>
         <h3>회고 날짜</h3>
-        <CreateAtText>{formattedDate}</CreateAtText>
+        <CreateAtText>{formattedCreateTime}</CreateAtText>
       </li>
       <li>
         <h3>작성자</h3>
-        <ProfileBadge memberState={mock.creator} />
+        <ProfileBadge memberState={creator} />
       </li>
       <li>
         <h3>참여자</h3>
         <MemberList>
-          {mock.members.map((member) => {
+          {members.map((member: UserType) => {
             return <ProfileBadge key={`ProfileBadge-${crypto.randomUUID()}`} memberState={member} />;
           })}
         </MemberList>

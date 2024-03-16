@@ -1,32 +1,33 @@
 import { Check } from 'public/assets/svgs';
 import styled from 'styled-components';
+import { UserType } from '~/core/retro/retroService.types';
 import { theme } from '~/styles/theme';
-import { DropdownMemberStatus } from './MemberDropdown';
 
 interface MemberSelectBoxProps {
-  memberList: DropdownMemberStatus[];
-  selected: DropdownMemberStatus[];
-  valueHandler: (_value: DropdownMemberStatus) => void;
+  memberList: UserType[];
+  selected: UserType[];
+  valueHandler: (_value: UserType) => void;
   closeHandler: () => void;
 }
 
+const DEFAULT_PROFILEIMG = '/assets/svgs/UserImage.svg' as const;
+
 const MemberSelectBox = ({ memberList, selected, valueHandler, closeHandler }: MemberSelectBoxProps) => {
-  const onClickOption = (_value: DropdownMemberStatus) => {
+  const onClickOption = (_value: UserType) => {
     valueHandler(_value);
     closeHandler();
   };
-
-  const DEFAULT_IMG = '/assets/svgs/UserImage.svg';
+  console.log();
   return (
     <Wrapper $isBlur={memberList.length > 4}>
       <SelectBox>
-        {memberList.map((member: DropdownMemberStatus) => {
+        {memberList.map((member: UserType) => {
           const uuid = crypto.randomUUID();
           const isActive = selected ? selected.includes(member) : false;
           return (
             <Option key={`MemberSelectBox-${uuid}`} onClick={() => onClickOption(member)} $isActive={isActive}>
               <Content>
-                <img src={member.profileImg !== '' ? member.profileImg : DEFAULT_IMG} alt="프로필 이미지" />
+                <img src={memberList[0].profileImg || DEFAULT_PROFILEIMG} alt="프로필 이미지" />
                 <span>{member.name}</span>
               </Content>
               {isActive && <Check viewBox="0 0 25 25" color={theme.colors.agoraBlue[400]} width={18} height={18} />}

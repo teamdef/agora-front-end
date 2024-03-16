@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
-import { DropdownMemberStatus } from '~/components/common/dropdown/MemberDropdown';
+import { UserType } from '~/components/common/dropdown/MemberDropdown';
 import Text from '~/components/common/typo/Text';
 import { UserType } from '~/query/retro/retroQueries.types';
 import { colors } from '~/styles/theme';
@@ -15,7 +15,7 @@ const UserList = ({ members }: Props) => {
     <Wrapper>
       <UserListWrapper>
         {members.slice(0, 4).map((member) => {
-          const renameMember: DropdownMemberStatus = {
+          const renameMember: UserType = {
             id: member.id,
             profileImg: member.profileImg,
             name: member.nickname,

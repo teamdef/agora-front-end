@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import type { DropdownMemberStatus } from '~/components/common/dropdown/MemberDropdown';
+import type { UserType } from '~/components/common/dropdown/MemberDropdown';
 
 interface Props {
-  init: DropdownMemberStatus[];
+  init: UserType[];
 }
 const useMemberDrop = ({ init }: Props) => {
-  const [members, setMembers] = useState<DropdownMemberStatus[]>(init);
-  const [selectedMembers, setSelectedMembers] = useState<DropdownMemberStatus[]>([]);
-  
-  const memberDropHandler = (newData: DropdownMemberStatus[]) => {
+  const [members, setMembers] = useState<UserType[]>(init);
+  const [selectedMembers, setSelectedMembers] = useState<UserType[]>([]);
+
+  const memberDropHandler = (newData: UserType[]) => {
     setSelectedMembers(newData);
   };
 

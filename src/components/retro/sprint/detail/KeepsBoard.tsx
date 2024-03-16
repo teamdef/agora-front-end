@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import CreateItemBox from './CreateItemBox';
-import { mock } from '~/types/retro/sprint';
-import KeepItem from './KeepItem';
+import KeepCard from './KeepCard';
+import { Keep } from '~/types/retro/sprint';
 
-const KeepBox = () => {
+const KeepsBoard = ({ keeps }: { keeps: Keep[] }) => {
   return (
     <Wrapper>
       <Title>지속하고 싶은 점은 무엇인가요?</Title>
       <Content>
-        {mock.retro.keep.map((item) => {
-          return <KeepItem key={`KeepItem-${crypto.randomUUID()}`} data={item} />;
+        {keeps.map((keep: Keep) => {
+          return <KeepCard key={`KeepItem-${crypto.randomUUID()}`} keep={keep} />;
         })}
         <CreateItemBox />
       </Content>
@@ -38,6 +38,6 @@ const Content = styled.div`
   }
 `;
 
-export default KeepBox;
+export default KeepsBoard;
 
-KeepBox.displayName = 'KeepList';
+KeepsBoard.displayName = 'KeepList';

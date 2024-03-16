@@ -1,12 +1,14 @@
 import styled from 'styled-components';
-import KeepBox from './KeepBox';
-import ProblemTryBoard from './ProblemTryBoard';
+import KeepsBoard from './KeepsBoard';
+import ProblemsBoard from './ProblemsBoard';
+import { RetroContentProps } from './RetroContent';
 
-const RetroBoard = () => {
+const RetroBoard = ({ retroContent }: RetroContentProps) => {
+  const { keeps, problems } = retroContent;
   return (
     <Wrapper>
-      <KeepBox />
-      <ProblemTryBoard />
+      <KeepsBoard keeps={keeps} />
+      <ProblemsBoard problems={problems} />
     </Wrapper>
   );
 };
