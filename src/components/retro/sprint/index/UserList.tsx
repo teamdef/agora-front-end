@@ -10,11 +10,16 @@ interface Props {
 }
 
 const UserList = ({ members }: Props) => {
+  console.log(members);
   return (
     <Wrapper>
       <UserListWrapper>
         {members.slice(0, 4).map((member) => {
-          const renameMember: DropdownMemberStatus = { id: member.id, profileImg: member.img, name: member.nickname };
+          const renameMember: DropdownMemberStatus = {
+            id: member.id,
+            profileImg: member.profileImg,
+            name: member.nickname,
+          };
           return <ProfileBadge key={`ProfileBadge-${crypto.randomUUID()}`} memberState={renameMember} />;
         })}
       </UserListWrapper>
