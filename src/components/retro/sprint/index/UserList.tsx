@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
 import { DropdownMemberStatus } from '~/components/common/dropdown/MemberDropdown';
 import Text from '~/components/common/typo/Text';
-import { UserType } from '~/query/retro/retroQueries.types';
+import { MemberType } from '~/query/common/commonQueries.types';
 import { colors } from '~/styles/theme';
 
 interface Props {
-  members: UserType[];
+  members: MemberType[];
 }
 
 const UserList = ({ members }: Props) => {
@@ -14,8 +14,7 @@ const UserList = ({ members }: Props) => {
     <Wrapper>
       <UserListWrapper>
         {members.slice(0, 4).map((member) => {
-          const renameMember: DropdownMemberStatus = { id: member.id, profileImg: member.img, name: member.nickname };
-          return <ProfileBadge memberState={renameMember} />;
+          return <ProfileBadge memberState={member} />;
         })}
       </UserListWrapper>
       {members.length > 5 && (

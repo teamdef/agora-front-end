@@ -13,21 +13,25 @@ const mockData: DropdownMemberStatus[] = [
     id: 1,
     profileImg: '',
     name: '진현우',
+    nickname: '진현우',
   },
   {
     id: 2,
     profileImg: '',
     name: '진현우',
+    nickname: '진현우',
   },
   {
     id: 3,
     profileImg: '',
     name: '진현우',
+    nickname: '진현우',
   },
   {
     id: 4,
     profileImg: '',
     name: '진현우',
+    nickname: '진현우',
   },
 ];
 

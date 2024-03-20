@@ -16,13 +16,8 @@ export default class RetroService {
   }
 
   async readSprintRetroList(params: types.ReadSprintRetroListParams): Promise<types.ReadSprintRetroListResponse> {
-    const renameParams = {
-      size: params.listSize,
-      page: params.pageNo,
-      projectId: params.projectId,
-    };
     const { data } = await this.apiClient.get<types.ReadSprintRetroListResponse>(URLS.READ_SPRINT_RETRO_LIST, {
-      params: renameParams,
+      params,
     });
     return data;
   }

@@ -1,5 +1,7 @@
 /** service에서 사용할 타입들을 정의합니다. */
 
+import { MemberDTO } from "../common/commonService.types";
+
 /** params */
 export type ReadSprintRetroListParams = PaginationType & { projectId: number };
 
@@ -18,7 +20,7 @@ export interface SprintRetroListItemDTO {
   title: string;
   createTime: string;
   projectId: number;
-  members: UserType[];
+  members: MemberDTO[];
 }
 
 export interface CreateSprintRetroDTO {
@@ -37,8 +39,3 @@ export interface PaginationType {
   listSize: number;
 }
 
-export interface UserType {
-  id: number;
-  nickname: string;
-  img?: string;
-}

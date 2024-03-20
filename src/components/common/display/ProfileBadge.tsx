@@ -17,7 +17,7 @@ const ProfileBadge = ({ memberState, closeFn }: ProfileBadgeProps) => {
   return (
     <Wrapper>
       <img src={memberState.profileImg !== '' ? memberState.profileImg : DEFAULT_IMG} alt="프로필뱃지 이미지" />
-      <span>{memberState.name}</span>
+      <span>{memberState.nickname}</span>
       {closeFn && <Cancel onClick={(e: MouseEvent) => onCloseHandler(e, memberState)} />}
     </Wrapper>
   );
@@ -38,6 +38,7 @@ const Wrapper = styled.div`
     position: relative;
     width: 32px;
     height: 32px;
+    border-radius: 32px;
     object-fit: cover;
   }
 `;
