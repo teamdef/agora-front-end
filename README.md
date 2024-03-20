@@ -122,7 +122,7 @@ const ConfirmDialog = () => {
       onConfirm:()=>console.log('hello world');
     });
 
-    defaultDialgAction.open({
+    defaultDialogAction.open({
       content:<div>hello world!</div>
     });
   }
@@ -130,3 +130,5 @@ const ConfirmDialog = () => {
 ```
 
 위와 같이 작성할 경우, defaultDialog 위에 confirmDialog가 표시됩니다. 
+confirm 버튼을 누르면 onConfirm을 등록했을 경우 해당 함수를 호출하고 dialog를 닫습니다.
+
