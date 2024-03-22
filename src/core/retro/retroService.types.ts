@@ -1,18 +1,20 @@
 /** service에서 사용할 타입들을 정의합니다. */
 
 /** params */
-export type ReadSprintRetroListParams = PaginationType & { projectId: number };
+export type ReadRetroSprintListParams = PaginationType & { projectId: number };
+export type ReadRetroSprintDetailParams = { sprintId: number };
 
 /** payload */
-export type CreateSprintRetroPayload = CreateSprintRetroDTO;
+export type CreateRetroSprintPayload = CreateRetroSprintDTO;
 
 /** response */
-export type ReadSprintRetroListResponse = SprintRetroListItemDTO[];
-export type CreateSprintRetroResponse = CreateSprintRetroDTO;
+export type ReadRetroSprintListResponse = RetroSprintListItemDTO[];
+export type CreateRetroSprintResponse = CreateRetroSprintDTO;
+export type ReadRetroSprintDetailResponse = RetroSprintDetailDTO;
 
 /** DTO */
 
-export interface SprintRetroListItemDTO {
+export interface RetroSprintListItemDTO {
   /** retro의 id임 */
   id: number;
   title: string;
@@ -21,13 +23,24 @@ export interface SprintRetroListItemDTO {
   members: UserType[];
 }
 
-export interface CreateSprintRetroDTO {
+export interface CreateRetroSprintDTO {
   projectId: number;
   createMemberId: number;
   title: string;
   createTime: string;
   content: string;
   joinMemberIds: number[];
+}
+
+export interface RetroSprintDetailDTO {
+  id: 0;
+  title: string;
+  creator: UserType;
+  createTime: string;
+  members: UserType[];
+  projectId: 0;
+  keeps: [];
+  problems: [];
 }
 
 /** union and etc type */
@@ -39,6 +52,7 @@ export interface PaginationType {
 
 export interface UserType {
   id: number;
+  name: string;
   nickname: string;
-  img?: string;
+  profileImg?: string;
 }

@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import Badge, { BadgeStatus } from '~/components/common/display/Badge';
-import { ProblemTryData } from '~/types/retro/sprint';
-import RetroItem from './ProblemTryItem';
+import { Problem } from '~/types/retro/sprint';
+import RetroItem from './ProblemCard';
 import CreateItemBox from './CreateItemBox';
 
 interface ProblemTryBoxProps {
   state: { label: string; value: BadgeStatus };
-  items: ProblemTryData[];
+  items: Problem[];
 }
 
-const ProblemTryBox = ({ state, items }: ProblemTryBoxProps) => {
+const ProblemsContainer = ({ state, items }: ProblemTryBoxProps) => {
   return (
     <Wrapper>
       <StatusBox>
@@ -17,7 +17,7 @@ const ProblemTryBox = ({ state, items }: ProblemTryBoxProps) => {
       </StatusBox>
       <Content>
         {items.map((item) => {
-          return <RetroItem data={item} />;
+          return <RetroItem key={`RetroItem-${crypto.randomUUID()}`} data={item} />;
         })}
         {state.value === 'problem' && <CreateItemBox />}
       </Content>
@@ -42,6 +42,6 @@ const Content = styled.div`
   height: 100%;
   padding: 16px 12px;
 `;
-export default ProblemTryBox;
+export default ProblemsContainer;
 
-ProblemTryBox.displayName = 'ProblemTryBox';
+ProblemsContainer.displayName = 'ProblemTryBox';

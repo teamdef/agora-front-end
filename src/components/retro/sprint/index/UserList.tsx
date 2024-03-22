@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
-import { DropdownMemberStatus } from '~/components/common/dropdown/MemberDropdown';
+import { UserType } from '~/components/common/dropdown/MemberDropdown';
 import Text from '~/components/common/typo/Text';
 import { UserType } from '~/query/retro/retroQueries.types';
 import { colors } from '~/styles/theme';
@@ -10,12 +10,17 @@ interface Props {
 }
 
 const UserList = ({ members }: Props) => {
+  console.log(members);
   return (
     <Wrapper>
       <UserListWrapper>
         {members.slice(0, 4).map((member) => {
-          const renameMember: DropdownMemberStatus = { id: member.id, profileImg: member.img, name: member.nickname };
-          return <ProfileBadge memberState={renameMember} />;
+          const renameMember: UserType = {
+            id: member.id,
+            profileImg: member.profileImg,
+            name: member.nickname,
+          };
+          return <ProfileBadge key={`ProfileBadge-${crypto.randomUUID()}`} memberState={renameMember} />;
         })}
       </UserListWrapper>
       {members.length > 5 && (

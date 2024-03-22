@@ -2,10 +2,12 @@ import styled from 'styled-components';
 import { colors } from '~/styles/theme';
 import Text from '~/components/common/typo/Text';
 import UserList from './UserList';
-import { SprintRetroListItemType } from '~/query/retro/retroQueries.types';
+import { RetroSprintListItemType } from '~/query/retro/retroQueries.types';
+import Link from 'next/link';
+import { Paths } from '~/constants/Paths';
 
 interface Props {
-  retroList: SprintRetroListItemType[];
+  retroList: RetroSprintListItemType[];
 }
 const RetroSprintList = ({ retroList }: Props) => {
   return (
@@ -33,9 +35,11 @@ const RetroSprintList = ({ retroList }: Props) => {
           retroList.map((retro) => {
             return (
               <ListBodyItem key={retro.id}>
-                <Text className="col-1" variant="detail_1" color={colors.agoraBlack[700]}>
-                  {retro.title}
-                </Text>
+                <Link href={Paths.RETRO_SPRINT_DETAIL(retro.id)} className="col-1">
+                  <Text variant="detail_1" color={colors.agoraBlack[700]}>
+                    {retro.title}
+                  </Text>
+                </Link>
                 <Text className="col-2" variant="detail_2" color={colors.agoraBlack[700]}>
                   {retro.createTime.substring(0, 10)}
                 </Text>
@@ -75,7 +79,6 @@ const ListBodyItem = styled.div`
   align-items: center;
   padding: 0 24px;
   border-bottom: solid 1px ${({ theme }) => theme.colors.agoraBlue[50]};
-  cursor: pointer;
   .col-1,
   .col-3 {
     width: 40%;

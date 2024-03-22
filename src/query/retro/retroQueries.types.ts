@@ -1,6 +1,7 @@
 import type * as types from '~/core/retro/retroService.types';
 
-export type UseCreateSprintRetroPayload = types.CreateSprintRetroPayload;
-export type UseReadSprintRetroParams = types.ReadSprintRetroListParams;
+export type UseCreateRetroSprintPayload = types.CreateRetroSprintPayload;
+export type UseReadRetroSprintParams = types.ReadRetroSprintListParams;
+export type UseReadRetroSprintDetailParams = types.ReadRetroSprintDetailParams;
 
-export type { SprintRetroListItemDTO as SprintRetroListItemType, UserType } from '~/core/retro/retroService.types';
+export type { RetroSprintListItemDTO as RetroSprintListItemType, UserType } from '~/core/retro/retroService.types';

@@ -6,7 +6,11 @@
 import ApiClient from '~/core/api/apiClient';
 import type * as types from './retroService.types';
 
-const URLS = { READ_SPRINT_RETRO_LIST: '/retro', CREATE_SPRINT_RETRO: '/retro' };
+const URLS = {
+  READ_RETRO_SPRINT_LIST: '/retro',
+  CREATE_RETRO_SPRINT: '/retro',
+  RETRO_SPRINT_DETAIL: (sprintId: number) => `/retro/${sprintId}`,
+};
 
 export default class RetroService {
   private apiClient: ApiClient;
@@ -15,20 +19,27 @@ export default class RetroService {
     this.apiClient = new ApiClient({ isMock });
   }
 
-  async readSprintRetroList(params: types.ReadSprintRetroListParams): Promise<types.ReadSprintRetroListResponse> {
+  async readRetroSprintList(params: types.ReadRetroSprintListParams): Promise<types.ReadRetroSprintListResponse> {
     const renameParams = {
-      size: params.listSize,
-      page: params.pageNo,
+      pageNo: params.pageNo,
+      listSize: params.listSize,
       projectId: params.projectId,
     };
-    const { data } = await this.apiClient.get<types.ReadSprintRetroListResponse>(URLS.READ_SPRINT_RETRO_LIST, {
+    const { data } = await this.apiClient.get<types.ReadRetroSprintListResponse>(URLS.READ_RETRO_SPRINT_LIST, {
       params: renameParams,
     });
     return data;
   }
 
-  async createSprintRetro(payload: types.CreateSprintRetroPayload): Promise<types.CreateSprintRetroResponse> {
-    const { data } = await this.apiClient.post<types.CreateSprintRetroResponse>(URLS.CREATE_SPRINT_RETRO, payload);
+  async createRetroSprint(payload: types.CreateRetroSprintPayload): Promise<types.CreateRetroSprintResponse> {
+    const { data } = await this.apiClient.post<types.CreateRetroSprintResponse>(URLS.CREATE_RETRO_SPRINT, payload);
+    return data;
+  }
+
+  async readRetroSprintDetail(params: types.ReadRetroSprintDetailParams): Promise<types.ReadRetroSprintDetailResponse> {
+    const { data } = await this.apiClient.get<types.ReadRetroSprintDetailResponse>(
+      URLS.RETRO_SPRINT_DETAIL(params.sprintId),
+    );
     return data;
   }
 }

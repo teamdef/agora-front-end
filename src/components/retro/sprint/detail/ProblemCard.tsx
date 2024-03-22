@@ -2,13 +2,13 @@ import { Delete, Enlarge } from 'public/assets/svgs';
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
 import Button from '~/components/common/inputs/button/Button';
-import { ProblemTryData } from '~/types/retro/sprint';
+import { Problem } from '~/types/retro/sprint';
 
 interface ProblemTryProps {
-  data: ProblemTryData;
+  data: Problem;
 }
 
-const ProblemTryItem = ({ data }: ProblemTryProps) => {
+const ProblemCard = ({ data }: ProblemTryProps) => {
   return (
     <Wrapper>
       <Title>
@@ -23,7 +23,7 @@ const ProblemTryItem = ({ data }: ProblemTryProps) => {
             <span>전체 {data.comments.length}</span>
           </CommentBoxTitle>
           {data.comments.map((comment) => {
-            return <CommentItem>{comment.content}</CommentItem>;
+            return <CommentItem key={`CommentItem-${crypto.randomUUID()}`}>{comment.content}</CommentItem>;
           })}
         </CommentBox>
         <Button
@@ -96,4 +96,4 @@ const CommentItem = styled.div`
   border-radius: 6px;
   border: 1px solid ${({ theme }) => theme.colors.agoraBlack[200]};
 `;
-export default ProblemTryItem;
+export default ProblemCard;

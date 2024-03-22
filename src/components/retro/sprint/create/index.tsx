@@ -3,7 +3,7 @@ import MenuDepth from '~/components/common/etc/MenuDepth';
 import Text from '~/components/common/typo/Text';
 import { colors } from '~/styles/theme';
 import Button from '~/components/common/inputs/button/Button';
-import MemberDropdown, { DropdownMemberStatus } from '~/components/common/dropdown/MemberDropdown';
+import MemberDropdown from '~/components/common/dropdown/MemberDropdown';
 import FormRow from './FormRow';
 import TimeInput from './inputs/TimeInput';
 import CalendarInput from './inputs/CalenderInput';
@@ -13,31 +13,37 @@ import useMemberDrop from '~/hooks/useMemberDrop';
 import useDateAndTime from '~/hooks/useDateAndTime';
 import { useRouter } from 'next/router';
 import { useCreateRetroMutation } from '~/query/retro/retroQueries';
+import { UserType } from '~/core/retro/retroService.types';
 
-const mockData: DropdownMemberStatus[] = [
+const mockData: UserType[] = [
   {
     id: 1,
     profileImg: '',
+    nickname: '진현우',
     name: '진현우',
   },
   {
     id: 2,
     profileImg: '',
+    nickname: '전하영',
     name: '전하영',
   },
   {
     id: 3,
     profileImg: '',
+    nickname: '배광호',
     name: '배광호',
   },
   {
     id: 4,
     profileImg: '',
+    nickname: '김성은',
     name: '김성은',
   },
   {
     id: 5,
     profileImg: '',
+    nickname: '이승원',
     name: '이승원',
   },
 ];
@@ -142,11 +148,13 @@ const RetroTitleForm = styled.div`
 const RetroDateForm = styled.div`
   display: flex;
   .calender-input {
-    width: calc(360px - 16px - 16px);
+  }
+  gap: 24px;
+  .react-datepicker-wrapper {
+    max-width: calc(360px - 16px - 16px);
+    width: 100%;
   }
   .time-input {
-    width: calc(360px - 16px - 16px);
-    margin-left: 24px;
   }
 `;
 
