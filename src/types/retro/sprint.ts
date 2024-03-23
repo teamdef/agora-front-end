@@ -182,7 +182,7 @@ export const mock = {
   ],
 };
 
-export interface Comment {
+export interface Try {
   id: number;
   author: UserType;
   content: string;
@@ -192,7 +192,7 @@ export interface Problem {
   id: number;
   author: UserType;
   content: string;
-  comments: Comment[];
+  tries: Try[];
 }
 
 export interface Keep {

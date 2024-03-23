@@ -39,6 +39,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 16px 18px;
+  min-height: 204px;
   gap: 19px;
   border-radius: 15px;
   border: 1px solid ${({ theme }) => theme.colors.agoraBlack[100]};

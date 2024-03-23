@@ -63,7 +63,7 @@ const Page = () => {
   };
   const handleOpen = () => {
     defaultDialogActions.open({
-      content: <ProblemEditor author={mockData[0]} retroId={1}></ProblemEditor>,
+      content: <ProblemEditor author={mockData[0]} retroId={1} />,
     });
     // confirmDialogActions.open({
     //   message: '삭제하시겠습니까?',
