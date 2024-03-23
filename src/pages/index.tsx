@@ -1,16 +1,14 @@
-import { useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import Badge from '~/components/common/display/Badge';
 import DateDropdown from '~/components/common/dropdown/DateDropdown';
 import MemberDropdown from '~/components/common/dropdown/MemberDropdown';
 import Pagination from '~/components/common/navigation/Pagination';
-import { ReactElement } from 'react';
+import Tab from '~/components/common/navigation/Tab';
 import GNBLayout from '~/components/layout/GNBLayout';
 import LNBLayout from '~/components/layout/LNBLayout';
-import Tab from '~/components/common/navigation/Tab';
+import KeepEditor from '~/components/retro/sprint/detail/KeepEditor';
 import { UserType } from '~/core/retro/retroService.types';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
-import DefaultDialog from '~/components/common/dialog/DefaultDialog';
-import { confirmDialogActions } from '~/store/dialog/confirmDialog';
 
 const mockData: UserType[] = [
   {
@@ -63,12 +61,13 @@ const Page = () => {
     setMemberDrop(newData);
   };
   const handleOpen = () => {
-    console.log('g');
-    defaultDialogActions.open({ content: <DefaultDialog></DefaultDialog> });
-    confirmDialogActions.open({
-      message: '삭제하시겠습니까?',
-      subMessage: '삭제하면 기록들을 복구할 수 없습니다.\n정말 삭제하시겠습니까?',
+    defaultDialogActions.open({
+      content: <KeepEditor></KeepEditor>,
     });
+    // confirmDialogActions.open({
+    //   message: '삭제하시겠습니까?',
+    //   subMessage: '삭제하면 기록들을 복구할 수 없습니다.\n정말 삭제하시겠습니까?',
+    // });
   };
   useEffect(() => {
     handleOpen();
