@@ -6,8 +6,8 @@ import Pagination from '~/components/common/navigation/Pagination';
 import Tab from '~/components/common/navigation/Tab';
 import GNBLayout from '~/components/layout/GNBLayout';
 import LNBLayout from '~/components/layout/LNBLayout';
-import KeepEditor from '~/components/retro/sprint/detail/KeepEditor';
-import ProblemEditor from '~/components/retro/sprint/detail/ProblemEditor';
+import KeepEditor from '~/components/common/editor/keep/KeepEditor';
+import ProblemEditor from '~/components/common/editor/problem/ProblemEditor';
 import { UserType } from '~/core/retro/retroService.types';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 
