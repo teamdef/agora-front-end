@@ -1,32 +1,38 @@
-import { useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import Badge from '~/components/common/display/Badge';
 import DateDropdown from '~/components/common/dropdown/DateDropdown';
-import MemberDropdown, { UserType } from '~/components/common/dropdown/MemberDropdown';
+import MemberDropdown from '~/components/common/dropdown/MemberDropdown';
 import Pagination from '~/components/common/navigation/Pagination';
-import { ReactElement } from 'react';
+import Tab from '~/components/common/navigation/Tab';
 import GNBLayout from '~/components/layout/GNBLayout';
 import LNBLayout from '~/components/layout/LNBLayout';
-import Tab from '~/components/common/navigation/Tab';
+import KeepEditor from '~/components/retro/sprint/detail/KeepEditor';
+import { UserType } from '~/core/retro/retroService.types';
+import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 
 const mockData: UserType[] = [
   {
     id: 1,
     profileImg: '',
+    nickname: '진현우',
     name: '진현우',
   },
   {
     id: 2,
     profileImg: '',
+    nickname: '진현우',
     name: '진현우',
   },
   {
     id: 3,
     profileImg: '',
+    nickname: '진현우',
     name: '진현우',
   },
   {
     id: 4,
     profileImg: '',
+    nickname: '진현우',
     name: '진현우',
   },
 ];
@@ -54,7 +60,18 @@ const Page = () => {
   const memberDropHandler = (newData: UserType[]) => {
     setMemberDrop(newData);
   };
-
+  const handleOpen = () => {
+    defaultDialogActions.open({
+      content: <KeepEditor author={mockData[0]} retroId={1}></KeepEditor>,
+    });
+    // confirmDialogActions.open({
+    //   message: '삭제하시겠습니까?',
+    //   subMessage: '삭제하면 기록들을 복구할 수 없습니다.\n정말 삭제하시겠습니까?',
+    // });
+  };
+  useEffect(() => {
+    handleOpen();
+  }, []);
   return (
     <div style={{ padding: '100px', display: 'flex', flexDirection: 'column', gap: '300px' }}>
       <Badge label="시작 전" status="problem" />

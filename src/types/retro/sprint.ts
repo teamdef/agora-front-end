@@ -6,7 +6,7 @@ export const mock = {
   reviewId: 0,
   title: '스프린트 48 회고',
   createTime: '2024-02-24T05:29:21.835Z',
-  creator: {
+  author: {
     id: 0,
     profileImg: '',
     name: '장원석',
@@ -54,7 +54,7 @@ export const mock = {
   keeps: [
     {
       id: 0,
-      creator: {
+      author: {
         id: 0,
         profileImg: '',
         name: '이승원',
@@ -67,7 +67,7 @@ export const mock = {
     {
       status: 'problem',
       id: 0,
-      creator: {
+      author: {
         id: 0,
         profileImg: '',
         name: '이승원',
@@ -77,7 +77,7 @@ export const mock = {
       comments: [
         {
           id: 0,
-          creator: {
+          author: {
             id: 0,
             profileImg: '',
             name: '이승원',
@@ -90,7 +90,7 @@ export const mock = {
     {
       status: 'problem',
       id: 0,
-      creator: {
+      author: {
         id: 0,
         profileImg: '',
         name: '이승원',
@@ -100,7 +100,7 @@ export const mock = {
       comments: [
         {
           id: 0,
-          creator: {
+          author: {
             id: 0,
             profileImg: '',
             name: '이승원',
@@ -113,7 +113,7 @@ export const mock = {
     {
       status: 'problem',
       id: 0,
-      creator: {
+      author: {
         id: 0,
         profileImg: '',
         name: '이승원',
@@ -123,7 +123,7 @@ export const mock = {
       comments: [
         {
           id: 0,
-          creator: {
+          author: {
             id: 0,
             profileImg: '',
             name: '이승원',
@@ -136,7 +136,7 @@ export const mock = {
     {
       status: 'try',
       id: 0,
-      creator: {
+      author: {
         id: 0,
         profileImg: '',
         name: '이승원',
@@ -146,7 +146,7 @@ export const mock = {
       comments: [
         {
           id: 0,
-          creator: {
+          author: {
             id: 0,
             profileImg: '',
             name: '이승원',
@@ -159,7 +159,7 @@ export const mock = {
     {
       status: 'solve',
       id: 0,
-      creator: {
+      author: {
         id: 0,
         profileImg: '',
         name: '이승원',
@@ -169,7 +169,7 @@ export const mock = {
       comments: [
         {
           id: 0,
-          creator: {
+          author: {
             id: 0,
             profileImg: '',
             name: '이승원',
@@ -184,15 +184,15 @@ export const mock = {
 
 export interface Comment {
   id: number;
-  creator: UserType;
+  author: UserType;
   content: string;
 }
 export interface Problem {
   status: 'problem' | 'try' | 'solve';
   id: number;
-  creator: UserType;
+  author: UserType;
   content: string;
   comments: Comment[];
 }
 
-export type Keep = Pick<Problem, 'id' | 'creator' | 'content'>;
+export type Keep = Pick<Problem, 'id' | 'author' | 'content'>;
