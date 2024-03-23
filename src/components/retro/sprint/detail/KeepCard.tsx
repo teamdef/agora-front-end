@@ -7,10 +7,10 @@ import { Keep } from '~/types/retro/sprint';
 const KeepCard = ({ keep }: { keep: Keep }) => {
   return (
     <Wrapper>
-      <Title>
+      <Header>
         <ProfileBadge memberState={keep.author} />
         <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />
-      </Title>
+      </Header>
       <Content>{keep.content}</Content>
       <Button
         large
@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   border: 1.2px solid ${({ theme }) => theme.colors.agoraBlue[100]};
   background: #fff;
 `;
-const Title = styled.h4`
+const Header = styled.h4`
   position: relative;
   display: flex;
   justify-content: space-between;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
-import { UserType } from '~/components/common/dropdown/MemberDropdown';
+import { UserType } from '~/components/common/dropdown/member/MemberDropdown';
 import Text from '~/components/common/typo/Text';
 import { UserType } from '~/query/retro/retroQueries.types';
 import { colors } from '~/styles/theme';

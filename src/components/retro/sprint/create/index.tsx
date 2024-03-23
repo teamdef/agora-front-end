@@ -3,7 +3,7 @@ import MenuDepth from '~/components/common/etc/MenuDepth';
 import Text from '~/components/common/typo/Text';
 import { colors } from '~/styles/theme';
 import Button from '~/components/common/inputs/button/Button';
-import MemberDropdown from '~/components/common/dropdown/MemberDropdown';
+import MemberDropdown from '~/components/common/dropdown/member/MemberDropdown';
 import FormRow from './FormRow';
 import TimeInput from './inputs/TimeInput';
 import CalendarInput from './inputs/CalenderInput';

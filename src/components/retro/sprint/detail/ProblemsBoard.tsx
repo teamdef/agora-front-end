@@ -1,12 +1,7 @@
 import styled from 'styled-components';
 import ProblemsContainer from './ProblemsContainer';
 import { Problem } from '~/types/retro/sprint';
-
-const STATE_LIST = [
-  { label: '문제 인식', value: 'problem' },
-  { label: '개선중', value: 'try' },
-  { label: '문제 해결', value: 'solve' },
-] as const;
+import { STATE_LIST } from '~/constants/sprint/problem';
 
 const ProblemsBoard = ({ problems }: { problems: Problem[] }) => {
   return (

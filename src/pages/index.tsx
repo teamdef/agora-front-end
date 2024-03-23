@@ -1,12 +1,12 @@
 import { ReactElement, useEffect, useState } from 'react';
 import Badge from '~/components/common/display/Badge';
-import DateDropdown from '~/components/common/dropdown/DateDropdown';
-import MemberDropdown from '~/components/common/dropdown/MemberDropdown';
+import DateDropdown from '~/components/common/dropdown/date/DateDropdown';
+import MemberDropdown from '~/components/common/dropdown/member/MemberDropdown';
+import ProblemEditor from '~/components/common/editor/problem/ProblemEditor';
 import Pagination from '~/components/common/navigation/Pagination';
 import Tab from '~/components/common/navigation/Tab';
 import GNBLayout from '~/components/layout/GNBLayout';
 import LNBLayout from '~/components/layout/LNBLayout';
-import KeepEditor from '~/components/retro/sprint/detail/KeepEditor';
 import { UserType } from '~/core/retro/retroService.types';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 
@@ -62,7 +62,7 @@ const Page = () => {
   };
   const handleOpen = () => {
     defaultDialogActions.open({
-      content: <KeepEditor author={mockData[0]} retroId={1}></KeepEditor>,
+      content: <ProblemEditor author={mockData[0]} retroId={1} />,
     });
     // confirmDialogActions.open({
     //   message: '삭제하시겠습니까?',
@@ -74,7 +74,7 @@ const Page = () => {
   }, []);
   return (
     <div style={{ padding: '100px', display: 'flex', flexDirection: 'column', gap: '300px' }}>
-      <Badge label="시작 전" status="problem" />
+      <Badge label="문제 인식" value="problem" />
       <Pagination currentPage={current} pagehandler={currentHandler} totalPage={totalPage} />
       <DateDropdown value={dropdown} placeHolder="시간을 선택해주세요." valueHandler={dropdownHandler} />
       <MemberDropdown

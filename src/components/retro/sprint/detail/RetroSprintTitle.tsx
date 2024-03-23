@@ -1,7 +1,7 @@
 import { Delete, More } from 'public/assets/svgs';
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import MoreDropdown from '~/components/common/dropdown/MoreDropdown';
+import MoreDropdown from '~/components/common/dropdown/more/MoreDropdown';
 import TitleTextField from '~/components/common/inputs/textField/TitleTextField';
 import { theme } from '~/styles/theme';
 
