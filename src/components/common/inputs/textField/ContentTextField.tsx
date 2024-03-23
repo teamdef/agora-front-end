@@ -67,7 +67,6 @@ const Box = styled.div<{ $value: string; $isFocus: boolean; $fontStyle?: keyof F
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 10px 0 5px;
   textarea {
     position: relative;
     display: block;

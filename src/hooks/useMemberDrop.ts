@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { UserType } from '~/components/common/dropdown/MemberDropdown';
+import type { UserType } from '~/components/common/dropdown/member/MemberDropdown';
 
 interface Props {
   init: UserType[];

@@ -182,7 +182,7 @@ export const mock = {
   ],
 };
 
-export interface Comment {
+export interface Try {
   id: number;
   author: UserType;
   content: string;
@@ -192,7 +192,16 @@ export interface Problem {
   id: number;
   author: UserType;
   content: string;
-  comments: Comment[];
+  tries: Try[];
 }
 
-export type Keep = Pick<Problem, 'id' | 'author' | 'content'>;
+export interface ProblemStatus {
+  label: '문제 인식' | '개선중' | '문제 해결';
+  value: 'problem' | 'try' | 'solve';
+}
+
+export interface Keep {
+  id: number;
+  author: UserType;
+  content: string;
+}

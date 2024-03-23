@@ -3,7 +3,7 @@ import { MouseEvent, useState } from 'react';
 import { DropdownArrowDown, DropdownArrowUp } from 'public/assets/svgs';
 import useOutsideClick from '~/hooks/useOutsideClick';
 import MemberSelectBox from './MemberSelectBox';
-import ProfileBadge from '../display/ProfileBadge';
+import ProfileBadge from '../../display/ProfileBadge';
 import { UserType } from '~/core/retro/retroService.types';
 
 interface DropdownProps {
