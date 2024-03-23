@@ -1,20 +1,26 @@
-import { Cancel } from 'public/assets/svgs';
 import { useState } from 'react';
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
 import ContentTextField from '~/components/common/inputs/textField/ContentTextField';
+import { Keep } from '~/types/retro/sprint';
+import EditorHeader from './EditorHeader';
 import { UserType } from '~/core/retro/retroService.types';
-import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 
 const PLACEHOLDER = '프로젝트를 진행하면서 좋았던 점, 지속하고 싶은 점에 대해 알려주세요.' as const;
 
-interface KeepEditorProps {
+const INITIAL_MEMBER = {
+  id: 4,
+  profileImg: '',
+  nickname: '진현우',
+  name: '진현우',
+};
+
+type KeepEditorProps = {
   retroId: number;
   author: UserType;
-  content?: string;
-  keepId?: number;
-}
-const KeepEditor = ({ author, retroId, content }: KeepEditorProps) => {
+} & Partial<Omit<Keep, 'author'>>;
+
+const KeepEditor = ({ retroId, id, author, content }: KeepEditorProps) => {
   const [keep, setKeep] = useState<string>(content || '');
 
   const keepHandler = (text: string) => {
@@ -23,10 +29,7 @@ const KeepEditor = ({ author, retroId, content }: KeepEditorProps) => {
 
   return (
     <Wrapper>
-      <Title>
-        지속하고 싶은 점은 무엇인가요?
-        <Cancel onClick={() => defaultDialogActions.close()} />
-      </Title>
+      <EditorHeader text="지속하고 싶은 점은 무엇인가요?" />
       <Content>
         <ProfileBadge memberState={author} />
         <ContentTextField
@@ -50,17 +53,7 @@ const Wrapper = styled.div`
   width: 100%;
   min-height: 314px;
 `;
-const Title = styled.h1`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  ${({ theme }) => theme.fontStyle.headline_1}
-  color: ${({ theme }) => theme.colors.agoraBlack[900]};
-  svg {
-    cursor: pointer;
-  }
-`;
+
 const Content = styled.div`
   display: flex;
   flex-direction: column;

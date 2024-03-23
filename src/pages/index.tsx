@@ -7,6 +7,7 @@ import Tab from '~/components/common/navigation/Tab';
 import GNBLayout from '~/components/layout/GNBLayout';
 import LNBLayout from '~/components/layout/LNBLayout';
 import KeepEditor from '~/components/retro/sprint/detail/KeepEditor';
+import ProblemEditor from '~/components/retro/sprint/detail/ProblemEditor';
 import { UserType } from '~/core/retro/retroService.types';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 
@@ -62,7 +63,7 @@ const Page = () => {
   };
   const handleOpen = () => {
     defaultDialogActions.open({
-      content: <KeepEditor author={mockData[0]} retroId={1}></KeepEditor>,
+      content: <ProblemEditor author={mockData[0]} retroId={1}></ProblemEditor>,
     });
     // confirmDialogActions.open({
     //   message: '삭제하시겠습니까?',

@@ -195,4 +195,8 @@ export interface Problem {
   comments: Comment[];
 }
 
-export type Keep = Pick<Problem, 'id' | 'author' | 'content'>;
+export interface Keep {
+  id: number;
+  author: UserType;
+  content: string;
+}
