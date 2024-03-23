@@ -195,6 +195,11 @@ export interface Problem {
   tries: Try[];
 }
 
+export interface ProblemStatus {
+  label: '문제 인식' | '개선중' | '문제 해결';
+  value: 'problem' | 'try' | 'solve';
+}
+
 export interface Keep {
   id: number;
   author: UserType;
