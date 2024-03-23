@@ -6,9 +6,9 @@ interface TextField {
   value: string;
   onChange: (value: string) => void;
   maxLength: number;
-  onBlur: () => void;
+  onBlur?: () => void;
   placeholder?: string;
-  fontStyle?: string;
+  fontStyle?: keyof FontStyleType;
 }
 
 const ContentTextField = ({ value, onChange, maxLength, placeholder, onBlur, fontStyle }: TextField) => {
@@ -31,7 +31,7 @@ const ContentTextField = ({ value, onChange, maxLength, placeholder, onBlur, fon
     setCount(e.target.value.length);
   };
   const onBlurHandler = () => {
-    onBlur();
+    onBlur && onBlur();
     setIsFocus(false);
   };
 
@@ -60,7 +60,7 @@ const ContentTextField = ({ value, onChange, maxLength, placeholder, onBlur, fon
     </Box>
   );
 };
-const Box = styled.div<{ $value: string; $isFocus: boolean; $fontStyle?: string }>`
+const Box = styled.div<{ $value: string; $isFocus: boolean; $fontStyle?: keyof FontStyleType }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -69,8 +69,8 @@ const Box = styled.div<{ $value: string; $isFocus: boolean; $fontStyle?: string 
     position: relative;
     display: block;
     border: none;
-    padding: none;
-    ${({ theme, $fontStyle }) => $fontStyle ?? theme.fontStyle.body_2}
+    padding: 0;
+    ${({ theme, $fontStyle }) => ($fontStyle ? theme.fontStyle[$fontStyle] : theme.fontStyle.body_2)}
     outline-style: none;
     resize: none;
     cursor: ${({ $value }) => ($value ? 'pointer' : 'auto')};
@@ -80,7 +80,11 @@ const Box = styled.div<{ $value: string; $isFocus: boolean; $fontStyle?: string 
     white-space: pre-line;
     word-break: break-all;
     &::placeholder {
-      ${({ theme }) => theme.fontStyle.body_2}
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      ${({ theme }) => theme.fontStyle.detail_2}
       color: ${({ theme }) => theme.colors.agoraBlack[200]};
     }
   }

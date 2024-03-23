@@ -17,12 +17,13 @@ const DefaultDialog = () => {
 };
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 100vw;
   max-width: 648px;
   max-height: 768px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0px 0px 14px 0px ${({ theme }) => `${theme.colors.agoraBlack[900]}25`};
+  padding: 28px 32px;
 `;
 
 export default DefaultDialog;

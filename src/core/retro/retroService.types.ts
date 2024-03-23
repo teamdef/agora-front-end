@@ -35,7 +35,7 @@ export interface CreateRetroSprintDTO {
 export interface RetroSprintDetailDTO {
   id: 0;
   title: string;
-  creator: UserType;
+  author: UserType;
   createTime: string;
   members: UserType[];
   projectId: 0;
