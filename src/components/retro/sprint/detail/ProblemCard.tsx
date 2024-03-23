@@ -12,7 +12,7 @@ const ProblemCard = ({ data }: ProblemTryProps) => {
   return (
     <Wrapper>
       <Title>
-        <ProfileBadge memberState={data.creator} />
+        <ProfileBadge memberState={data.author} />
         <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />
       </Title>
       <Content>{data.content}</Content>

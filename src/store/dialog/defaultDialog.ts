@@ -15,12 +15,14 @@ export const initialState: DefaultDialogState = {
 const open = (options: Omit<DefaultDialogState, 'isOpen'>) => {
   set({
     isOpen: true,
+    content: options.content,
     onClose() {
       options.onClose?.();
       close();
     },
   });
 };
+
 const close = () => {
   set(initialState);
 };

@@ -4,13 +4,13 @@ import { UserType } from '~/core/retro/retroService.types';
 import stringToDateTextFormatter from '~/utils/time/stringToDateTextFormatter';
 interface RetroInfoProps {
   retroInfo: {
-    creator: UserType;
+    author: UserType;
     createTime: string;
     members: UserType[];
   };
 }
 const RetroInfo = ({ retroInfo }: RetroInfoProps) => {
-  const { creator, createTime, members } = retroInfo;
+  const { author, createTime, members } = retroInfo;
   const formattedCreateTime = stringToDateTextFormatter(createTime);
   return (
     <Wrapper>
@@ -20,7 +20,7 @@ const RetroInfo = ({ retroInfo }: RetroInfoProps) => {
       </li>
       <li>
         <h3>작성자</h3>
-        <ProfileBadge memberState={creator} />
+        <ProfileBadge memberState={author} />
       </li>
       <li>
         <h3>참여자</h3>
