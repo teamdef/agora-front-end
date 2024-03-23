@@ -9,10 +9,11 @@ interface TextField {
   onBlur?: () => void;
   placeholder?: string;
   fontStyle?: keyof FontStyleType;
+  autoFocus?: boolean;
 }
 
-const ContentTextField = ({ value, onChange, maxLength, placeholder, onBlur, fontStyle }: TextField) => {
-  const [isFocus, setIsFocus] = useState<boolean>(true);
+const ContentTextField = ({ value, onChange, maxLength, autoFocus, placeholder, onBlur, fontStyle }: TextField) => {
+  const [isFocus, setIsFocus] = useState<boolean>(false);
   const [count, setCount] = useState<number>(value.length);
   const textarea = useRef<HTMLTextAreaElement>(null);
   const handleResizeHeight = () => {
@@ -36,6 +37,7 @@ const ContentTextField = ({ value, onChange, maxLength, placeholder, onBlur, fon
   };
 
   const onFocusHandler = () => {
+    console.log('포커스됨');
     setIsFocus(true);
   };
 
@@ -51,6 +53,7 @@ const ContentTextField = ({ value, onChange, maxLength, placeholder, onBlur, fon
         maxLength={maxLength}
         onBlur={onBlurHandler}
         onFocus={onFocusHandler}
+        autoFocus={autoFocus}
       />
       {(isFocus || !value) && (
         <span>

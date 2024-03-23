@@ -8,18 +8,14 @@ import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 
 const PLACEHOLDER = '프로젝트를 진행하면서 좋았던 점, 지속하고 싶은 점에 대해 알려주세요.' as const;
 
-const USER = {
-  id: 1,
-  profileImg: '',
-  nickname: '진현우',
-  name: '진현우',
-};
 interface KeepEditorProps {
   retroId: number;
   author: UserType;
+  content?: string;
+  keepId?: number;
 }
-const KeepEditor = ({ author, retroId }: KeepEditorProps) => {
-  const [keep, setKeep] = useState<string>('');
+const KeepEditor = ({ author, retroId, content }: KeepEditorProps) => {
+  const [keep, setKeep] = useState<string>(content || '');
 
   const keepHandler = (text: string) => {
     setKeep(text);
@@ -39,6 +35,7 @@ const KeepEditor = ({ author, retroId }: KeepEditorProps) => {
           onChange={keepHandler}
           placeholder={PLACEHOLDER}
           fontStyle="body_2"
+          autoFocus={!content}
         />
       </Content>
     </Wrapper>
