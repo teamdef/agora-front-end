@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ProblemStatus } from '~/types/retro/sprint';
 
 type BadgeProps = ProblemStatus & {
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const Badge = ({ label, value, onClick }: BadgeProps) => {

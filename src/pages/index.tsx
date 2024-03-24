@@ -10,6 +10,12 @@ import LNBLayout from '~/components/layout/LNBLayout';
 import { UserType } from '~/core/retro/retroService.types';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 
+export const LOGIN_USER = {
+  id: 1,
+  profileImg: '',
+  nickname: '지녀누',
+  name: '진현우',
+};
 const mockData: UserType[] = [
   {
     id: 1,
@@ -60,18 +66,7 @@ const Page = () => {
   const memberDropHandler = (newData: UserType[]) => {
     setMemberDrop(newData);
   };
-  const handleOpen = () => {
-    defaultDialogActions.open({
-      content: <ProblemEditor author={mockData[0]} retroId={1} />,
-    });
-    // confirmDialogActions.open({
-    //   message: '삭제하시겠습니까?',
-    //   subMessage: '삭제하면 기록들을 복구할 수 없습니다.\n정말 삭제하시겠습니까?',
-    // });
-  };
-  useEffect(() => {
-    handleOpen();
-  }, []);
+
   return (
     <div style={{ padding: '100px', display: 'flex', flexDirection: 'column', gap: '300px' }}>
       <Badge label="문제 인식" value="problem" />

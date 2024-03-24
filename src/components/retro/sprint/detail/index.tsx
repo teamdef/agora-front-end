@@ -14,7 +14,7 @@ const RetroSprintDetail = () => {
     return null;
   }
 
-  const { title, createTime, members, author, keeps, problems } = readRetroSprintDetail.data;
+  const { title, createTime, members, creator: author, keeps, problems } = readRetroSprintDetail.data;
 
   const retroInfoProps = {
     author,
