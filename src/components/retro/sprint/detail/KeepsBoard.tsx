@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import CreateItemBox from './CreateItemBox';
 import KeepCard from './KeepCard';
-import { Keep } from '~/types/retro/sprint';
+import { Keep, mock } from '~/types/retro/sprint';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 import KeepEditor from '~/components/common/editor/keep/KeepEditor';
 import { LOGIN_USER } from '~/pages';
@@ -11,7 +11,7 @@ const KeepsBoard = ({ keeps }: { keeps: Keep[] }) => {
   const router = useRouter();
   const { sprintId } = router.query;
 
-  const createKeepFormOpen = () => {
+  const keepEditorOpen = () => {
     defaultDialogActions.open({
       content: <KeepEditor author={LOGIN_USER} retroId={parseInt(sprintId as string)} />,
     });
@@ -24,7 +24,7 @@ const KeepsBoard = ({ keeps }: { keeps: Keep[] }) => {
         {keeps.map((keep: Keep) => {
           return <KeepCard key={crypto.randomUUID()} keep={keep} />;
         })}
-        <CreateItemBox onClick={createKeepFormOpen} />
+        <CreateItemBox onClick={keepEditorOpen} />
       </Content>
     </Wrapper>
   );
