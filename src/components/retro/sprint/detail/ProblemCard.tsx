@@ -20,10 +20,10 @@ const ProblemCard = ({ data }: ProblemTryProps) => {
         <CommentBox>
           <CommentBoxTitle>
             <h4>무엇을 시도할 수 있나요?</h4>
-            <span>전체 {data.comments.length}</span>
+            <span>전체 {data.tries.length}</span>
           </CommentBoxTitle>
-          {data.comments.map((comment) => {
-            return <CommentItem key={`CommentItem-${crypto.randomUUID()}`}>{comment.content}</CommentItem>;
+          {data.tries.map((item) => {
+            return <CommentItem key={`CommentItem-${crypto.randomUUID()}`}>{item.content}</CommentItem>;
           })}
         </CommentBox>
         <Button

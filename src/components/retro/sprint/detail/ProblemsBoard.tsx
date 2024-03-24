@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ProblemsContainer from './ProblemsContainer';
-import { Problem } from '~/types/retro/sprint';
+import { Problem, mock } from '~/types/retro/sprint';
 import { STATE_LIST } from '~/constants/sprint/problem';
 
 const ProblemsBoard = ({ problems }: { problems: Problem[] }) => {
@@ -11,9 +11,9 @@ const ProblemsBoard = ({ problems }: { problems: Problem[] }) => {
         {STATE_LIST.map((state) => {
           return (
             <ProblemsContainer
-              key={`ProblemTryBoard-${crypto.randomUUID()}`}
+              key={crypto.randomUUID()}
               state={state}
-              // items={problems.filter((item) => item.status === state.value)}
+              // items={mock.problems.filter((item) => item.status === state.value)}
               items={[]}
             />
           );

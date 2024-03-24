@@ -21,7 +21,6 @@ type KeepEditorProps = {
 } & Partial<Omit<Keep, 'author'>>;
 
 const KeepEditor = ({ retroId, id, author, content }: KeepEditorProps) => {
-  console.log(retroId, id, author, content);
   const [keep, setKeep] = useState<string>(content || '');
 
   const keepHandler = (text: string) => {

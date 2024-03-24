@@ -10,6 +10,7 @@ const URLS = {
   READ_RETRO_SPRINT_LIST: '/retro',
   CREATE_RETRO_SPRINT: '/retro',
   RETRO_SPRINT_DETAIL: (sprintId: number) => `/retro/${sprintId}`,
+  CREATE_PROBLEM: `/problem`,
 };
 
 export default class RetroService {
@@ -40,6 +41,11 @@ export default class RetroService {
     const { data } = await this.apiClient.get<types.ReadRetroSprintDetailResponse>(
       URLS.RETRO_SPRINT_DETAIL(params.sprintId),
     );
+    return data;
+  }
+
+  async createProblem(payload: types.CreateProblemParams) {
+    const { data } = await this.apiClient.post(URLS.CREATE_PROBLEM, payload);
     return data;
   }
 }
