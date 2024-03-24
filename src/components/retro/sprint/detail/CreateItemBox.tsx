@@ -1,9 +1,9 @@
 import { Pencil } from 'public/assets/svgs';
 import styled from 'styled-components';
 
-const CreateItemBox = () => {
+const CreateItemBox = ({ onClick }: { onClick: () => void }) => {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <Title>
         의견 작성하기
         <Pencil style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />

@@ -1,25 +1,38 @@
 import styled from 'styled-components';
-import Badge, { BadgeStatus } from '~/components/common/display/Badge';
-import { Problem } from '~/types/retro/sprint';
+import Badge from '~/components/common/display/Badge';
+import { Problem, ProblemStatus } from '~/types/retro/sprint';
 import RetroItem from './ProblemCard';
 import CreateItemBox from './CreateItemBox';
+import { defaultDialogActions } from '~/store/dialog/defaultDialog';
+import ProblemEditor from '~/components/common/editor/problem/ProblemEditor';
+import { LOGIN_USER } from '~/pages';
+import { useRouter } from 'next/router';
 
 interface ProblemTryBoxProps {
-  state: { label: string; value: BadgeStatus };
+  state: ProblemStatus;
   items: Problem[];
 }
 
 const ProblemsContainer = ({ state, items }: ProblemTryBoxProps) => {
+  const router = useRouter();
+  const { sprintId } = router.query;
+
+  const problemEditorOpen = () => {
+    defaultDialogActions.open({
+      content: <ProblemEditor author={LOGIN_USER} retroId={parseInt(sprintId as string)} />,
+    });
+  };
+
   return (
     <Wrapper>
       <StatusBox>
-        <Badge status={state.value} label={state.label} />
+        <Badge value={state.value} label={state.label} />
       </StatusBox>
       <Content>
         {items.map((item) => {
           return <RetroItem key={`RetroItem-${crypto.randomUUID()}`} data={item} />;
         })}
-        {state.value === 'problem' && <CreateItemBox />}
+        {state.value === 'problem' && <CreateItemBox onClick={problemEditorOpen} />}
       </Content>
     </Wrapper>
   );

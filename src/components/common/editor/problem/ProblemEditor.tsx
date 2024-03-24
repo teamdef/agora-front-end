@@ -28,17 +28,19 @@ const ProblemEditor = ({ retroId, status, id, author, content, tries }: ProblemE
           </SubTitle>
           <ProblemEditorCard author={author} content={content} id={id} retroId={retroId} status={status} />
         </ProblemBox>
-        <TryBox>
-          <SubTitle>
-            <Text variant="headline_2" color={theme.colors.agoraBlack[900]}>
-              문제를 해결하기 위해 어떤 것을 시도할 수 있나요?
-            </Text>
-            <Text variant="detail_2" color={theme.colors.agoraBlack[400]}>
-              위 문제를 개선하기 위해 시도할 점, 해결책을 알려주세요
-            </Text>
-          </SubTitle>
-          <TryEditor tries={tries} />
-        </TryBox>
+        {id && (
+          <TryBox>
+            <SubTitle>
+              <Text variant="headline_2" color={theme.colors.agoraBlack[900]}>
+                문제를 해결하기 위해 어떤 것을 시도할 수 있나요?
+              </Text>
+              <Text variant="detail_2" color={theme.colors.agoraBlack[400]}>
+                위 문제를 개선하기 위해 시도할 점, 해결책을 알려주세요
+              </Text>
+            </SubTitle>
+            <TryEditor tries={tries} />
+          </TryBox>
+        )}
       </Content>
     </Wrapper>
   );

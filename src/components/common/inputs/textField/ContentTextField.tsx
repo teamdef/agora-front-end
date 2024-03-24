@@ -37,7 +37,6 @@ const ContentTextField = ({ value, onChange, maxLength, autoFocus, placeholder, 
   };
 
   const onFocusHandler = () => {
-    console.log('포커스됨');
     setIsFocus(true);
   };
 
