@@ -27,6 +27,7 @@ export default class RetroService {
       projectId: params.projectId,
     };
     const { data } = await this.apiClient.get<types.ReadRetroSprintListResponse>(URLS.READ_RETRO_SPRINT_LIST, {
+      headers: { 'ngrok-skip-browser-warning': true },
       params: renameParams,
     });
     return data;
@@ -40,6 +41,7 @@ export default class RetroService {
   async readRetroSprintDetail(params: types.ReadRetroSprintDetailParams): Promise<types.ReadRetroSprintDetailResponse> {
     const { data } = await this.apiClient.get<types.ReadRetroSprintDetailResponse>(
       URLS.RETRO_SPRINT_DETAIL(params.sprintId),
+      { headers: { 'ngrok-skip-browser-warning': true } },
     );
     return data;
   }

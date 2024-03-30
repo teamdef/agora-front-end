@@ -9,14 +9,7 @@ const ProblemsBoard = ({ problems }: { problems: Problem[] }) => {
       <Title>문제는 무엇이고, 해결하기 위해 어떤 노력을 할 수 있나요?</Title>
       <Content>
         {STATE_LIST.map((state) => {
-          return (
-            <ProblemsContainer
-              key={crypto.randomUUID()}
-              state={state}
-              // items={mock.problems.filter((item) => item.status === state.value)}
-              items={[]}
-            />
-          );
+          return <ProblemsContainer key={crypto.randomUUID()} state={state} items={problems} />;
         })}
       </Content>
     </Wrapper>

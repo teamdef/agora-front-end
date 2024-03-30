@@ -16,7 +16,6 @@ interface ProblemTryBoxProps {
 const ProblemsContainer = ({ state, items }: ProblemTryBoxProps) => {
   const router = useRouter();
   const { sprintId } = router.query;
-
   const problemEditorOpen = () => {
     defaultDialogActions.open({
       content: <ProblemEditor author={LOGIN_USER} retroId={parseInt(sprintId as string)} />,
