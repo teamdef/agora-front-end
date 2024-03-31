@@ -28,3 +28,9 @@ export const useCreateProblemMutation = () =>
     mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_PROBLEM_CREATE,
     mutationFn: (payload: types.UseCreateProblemParams) => retroService.createProblem(payload),
   });
+
+export const useCreateKeepMutation = () =>
+  useMutation({
+    mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_KEEP_CREATE,
+    mutationFn: (payload: types.UseCreateKeepParams) => retroService.createKeep(payload),
+  });

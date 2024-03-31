@@ -20,7 +20,7 @@ const KeepCard = ({ keep }: { keep: Keep }) => {
   return (
     <Wrapper>
       <Header>
-        <ProfileBadge memberState={keep.author} />
+        {/* <ProfileBadge memberState={keep.author} /> */}
         <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />
       </Header>
       <Content>{keep.content}</Content>

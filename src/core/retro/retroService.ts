@@ -11,6 +11,7 @@ const URLS = {
   CREATE_RETRO_SPRINT: '/retro',
   RETRO_SPRINT_DETAIL: (sprintId: number) => `/retro/${sprintId}`,
   CREATE_PROBLEM: `/problem`,
+  CREATE_KEEP: `/keep`,
 };
 
 export default class RetroService {
@@ -27,7 +28,6 @@ export default class RetroService {
       projectId: params.projectId,
     };
     const { data } = await this.apiClient.get<types.ReadRetroSprintListResponse>(URLS.READ_RETRO_SPRINT_LIST, {
-      headers: { 'ngrok-skip-browser-warning': true },
       params: renameParams,
     });
     return data;
@@ -41,13 +41,17 @@ export default class RetroService {
   async readRetroSprintDetail(params: types.ReadRetroSprintDetailParams): Promise<types.ReadRetroSprintDetailResponse> {
     const { data } = await this.apiClient.get<types.ReadRetroSprintDetailResponse>(
       URLS.RETRO_SPRINT_DETAIL(params.sprintId),
-      { headers: { 'ngrok-skip-browser-warning': true } },
     );
     return data;
   }
 
   async createProblem(payload: types.CreateProblemParams) {
     const { data } = await this.apiClient.post(URLS.CREATE_PROBLEM, payload);
+    return data;
+  }
+
+  async createKeep(payload: types.CreateKeepParams) {
+    const { data } = await this.apiClient.post(URLS.CREATE_KEEP, payload);
     return data;
   }
 }

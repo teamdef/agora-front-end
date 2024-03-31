@@ -40,7 +40,7 @@ const ProblemEditorCard = ({ id, retroId, author, content, status }: ProblemEdit
     const payload = {
       retroId,
       content: text,
-      createdMemberId: author.id,
+      authorId: author.id,
     };
     await createProblemMutation.mutateAsync(payload, { onSuccess: () => console.log('problem 등록 성공') });
   };
