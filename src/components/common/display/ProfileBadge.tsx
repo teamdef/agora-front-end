@@ -18,7 +18,7 @@ const ProfileBadge = ({ memberState, closeFn }: ProfileBadgeProps) => {
     if (closeFn) closeFn(value);
     e.stopPropagation();
   };
-  console.log(memberState);
+
   return (
     <Wrapper>
       <img src={memberState.profileImg || DEFAULT_IMG} onError={onErrorHandler} alt="프로필뱃지 이미지" />

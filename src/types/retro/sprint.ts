@@ -74,7 +74,7 @@ export const mock = {
         nickname: '이승원',
       },
       content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
-      comments: [
+      tries: [
         {
           id: 0,
           author: {
@@ -97,7 +97,7 @@ export const mock = {
         nickname: '이승원',
       },
       content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
-      comments: [
+      tries: [
         {
           id: 0,
           author: {
@@ -120,7 +120,7 @@ export const mock = {
         nickname: '이승원',
       },
       content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
-      comments: [
+      tries: [
         {
           id: 0,
           author: {
@@ -143,7 +143,7 @@ export const mock = {
         nickname: '이승원',
       },
       content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
-      comments: [
+      tries: [
         {
           id: 0,
           author: {
@@ -166,7 +166,7 @@ export const mock = {
         nickname: '이승원',
       },
       content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
-      comments: [
+      tries: [
         {
           id: 0,
           author: {
@@ -188,7 +188,7 @@ export interface Try {
   content: string;
 }
 export interface Problem {
-  status: 'problem' | 'try' | 'solve';
+  status: ProblemStatus['value'];
   id: number;
   author: UserType;
   content: string;

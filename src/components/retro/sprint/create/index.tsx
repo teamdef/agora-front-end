@@ -66,7 +66,7 @@ const RetroSprintCreate = () => {
   const handleSubmit = async () => {
     const payload = {
       projectId: 1,
-      createMemberId: 1,
+      authorId: 1,
       title,
       content: '이건뭐지',
       joinMemberIds: [1, 2, 3, 4],
