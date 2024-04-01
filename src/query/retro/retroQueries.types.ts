@@ -6,4 +6,4 @@ export type UseReadRetroSprintDetailParams = types.ReadRetroSprintDetailParams;
 export type UseCreateProblemParams = types.CreateProblemParams;
 export type UseCreateKeepParams = types.CreateKeepParams;
 
-export type { RetroSprintListItemDTO as RetroSprintListItemType, UserType } from '~/core/retro/retroService.types';
+export type { RetroSprintListItemDTO as RetroSprintListItemType } from '~/core/retro/retroService.types';

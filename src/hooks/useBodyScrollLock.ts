@@ -8,7 +8,7 @@ const useBodyScrollLock = (when = true) => {
 
     if (when) {
       Object.entries(lockStyle).forEach(([property, value]) => {
-        document.body.style[property] = value;
+        document.body.style.setProperty(property, value);
       });
     }
 

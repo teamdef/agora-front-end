@@ -1,19 +1,19 @@
 import { Check } from 'public/assets/svgs';
 import styled from 'styled-components';
-import { UserType } from '~/core/retro/retroService.types';
+import { MemberType } from '~/query/common/commonQueries.types';
 import { theme } from '~/styles/theme';
 
 interface MemberSelectBoxProps {
-  memberList: UserType[];
-  selected: UserType[];
-  valueHandler: (_value: UserType) => void;
+  memberList: MemberType[];
+  selected: MemberType[];
+  valueHandler: (_value: MemberType) => void;
   closeHandler: () => void;
 }
 
 const DEFAULT_PROFILEIMG = '/assets/svgs/UserImage.svg' as const;
 
 const MemberSelectBox = ({ memberList, selected, valueHandler, closeHandler }: MemberSelectBoxProps) => {
-  const onClickOption = (_value: UserType) => {
+  const onClickOption = (_value: MemberType) => {
     valueHandler(_value);
     closeHandler();
   };
@@ -21,14 +21,14 @@ const MemberSelectBox = ({ memberList, selected, valueHandler, closeHandler }: M
   return (
     <Wrapper $isBlur={memberList.length > 4}>
       <SelectBox>
-        {memberList.map((member: UserType) => {
+        {memberList.map((member: MemberType) => {
           const uuid = crypto.randomUUID();
           const isActive = selected ? selected.includes(member) : false;
           return (
             <Option key={`MemberSelectBox-${uuid}`} onClick={() => onClickOption(member)} $isActive={isActive}>
               <Content>
-                <img src={memberList[0].profileImg || DEFAULT_PROFILEIMG} alt="프로필 이미지" />
-                <span>{member.name}</span>
+                <img src={member.profileImg || DEFAULT_PROFILEIMG} alt="프로필 이미지" />
+                <span>{member.nickname}</span>
               </Content>
               {isActive && <Check viewBox="0 0 25 25" color={theme.colors.agoraBlue[400]} width={18} height={18} />}
             </Option>
@@ -88,6 +88,11 @@ const Content = styled.span`
   gap: 12px;
   span {
     ${({ theme }) => theme.fontStyle.body_2}
+  }
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
   }
 `;
 export default MemberSelectBox;

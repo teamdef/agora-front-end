@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
-import { UserType } from '~/core/retro/retroService.types';
+import { MemberType } from '~/query/common/commonQueries.types';
 import stringToDateTextFormatter from '~/utils/time/stringToDateTextFormatter';
 interface RetroInfoProps {
   retroInfo: {
-    author: UserType;
+    author: MemberType;
     createTime: string;
-    members: UserType[];
+    members: MemberType[];
   };
 }
 const RetroInfo = ({ retroInfo }: RetroInfoProps) => {
@@ -25,7 +25,7 @@ const RetroInfo = ({ retroInfo }: RetroInfoProps) => {
       <li>
         <h3>참여자</h3>
         <MemberList>
-          {members.map((member: UserType) => {
+          {members.map((member) => {
             return <ProfileBadge key={`ProfileBadge-${crypto.randomUUID()}`} memberState={member} />;
           })}
         </MemberList>

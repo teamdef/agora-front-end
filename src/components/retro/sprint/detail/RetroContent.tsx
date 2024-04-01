@@ -2,12 +2,12 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Tab from '~/components/common/navigation/Tab';
 import RetroBoard from './RetroBoard';
-import { UserType } from '~/core/retro/retroService.types';
+import { MemberType } from '~/query/common/commonQueries.types';
 
 const SPRINT_TAB_MENU = ['이번 회고록', '지난 회고록'] as const;
 export interface RetroContentProps {
   retroContent: {
-    members: UserType[];
+    members: MemberType[];
     keeps: [];
     problems: [];
   };

@@ -1,5 +1,7 @@
 /** service에서 사용할 타입들을 정의합니다. */
 
+import { MemberType } from '~/query/common/commonQueries.types';
+
 /** params */
 export type ReadRetroSprintListParams = PaginationType & { projectId: number };
 export type ReadRetroSprintDetailParams = { sprintId: number };
@@ -32,7 +34,7 @@ export interface RetroSprintListItemDTO {
   title: string;
   createTime: string;
   projectId: number;
-  members: UserType[];
+  members: MemberType[];
 }
 
 export interface CreateRetroSprintDTO {
@@ -47,9 +49,9 @@ export interface CreateRetroSprintDTO {
 export interface RetroSprintDetailDTO {
   id: 0;
   title: string;
-  author: UserType;
+  author: MemberType;
   createTime: string;
-  members: UserType[];
+  members: MemberType[];
   projectId: 0;
   keeps: [];
   problems: [];
@@ -60,11 +62,4 @@ export interface RetroSprintDetailDTO {
 export interface PaginationType {
   pageNo: number;
   listSize: number;
-}
-
-export interface UserType {
-  id: number;
-  name: string;
-  nickname: string;
-  profileImg?: string;
 }

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
 import Text from '~/components/common/typo/Text';
-import { UserType } from '~/core/retro/retroService.types';
+import { MemberType } from '~/query/common/commonQueries.types';
 import { colors } from '~/styles/theme';
 
 interface Props {
-  members: UserType[];
+  members: MemberType[];
 }
 
 const UserList = ({ members }: Props) => {
@@ -13,13 +13,7 @@ const UserList = ({ members }: Props) => {
     <Wrapper>
       <UserListWrapper>
         {members.slice(0, 4).map((member) => {
-          const renameMember: UserType = {
-            id: member.id,
-            profileImg: member.profileImg,
-            nickname: member.nickname,
-            name: member.nickname,
-          };
-          return <ProfileBadge key={`ProfileBadge-${crypto.randomUUID()}`} memberState={renameMember} />;
+          return <ProfileBadge memberState={member} key={`ProfileBadge-${crypto.randomUUID()}`} />;
         })}
       </UserListWrapper>
       {members.length > 5 && (

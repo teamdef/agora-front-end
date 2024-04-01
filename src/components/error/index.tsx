@@ -34,7 +34,7 @@ const getErrorMessage = (code: string, status?: number) => {
 };
 
 /** resetErrorBoundary , error의 타입을 지정해주면 안될듯 ..  */
-const GlobalErrorFallback = ({ resetErrorBoundary, error }) => {
+const GlobalErrorFallback = ({ resetErrorBoundary, error }: { resetErrorBoundary: any; error: any }) => {
   const { code, response } = error;
   const errorMessage = getErrorMessage(code, response?.status);
   return (

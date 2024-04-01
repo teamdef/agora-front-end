@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import EditorHeader from '../EditorHeader';
-import { UserType } from '~/core/retro/retroService.types';
 import { Problem } from '~/types/retro/sprint';
 import Text from '~/components/common/typo/Text';
 import { theme } from '~/styles/theme';
 import ProblemEditorCard from './ProblemEditorCard';
 import TryEditor from '../try/TryEditor';
+import { MemberType } from '~/query/common/commonQueries.types';
 
 export type ProblemEditorProps = {
   retroId: number;
-  author: UserType;
+  author: MemberType;
 } & Partial<Omit<Problem, 'author'>>;
 
 const ProblemEditor = ({ retroId, status, id, author, content, tries }: ProblemEditorProps) => {

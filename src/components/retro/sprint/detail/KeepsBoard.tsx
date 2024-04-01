@@ -4,9 +4,14 @@ import KeepCard from './KeepCard';
 import { Keep, mock } from '~/types/retro/sprint';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 import KeepEditor from '~/components/common/editor/keep/KeepEditor';
-import { LOGIN_USER } from '~/pages';
 import { useRouter } from 'next/router';
 
+export const LOGIN_USER = {
+  id: 4,
+  profileImg: '',
+  nickname: '진현우',
+  name: '진현우',
+};
 const KeepsBoard = ({ keeps }: { keeps: Keep[] }) => {
   const router = useRouter();
   const { sprintId } = router.query;

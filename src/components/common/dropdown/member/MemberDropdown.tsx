@@ -4,13 +4,13 @@ import { DropdownArrowDown, DropdownArrowUp } from 'public/assets/svgs';
 import useOutsideClick from '~/hooks/useOutsideClick';
 import MemberSelectBox from './MemberSelectBox';
 import ProfileBadge from '../../display/ProfileBadge';
-import { UserType } from '~/core/retro/retroService.types';
+import { MemberType } from '~/query/common/commonQueries.types';
 
 interface DropdownProps {
-  memberList: UserType[];
+  memberList: MemberType[];
   placeHolder: string;
-  selected: UserType[];
-  valueHandler: (value: UserType[]) => void;
+  selected: MemberType[];
+  valueHandler: (value: MemberType[]) => void;
 }
 
 const MemberDropdown = ({ memberList, valueHandler, selected, placeHolder }: DropdownProps) => {
@@ -20,9 +20,9 @@ const MemberDropdown = ({ memberList, valueHandler, selected, placeHolder }: Dro
     setIsOpen((prev) => !prev);
     e.stopPropagation();
   };
-  const toggleNewData = (_value: UserType) => {
+  const toggleNewData = (_value: MemberType) => {
     const hasValue = selected.find((user) => user.id === _value.id);
-    let newData: UserType[] = [];
+    let newData: MemberType[] = [];
     if (hasValue) {
       newData = selected.filter((user) => user.id !== _value.id);
     } else {

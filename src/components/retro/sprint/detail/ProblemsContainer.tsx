@@ -5,8 +5,8 @@ import RetroItem from './ProblemCard';
 import CreateItemBox from './CreateItemBox';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 import ProblemEditor from '~/components/common/editor/problem/ProblemEditor';
-import { LOGIN_USER } from '~/pages';
 import { useRouter } from 'next/router';
+import { LOGIN_USER } from './KeepsBoard';
 
 interface ProblemTryBoxProps {
   state: ProblemStatus;

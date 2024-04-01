@@ -1,11 +1,11 @@
 import { Cancel } from 'public/assets/svgs';
 import styled from 'styled-components';
 import { MouseEvent, SyntheticEvent } from 'react';
-import { UserType } from '~/core/retro/retroService.types';
+import { MemberType } from '~/query/common/commonQueries.types';
 
 interface ProfileBadgeProps {
-  memberState: UserType;
-  closeFn?: (value: UserType) => void;
+  memberState: MemberType;
+  closeFn?: (value: MemberType) => void;
 }
 const ProfileBadge = ({ memberState, closeFn }: ProfileBadgeProps) => {
   const DEFAULT_IMG = '/assets/svgs/UserImage.svg';
@@ -14,7 +14,7 @@ const ProfileBadge = ({ memberState, closeFn }: ProfileBadgeProps) => {
     e.currentTarget.src = DEFAULT_IMG;
   };
 
-  const onCloseHandler = (e: MouseEvent, value: UserType) => {
+  const onCloseHandler = (e: MouseEvent, value: MemberType) => {
     if (closeFn) closeFn(value);
     e.stopPropagation();
   };

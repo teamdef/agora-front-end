@@ -1,18 +1,19 @@
 import { useState } from 'react';
-import { UserType } from '~/core/retro/retroService.types';
+import { MemberType } from '~/query/common/commonQueries.types';
 
-interface Props {
-  init: UserType[];
-}
-const useMemberDrop = ({ init }: Props) => {
-  const [members, setMembers] = useState<UserType[]>(init);
-  const [selectedMembers, setSelectedMembers] = useState<UserType[]>([]);
+const useMemberDrop = () => {
+  const [members, setMembers] = useState<MemberType[]>();
+  const [selectedMembers, setSelectedMembers] = useState<MemberType[]>([]);
 
-  const memberDropHandler = (newData: UserType[]) => {
+  const memberDropHandler = (newData: MemberType[]) => {
     setSelectedMembers(newData);
   };
 
-  return { initMembers: init, selectedMembers, memberDropHandler };
+  const initMembers = (init: MemberType[]) => {
+    setMembers(init);
+  };
+
+  return { members, initMembers, selectedMembers, memberDropHandler };
 };
 
 export default useMemberDrop;

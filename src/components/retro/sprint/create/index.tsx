@@ -13,45 +13,15 @@ import useMemberDrop from '~/hooks/useMemberDrop';
 import useDateAndTime from '~/hooks/useDateAndTime';
 import { useRouter } from 'next/router';
 import { useCreateRetroMutation } from '~/query/retro/retroQueries';
-import { UserType } from '~/core/retro/retroService.types';
-
-const mockData: UserType[] = [
-  {
-    id: 1,
-    profileImg: '',
-    nickname: '진현우',
-    name: '진현우',
-  },
-  {
-    id: 2,
-    profileImg: '',
-    nickname: '전하영',
-    name: '전하영',
-  },
-  {
-    id: 3,
-    profileImg: '',
-    nickname: '배광호',
-    name: '배광호',
-  },
-  {
-    id: 4,
-    profileImg: '',
-    nickname: '김성은',
-    name: '김성은',
-  },
-  {
-    id: 5,
-    profileImg: '',
-    nickname: '이승원',
-    name: '이승원',
-  },
-];
+import { useReadCommonMembersQuery } from '~/query/common/commonQueries';
+import { useEffect } from 'react';
 
 const RetroSprintCreate = () => {
   const router = useRouter();
+
+  const readCommonMembers = useReadCommonMembersQuery();
   const [title, handleTitleChange] = useTextFieldInput('');
-  const { initMembers, selectedMembers, memberDropHandler } = useMemberDrop({ init: mockData });
+  const { members, initMembers, selectedMembers, memberDropHandler } = useMemberDrop();
   const { selectedDate, handleDateChange, selectedTime, handleTimeChange, getDateAndTimeISOString } = useDateAndTime();
 
   const createRetroMutation = useCreateRetroMutation();
@@ -64,12 +34,14 @@ const RetroSprintCreate = () => {
   };
 
   const handleSubmit = async () => {
+    const joinMemberIds = selectedMembers.map((member) => member.id);
+
     const payload = {
       projectId: 1,
       authorId: 1,
       title,
-      content: '이건뭐지',
-      joinMemberIds: [1, 2, 3, 4],
+      joinMemberIds,
+      content: '',
       createTime: getDateAndTimeISOString(),
     };
     await createRetroMutation.mutateAsync(payload, { onSuccess: () => console.log('등록 성공!!') });
@@ -78,7 +50,14 @@ const RetroSprintCreate = () => {
     router.back();
   };
 
+  useEffect(() => {
+    if (readCommonMembers.isSuccess) {
+      initMembers(readCommonMembers.data);
+    }
+  }, [readCommonMembers.isSuccess]);
+
   const disabled = !title || !selectedDate || !selectedTime || selectedMembers.length === 0;
+
   return (
     <Wrapper>
       <HeaderSection>
@@ -100,14 +79,16 @@ const RetroSprintCreate = () => {
             <TimeInput time={selectedTime} onTimeChange={handleTimeChange} className="time-input" />
           </RetroDateForm>
         </FormRow>
-        <FormRow label="참여자" required>
-          <MemberDropdown
-            selected={selectedMembers}
-            placeHolder="회고의 참여자를 선택해주세요."
-            valueHandler={memberDropHandler}
-            memberList={initMembers}
-          />
-        </FormRow>
+        {members && (
+          <FormRow label="참여자" required>
+            <MemberDropdown
+              selected={selectedMembers}
+              placeHolder="회고의 참여자를 선택해주세요."
+              valueHandler={memberDropHandler}
+              memberList={members}
+            />
+          </FormRow>
+        )}
       </ContentSection>
       <ButtonGroupSection>
         <Button label="취소" outlined onClick={handleCancel} />

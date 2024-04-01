@@ -14,8 +14,8 @@ const LNB = () => {
         const isMatch = pathname === menu.path;
         const hasSubMenu = menu?.subMenu;
         return (
-          <Group key={menu.path}>
-            <Link href={menu.path} className={isMatch && !hasSubMenu ? 'active' : ''}>
+          <Group key={`${menu.path}`}>
+            <Link href={`${menu.path}`} className={isMatch && !hasSubMenu ? 'active' : ''}>
               <GroupTitle>
                 {menu.icon}
                 <Text variant="headline_2">{menu.title}</Text>
@@ -27,7 +27,7 @@ const LNB = () => {
                 {menu.subMenu.map((subMenu) => {
                   const isMatch = pathname === subMenu.path;
                   return (
-                    <Link href={subMenu.path} key={subMenu.path}>
+                    <Link href={`${subMenu.path}`} key={`${subMenu.path}`}>
                       <GroupItem className={isMatch ? 'active' : ''}>
                         <Text variant="body_1">{subMenu.title}</Text>
                       </GroupItem>

@@ -1,4 +1,5 @@
-import { UserType } from '~/core/retro/retroService.types';
+import { MemberType } from "~/query/common/commonQueries.types";
+
 
 export const mock = {
   // 회고 기본 정보
@@ -184,13 +185,13 @@ export const mock = {
 
 export interface Try {
   id: number;
-  author: UserType;
+  author: MemberType;
   content: string;
 }
 export interface Problem {
   status: ProblemStatus['value'];
   id: number;
-  author: UserType;
+  author: MemberType;
   content: string;
   tries: Try[];
 }
@@ -202,6 +203,6 @@ export interface ProblemStatus {
 
 export interface Keep {
   id: number;
-  author: UserType;
+  author: MemberType;
   content: string;
 }

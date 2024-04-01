@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import { UserType } from '~/core/retro/retroService.types';
+import { MemberType } from '~/query/common/commonQueries.types';
 
-type MemberList = UserType[];
+type MemberList = MemberType[];
 
 export const useMemberListStore = create((set) => ({
   memberList: [],
