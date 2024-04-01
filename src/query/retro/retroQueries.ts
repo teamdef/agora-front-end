@@ -22,3 +22,15 @@ export const useReadSprintRetroDetailQuery = (params: types.UseReadRetroSprintDe
     queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL, params],
     queryFn: () => retroService.readRetroSprintDetail(params),
   });
+
+export const useCreateProblemMutation = () =>
+  useMutation({
+    mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_PROBLEM_CREATE,
+    mutationFn: (payload: types.UseCreateProblemParams) => retroService.createProblem(payload),
+  });
+
+export const useCreateKeepMutation = () =>
+  useMutation({
+    mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_KEEP_CREATE,
+    mutationFn: (payload: types.UseCreateKeepParams) => retroService.createKeep(payload),
+  });

@@ -9,10 +9,11 @@ interface ProblemTryProps {
 }
 
 const ProblemCard = ({ data }: ProblemTryProps) => {
+  console.log(data.author);
   return (
     <Wrapper>
       <Title>
-        <ProfileBadge memberState={data.author} />
+        {/* <ProfileBadge memberState={data.author} /> */}
         <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />
       </Title>
       <Content>{data.content}</Content>
@@ -20,10 +21,10 @@ const ProblemCard = ({ data }: ProblemTryProps) => {
         <CommentBox>
           <CommentBoxTitle>
             <h4>무엇을 시도할 수 있나요?</h4>
-            <span>전체 {data.comments.length}</span>
+            <span>전체 {data.tries.length}</span>
           </CommentBoxTitle>
-          {data.comments.map((comment) => {
-            return <CommentItem key={`CommentItem-${crypto.randomUUID()}`}>{comment.content}</CommentItem>;
+          {data.tries.map((item) => {
+            return <CommentItem key={`CommentItem-${crypto.randomUUID()}`}>{item.content}</CommentItem>;
           })}
         </CommentBox>
         <Button

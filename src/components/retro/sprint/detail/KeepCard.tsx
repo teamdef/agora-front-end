@@ -1,18 +1,31 @@
+import { useRouter } from 'next/router';
 import { Delete, Enlarge } from 'public/assets/svgs';
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
+import KeepEditor from '~/components/common/editor/keep/KeepEditor';
 import Button from '~/components/common/inputs/button/Button';
+import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 import { Keep } from '~/types/retro/sprint';
 
 const KeepCard = ({ keep }: { keep: Keep }) => {
+  const router = useRouter();
+  const { sprintId } = router.query;
+
+  const keepEditorOpen = () => {
+    defaultDialogActions.open({
+      content: <KeepEditor author={keep.author} retroId={parseInt(sprintId as string)} content={keep.content} />,
+    });
+  };
+
   return (
     <Wrapper>
       <Header>
-        <ProfileBadge memberState={keep.author} />
+        {/* <ProfileBadge memberState={keep.author} /> */}
         <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />
       </Header>
       <Content>{keep.content}</Content>
       <Button
+        onClick={keepEditorOpen}
         large
         label="자세히 보기"
         icon={<Enlarge style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />}

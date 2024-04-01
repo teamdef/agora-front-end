@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
-import { UserType } from '~/components/common/dropdown/member/MemberDropdown';
 import Text from '~/components/common/typo/Text';
-import { UserType } from '~/query/retro/retroQueries.types';
+import { UserType } from '~/core/retro/retroService.types';
 import { colors } from '~/styles/theme';
 
 interface Props {
@@ -10,7 +9,6 @@ interface Props {
 }
 
 const UserList = ({ members }: Props) => {
-  console.log(members);
   return (
     <Wrapper>
       <UserListWrapper>
@@ -18,6 +16,7 @@ const UserList = ({ members }: Props) => {
           const renameMember: UserType = {
             id: member.id,
             profileImg: member.profileImg,
+            nickname: member.nickname,
             name: member.nickname,
           };
           return <ProfileBadge key={`ProfileBadge-${crypto.randomUUID()}`} memberState={renameMember} />;

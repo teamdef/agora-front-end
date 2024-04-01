@@ -1,17 +1,30 @@
 import styled from 'styled-components';
 import CreateItemBox from './CreateItemBox';
 import KeepCard from './KeepCard';
-import { Keep } from '~/types/retro/sprint';
+import { Keep, mock } from '~/types/retro/sprint';
+import { defaultDialogActions } from '~/store/dialog/defaultDialog';
+import KeepEditor from '~/components/common/editor/keep/KeepEditor';
+import { LOGIN_USER } from '~/pages';
+import { useRouter } from 'next/router';
 
 const KeepsBoard = ({ keeps }: { keeps: Keep[] }) => {
+  const router = useRouter();
+  const { sprintId } = router.query;
+
+  const keepEditorOpen = () => {
+    defaultDialogActions.open({
+      content: <KeepEditor author={LOGIN_USER} retroId={parseInt(sprintId as string)} />,
+    });
+  };
+
   return (
     <Wrapper>
       <Title>지속하고 싶은 점은 무엇인가요?</Title>
       <Content>
         {keeps.map((keep: Keep) => {
-          return <KeepCard key={`KeepItem-${crypto.randomUUID()}`} keep={keep} />;
+          return <KeepCard key={crypto.randomUUID()} keep={keep} />;
         })}
-        <CreateItemBox />
+        <CreateItemBox onClick={keepEditorOpen} />
       </Content>
     </Wrapper>
   );

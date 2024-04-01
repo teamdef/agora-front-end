@@ -4,6 +4,18 @@
 export type ReadRetroSprintListParams = PaginationType & { projectId: number };
 export type ReadRetroSprintDetailParams = { sprintId: number };
 
+export type CreateKeepParams = {
+  retroId: number;
+  content: string;
+  authorId: number;
+};
+
+export type CreateProblemParams = {
+  retroId: number;
+  content: string;
+  authorId: number;
+};
+
 /** payload */
 export type CreateRetroSprintPayload = CreateRetroSprintDTO;
 
@@ -25,7 +37,7 @@ export interface RetroSprintListItemDTO {
 
 export interface CreateRetroSprintDTO {
   projectId: number;
-  createMemberId: number;
+  authorId: number;
   title: string;
   createTime: string;
   content: string;

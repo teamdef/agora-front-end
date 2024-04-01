@@ -10,10 +10,12 @@ import { ProblemStatus } from '~/types/retro/sprint';
 import StateDropdown from '../../dropdown/state/StateDropdown';
 import StateSelectBox from '../../dropdown/state/StateSelectBox';
 import { STATE_LIST } from '~/constants/sprint/problem';
+import { useCreateProblemMutation } from '~/query/retro/retroQueries';
 
 type ProblemEditorCardProps = Omit<ProblemEditorProps, 'comments'>;
 
 const ProblemEditorCard = ({ id, retroId, author, content, status }: ProblemEditorCardProps) => {
+  const createProblemMutation = useCreateProblemMutation();
   const [text, setText] = useState<string>(content || '');
   const [badgeStatus, setBadgeStatus] = useState<ProblemStatus['value']>(status || 'problem');
   const [openSelectBox, setOpenSelectBox] = useState<boolean>(false);
@@ -32,6 +34,15 @@ const ProblemEditorCard = ({ id, retroId, author, content, status }: ProblemEdit
 
   const textHandler = (value: string) => {
     setText(value);
+  };
+
+  const handleSubmit = async () => {
+    const payload = {
+      retroId,
+      content: text,
+      authorId: author.id,
+    };
+    await createProblemMutation.mutateAsync(payload, { onSuccess: () => console.log('problem 등록 성공') });
   };
 
   return (
@@ -55,7 +66,7 @@ const ProblemEditorCard = ({ id, retroId, author, content, status }: ProblemEdit
           </BadgeBox>
         </InfoTextBox>
       </ProblemInfo>
-      <ContentTextField maxLength={300} value={text} onChange={textHandler} />
+      <ContentTextField maxLength={300} value={text} onChange={textHandler} onBlur={handleSubmit} />
     </Wrapper>
   );
 };
