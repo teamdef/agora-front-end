@@ -1,22 +1,31 @@
+import { useRouter } from 'next/router';
 import { Delete, Enlarge } from 'public/assets/svgs';
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
+import KeepEditor from '~/components/common/editor/keep/KeepEditor';
 import Button from '~/components/common/inputs/button/Button';
-import { KeepItemData, ProblemTryData } from '~/types/retro/sprint';
+import { defaultDialogActions } from '~/store/dialog/defaultDialog';
+import { Keep } from '~/types/retro/sprint';
 
-interface KeepItemProps {
-  data: KeepItemData;
-}
+const KeepCard = ({ keep }: { keep: Keep }) => {
+  const router = useRouter();
+  const { sprintId } = router.query;
 
-const KeepItem = ({ data }: KeepItemProps) => {
+  const keepEditorOpen = () => {
+    defaultDialogActions.open({
+      content: <KeepEditor author={keep.author} retroId={parseInt(sprintId as string)} content={keep.content} />,
+    });
+  };
+
   return (
     <Wrapper>
-      <Title>
-        <ProfileBadge memberState={data.creator} />
+      <Header>
+        {/* <ProfileBadge memberState={keep.author} /> */}
         <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />
-      </Title>
-      <Content>{data.content}</Content>
+      </Header>
+      <Content>{keep.content}</Content>
       <Button
+        onClick={keepEditorOpen}
         large
         label="자세히 보기"
         icon={<Enlarge style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />}
@@ -34,7 +43,7 @@ const Wrapper = styled.div`
   border: 1.2px solid ${({ theme }) => theme.colors.agoraBlue[100]};
   background: #fff;
 `;
-const Title = styled.h4`
+const Header = styled.h4`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -55,34 +64,5 @@ const Content = styled.div`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 `;
-const BottomBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-`;
-const CommentBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-const CommentBoxTitle = styled.div`
-  h4 {
-    ${({ theme }) => theme.fontStyle.subtitle_2};
-    color: ${({ theme }) => theme.colors.agoraBlack[700]};
-  }
-  span {
-    ${({ theme }) => theme.fontStyle.detail_2};
-    color: ${({ theme }) => theme.colors.agoraBlack[400]};
-  }
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-`;
-const CommentItem = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 9.5px 12px;
-  border-radius: 6px;
-  border: 1px solid ${({ theme }) => theme.colors.agoraBlack[200]};
-`;
-export default KeepItem;
+
+export default KeepCard;

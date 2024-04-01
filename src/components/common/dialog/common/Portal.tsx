@@ -39,7 +39,7 @@ const Portal = ({ id = DEFAULT_ID, children }: PropsWithChildren<Props>) => {
 
   if (!(isMounted && hasPortal)) return null;
 
-  return createPortal(children, document.getElementById(id));
+  return createPortal(children, document.getElementById(id) as HTMLElement);
 };
 
 export default Portal;

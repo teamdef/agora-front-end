@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
-import { DropdownMemberStatus } from '~/components/common/dropdown/MemberDropdown';
 import Text from '~/components/common/typo/Text';
 import { MemberType } from '~/query/common/commonQueries.types';
 import { colors } from '~/styles/theme';
@@ -14,7 +13,7 @@ const UserList = ({ members }: Props) => {
     <Wrapper>
       <UserListWrapper>
         {members.slice(0, 4).map((member) => {
-          return <ProfileBadge memberState={member} />;
+          return <ProfileBadge memberState={member} key={`ProfileBadge-${crypto.randomUUID()}`} />;
         })}
       </UserListWrapper>
       {members.length > 5 && (

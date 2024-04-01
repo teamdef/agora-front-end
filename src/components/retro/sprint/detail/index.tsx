@@ -1,58 +1,38 @@
-import { Delete, More } from 'public/assets/svgs';
-import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import MoreDropdown from '~/components/common/dropdown/MoreDropdown';
-import TitleTextField from '~/components/common/inputs/textField/TitleTextField';
-import { theme } from '~/styles/theme';
-import RetroInfo from './RetroInfo';
+import { useReadSprintRetroDetailQuery } from '~/query/retro/retroQueries';
 import RetroContent from './RetroContent';
-import { mock } from '~/types/retro/sprint';
-
-const moreList = [
-  {
-    icon: <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />,
-    title: '삭제',
-    onClick: () => console.log('삭제버튼 클릭'),
-  },
-];
+import RetroInfo from './RetroInfo';
+import RetroSprintTitle from './RetroSprintTitle';
 
 const RetroSprintDetail = () => {
-  const [isOpenMore, setIsOpenMore] = useState<boolean>(false);
-  const moreButtonRef = useRef<HTMLButtonElement>(null);
+  const router = useRouter();
+  const query = router.query;
+  const readRetroSprintDetail = useReadSprintRetroDetailQuery({ sprintId: query.sprintId as unknown as number });
 
-  const toggleMore = () => setIsOpenMore((prev) => !prev);
+  if (!readRetroSprintDetail.isSuccess) {
+    return null;
+  }
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (moreButtonRef.current && !moreButtonRef.current.contains(event.target as Node)) {
-        setIsOpenMore(false);
-      }
-    }
+  const { title, createTime, members, author, keeps, problems } = readRetroSprintDetail.data;
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [moreButtonRef, setIsOpenMore]);
+  const retroInfoProps = {
+    author,
+    createTime,
+    members,
+  };
+
+  const retroContentProps = {
+    members,
+    keeps,
+    problems,
+  };
 
   return (
     <Wrapper>
-      <TitleBox>
-        <TitleTextField
-          value={mock.title}
-          maxLength={20}
-          fontStyle={theme.fontStyle.headline_1}
-          placeholder={mock.title}
-          onChange={() => console.log('값 변경')}
-          onBlur={() => console.log('저장')}
-        />
-        <button onClick={toggleMore} ref={moreButtonRef}>
-          <More />
-        </button>
-        {isOpenMore && <MoreDropdown items={moreList} toggleMore={toggleMore} />}
-      </TitleBox>
-      <RetroInfo />
-      <RetroContent />
+      <RetroSprintTitle title={title} />
+      <RetroInfo retroInfo={retroInfoProps} />
+      <RetroContent retroContent={retroContentProps} />
     </Wrapper>
   );
 };
@@ -60,16 +40,7 @@ const RetroSprintDetail = () => {
 const Wrapper = styled.div`
   padding-bottom: 120px;
 `;
-const TitleBox = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 41px;
-  svg {
-    cursor: pointer;
-  }
-`;
+
 export default RetroSprintDetail;
 
 RetroSprintDetail.displayName = 'RetroSprintDetail';

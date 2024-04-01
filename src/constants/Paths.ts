@@ -18,6 +18,7 @@ const DASHBOARD_PATHS = {
 const RETRO_PATHS = {
   RETRO_QUARTER: '/retro/quarter',
   RETRO_SPRINT: '/retro/sprint',
+  RETRO_SPRINT_DETAIL: (sprintId: number) => `/retro/sprint/${sprintId}`,
   RETRO_SPRINT_CREATE: '/retro/sprint/create',
 };
 

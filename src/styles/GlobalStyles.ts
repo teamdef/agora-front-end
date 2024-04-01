@@ -38,6 +38,9 @@ const styles = css`
   button {
     cursor: pointer;
   }
+  a {
+    text-decoration: none;
+  }
 `;
 
 const GlobalStyles = createGlobalStyle`

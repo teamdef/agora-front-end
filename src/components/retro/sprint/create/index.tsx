@@ -3,7 +3,7 @@ import MenuDepth from '~/components/common/etc/MenuDepth';
 import Text from '~/components/common/typo/Text';
 import { colors } from '~/styles/theme';
 import Button from '~/components/common/inputs/button/Button';
-import MemberDropdown, { DropdownMemberStatus } from '~/components/common/dropdown/MemberDropdown';
+import MemberDropdown from '~/components/common/dropdown/member/MemberDropdown';
 import FormRow from './FormRow';
 import TimeInput from './inputs/TimeInput';
 import CalendarInput from './inputs/CalenderInput';
@@ -38,7 +38,7 @@ const RetroSprintCreate = () => {
 
     const payload = {
       projectId: 1,
-      createMemberId: 1,
+      authorId: 1,
       title,
       joinMemberIds,
       content: '',
@@ -129,11 +129,13 @@ const RetroTitleForm = styled.div`
 const RetroDateForm = styled.div`
   display: flex;
   .calender-input {
-    width: calc(360px - 16px - 16px);
+  }
+  gap: 24px;
+  .react-datepicker-wrapper {
+    max-width: calc(360px - 16px - 16px);
+    width: 100%;
   }
   .time-input {
-    width: calc(360px - 16px - 16px);
-    margin-left: 24px;
   }
 `;
 

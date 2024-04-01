@@ -1,199 +1,208 @@
-export const mock: Mock = {
+import { MemberType } from "~/query/common/commonQueries.types";
+
+
+export const mock = {
   // 회고 기본 정보
   projectId: 0,
   reviewId: 0,
   title: '스프린트 48 회고',
   createTime: '2024-02-24T05:29:21.835Z',
-  creator: {
+  author: {
     id: 0,
     profileImg: '',
     name: '장원석',
+    nickname: '장원석',
   },
   members: [
     {
       id: 1,
       profileImg: '',
       name: '이승원',
+      nickname: '이승원',
     },
     {
       id: 2,
       profileImg: '',
       name: '장원석',
+      nickname: '장원석',
     },
     {
       id: 3,
       profileImg: '',
       name: '김성은',
+      nickname: '김성은',
     },
     {
       id: 4,
       profileImg: '',
       name: '진현우',
+      nickname: '진현우',
     },
     {
       id: 5,
       profileImg: '',
       name: '배광호',
+      nickname: '배광호',
     },
     {
       id: 6,
       profileImg: '',
       name: '전하영',
+      nickname: '전하영',
     },
   ],
   // 회고록 부분
-  retro: {
-    keep: [
-      {
+  keeps: [
+    {
+      id: 0,
+      author: {
         id: 0,
-        creator: {
-          id: 0,
-          profileImg: '',
-          name: '이승원',
-        },
-        content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
+        profileImg: '',
+        name: '이승원',
+        nickname: '이승원',
       },
-    ],
-    mission: [
-      {
-        status: 'problem',
+      content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
+    },
+  ],
+  problems: [
+    {
+      status: 'problem',
+      id: 0,
+      author: {
         id: 0,
-        creator: {
+        profileImg: '',
+        name: '이승원',
+        nickname: '이승원',
+      },
+      content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
+      tries: [
+        {
           id: 0,
-          profileImg: '',
-          name: '이승원',
-        },
-        content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
-        comments: [
-          {
+          author: {
             id: 0,
-            creator: {
-              id: 0,
-              profileImg: '',
-              name: '이승원',
-            },
-            content: '이렇게 해결 해봐요',
+            profileImg: '',
+            name: '이승원',
+            nickname: '이승원',
           },
-        ],
-      },
-      {
-        status: 'problem',
-        id: 0,
-        creator: {
-          id: 0,
-          profileImg: '',
-          name: '이승원',
+          content: '이렇게 해결 해봐요',
         },
-        content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
-        comments: [
-          {
-            id: 0,
-            creator: {
-              id: 0,
-              profileImg: '',
-              name: '이승원',
-            },
-            content: '이렇게 해결 해봐요',
-          },
-        ],
-      },
-      {
-        status: 'problem',
+      ],
+    },
+    {
+      status: 'problem',
+      id: 0,
+      author: {
         id: 0,
-        creator: {
-          id: 0,
-          profileImg: '',
-          name: '이승원',
-        },
-        content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
-        comments: [
-          {
-            id: 0,
-            creator: {
-              id: 0,
-              profileImg: '',
-              name: '이승원',
-            },
-            content: '이렇게 해결 해봐요',
-          },
-        ],
+        profileImg: '',
+        name: '이승원',
+        nickname: '이승원',
       },
-      {
-        status: 'try',
+      content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
+      tries: [
+        {
+          id: 0,
+          author: {
+            id: 0,
+            profileImg: '',
+            name: '이승원',
+            nickname: '이승원',
+          },
+          content: '이렇게 해결 해봐요',
+        },
+      ],
+    },
+    {
+      status: 'problem',
+      id: 0,
+      author: {
         id: 0,
-        creator: {
-          id: 0,
-          profileImg: '',
-          name: '이승원',
-        },
-        content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
-        comments: [
-          {
-            id: 0,
-            creator: {
-              id: 0,
-              profileImg: '',
-              name: '이승원',
-            },
-            content: '이렇게 해결 해봐요',
-          },
-        ],
+        profileImg: '',
+        name: '이승원',
+        nickname: '이승원',
       },
-      {
-        status: 'solve',
+      content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
+      tries: [
+        {
+          id: 0,
+          author: {
+            id: 0,
+            profileImg: '',
+            name: '이승원',
+            nickname: '이승원',
+          },
+          content: '이렇게 해결 해봐요',
+        },
+      ],
+    },
+    {
+      status: 'try',
+      id: 0,
+      author: {
         id: 0,
-        creator: {
-          id: 0,
-          profileImg: '',
-          name: '이승원',
-        },
-        content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
-        comments: [
-          {
-            id: 0,
-            creator: {
-              id: 0,
-              profileImg: '',
-              name: '이승원',
-            },
-            content: '이렇게 해결 해봐요',
-          },
-        ],
+        profileImg: '',
+        name: '이승원',
+        nickname: '이승원',
       },
-    ],
-  },
+      content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
+      tries: [
+        {
+          id: 0,
+          author: {
+            id: 0,
+            profileImg: '',
+            name: '이승원',
+            nickname: '이승원',
+          },
+          content: '이렇게 해결 해봐요',
+        },
+      ],
+    },
+    {
+      status: 'solve',
+      id: 0,
+      author: {
+        id: 0,
+        profileImg: '',
+        name: '이승원',
+        nickname: '이승원',
+      },
+      content: 'Lorem ipsum dolor sit amet consectetur. Mauris tristique viverra vel tristique facilisi.',
+      tries: [
+        {
+          id: 0,
+          author: {
+            id: 0,
+            profileImg: '',
+            name: '이승원',
+            nickname: '이승원',
+          },
+          content: '이렇게 해결 해봐요',
+        },
+      ],
+    },
+  ],
 };
-interface Mock {
-  // 회고 기본 정보
-  projectId: number;
-  reviewId: number;
-  title: string;
-  createTime: string;
-  creator: User;
-  members: User[];
-  // 회고록 부분
-  retro: {
-    keep: KeepItemData[];
-    mission: ProblemTryData[];
-  };
-}
 
-export interface User {
+export interface Try {
   id: number;
-  profileImg: string;
-  name: string;
-}
-export interface Comment {
-  id: number;
-  creator: User;
+  author: MemberType;
   content: string;
 }
-export interface ProblemTryData {
-  status: 'problem' | 'try' | 'solve';
+export interface Problem {
+  status: ProblemStatus['value'];
   id: number;
-  creator: User;
+  author: MemberType;
   content: string;
-  comments: Comment[];
+  tries: Try[];
 }
 
-export type KeepItemData = Pick<ProblemTryData, 'id' | 'creator' | 'content'>;
+export interface ProblemStatus {
+  label: '문제 인식' | '개선중' | '문제 해결';
+  value: 'problem' | 'try' | 'solve';
+}
+
+export interface Keep {
+  id: number;
+  author: MemberType;
+  content: string;
+}

@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import type { DropdownMemberStatus } from '~/components/common/dropdown/MemberDropdown';
+import { MemberType } from '~/query/common/commonQueries.types';
 
 const useMemberDrop = () => {
-  const [members, setMembers] = useState<DropdownMemberStatus[]>();
-  const [selectedMembers, setSelectedMembers] = useState<DropdownMemberStatus[]>([]);
+  const [members, setMembers] = useState<MemberType[]>();
+  const [selectedMembers, setSelectedMembers] = useState<MemberType[]>([]);
 
-  const memberDropHandler = (newData: DropdownMemberStatus[]) => {
+  const memberDropHandler = (newData: MemberType[]) => {
     setSelectedMembers(newData);
   };
 
-  const initMembers = (init: DropdownMemberStatus[]) => {
+  const initMembers = (init: MemberType[]) => {
     setMembers(init);
   };
 

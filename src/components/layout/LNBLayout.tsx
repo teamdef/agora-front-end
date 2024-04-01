@@ -8,7 +8,7 @@ interface Props {
 }
 const LNBLayout = ({ bgColor, children }: PropsWithChildren<Props>) => {
   return (
-    <Wrapper bgColor={bgColor}>
+    <Wrapper $bgColor={bgColor}>
       <Container>
         <LNB />
         <div className="children">{children}</div>
@@ -17,13 +17,13 @@ const LNBLayout = ({ bgColor, children }: PropsWithChildren<Props>) => {
   );
 };
 
-const Wrapper = styled.div<Props>`
+const Wrapper = styled.div<{ $bgColor?: string }>`
   display: flex;
   min-height: calc(100vh - 68px);
   .children {
     flex: 1;
     padding: 48px 56px 0px 56px;
-    background-color: ${({ theme, bgColor }) => bgColor || theme.colors.background};
+    background-color: ${({ theme, $bgColor }) => $bgColor || theme.colors.background};
   }
 `;
 

@@ -6,7 +6,13 @@
 import ApiClient from '~/core/api/apiClient';
 import type * as types from './retroService.types';
 
-const URLS = { READ_SPRINT_RETRO_LIST: '/retro', CREATE_SPRINT_RETRO: '/retro' };
+const URLS = {
+  READ_RETRO_SPRINT_LIST: '/retro',
+  CREATE_RETRO_SPRINT: '/retro',
+  RETRO_SPRINT_DETAIL: (sprintId: number) => `/retro/${sprintId}`,
+  CREATE_PROBLEM: `/problem`,
+  CREATE_KEEP: `/keep`,
+};
 
 export default class RetroService {
   private apiClient: ApiClient;
@@ -15,15 +21,32 @@ export default class RetroService {
     this.apiClient = new ApiClient({ isMock });
   }
 
-  async readSprintRetroList(params: types.ReadSprintRetroListParams): Promise<types.ReadSprintRetroListResponse> {
-    const { data } = await this.apiClient.get<types.ReadSprintRetroListResponse>(URLS.READ_SPRINT_RETRO_LIST, {
+  async readRetroSprintList(params: types.ReadRetroSprintListParams): Promise<types.ReadRetroSprintListResponse> {
+    const { data } = await this.apiClient.get<types.ReadRetroSprintListResponse>(URLS.READ_RETRO_SPRINT_LIST, {
       params,
     });
     return data;
   }
 
-  async createSprintRetro(payload: types.CreateSprintRetroPayload): Promise<types.CreateSprintRetroResponse> {
-    const { data } = await this.apiClient.post<types.CreateSprintRetroResponse>(URLS.CREATE_SPRINT_RETRO, payload);
+  async createRetroSprint(payload: types.CreateRetroSprintPayload): Promise<types.CreateRetroSprintResponse> {
+    const { data } = await this.apiClient.post<types.CreateRetroSprintResponse>(URLS.CREATE_RETRO_SPRINT, payload);
+    return data;
+  }
+
+  async readRetroSprintDetail(params: types.ReadRetroSprintDetailParams): Promise<types.ReadRetroSprintDetailResponse> {
+    const { data } = await this.apiClient.get<types.ReadRetroSprintDetailResponse>(
+      URLS.RETRO_SPRINT_DETAIL(params.sprintId),
+    );
+    return data;
+  }
+
+  async createProblem(payload: types.CreateProblemParams) {
+    const { data } = await this.apiClient.post(URLS.CREATE_PROBLEM, payload);
+    return data;
+  }
+
+  async createKeep(payload: types.CreateKeepParams) {
+    const { data } = await this.apiClient.post(URLS.CREATE_KEEP, payload);
     return data;
   }
 }

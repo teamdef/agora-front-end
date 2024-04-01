@@ -3,16 +3,14 @@ import { MouseEvent, useState } from 'react';
 import { DropdownArrowDown, DropdownArrowUp } from 'public/assets/svgs';
 import useOutsideClick from '~/hooks/useOutsideClick';
 import MemberSelectBox from './MemberSelectBox';
-import ProfileBadge from '../display/ProfileBadge';
+import ProfileBadge from '../../display/ProfileBadge';
 import { MemberType } from '~/query/common/commonQueries.types';
 
-export type DropdownMemberStatus = MemberType;
-
 interface DropdownProps {
-  memberList: DropdownMemberStatus[];
+  memberList: MemberType[];
   placeHolder: string;
-  selected: DropdownMemberStatus[];
-  valueHandler: (value: DropdownMemberStatus[]) => void;
+  selected: MemberType[];
+  valueHandler: (value: MemberType[]) => void;
 }
 
 const MemberDropdown = ({ memberList, valueHandler, selected, placeHolder }: DropdownProps) => {
@@ -22,9 +20,9 @@ const MemberDropdown = ({ memberList, valueHandler, selected, placeHolder }: Dro
     setIsOpen((prev) => !prev);
     e.stopPropagation();
   };
-  const toggleNewData = (_value: DropdownMemberStatus) => {
+  const toggleNewData = (_value: MemberType) => {
     const hasValue = selected.find((user) => user.id === _value.id);
-    let newData: DropdownMemberStatus[] = [];
+    let newData: MemberType[] = [];
     if (hasValue) {
       newData = selected.filter((user) => user.id !== _value.id);
     } else {
@@ -39,12 +37,14 @@ const MemberDropdown = ({ memberList, valueHandler, selected, placeHolder }: Dro
     <Wrapper ref={wrapper}>
       <PlaceHolderBox onClick={toggleIsOpenHandler} $isOpen={isOpen}>
         {selected.length > 0 && (
-          <SelectedMember>
-            {selected.map((member) => {
-              const uuid = crypto.randomUUID();
-              return <ProfileBadge key={`MemberDropdown-${uuid}`} memberState={member} closeFn={toggleNewData} />;
-            })}
-          </SelectedMember>
+          <SelectedMemberWrapper>
+            <SelectedMember>
+              {selected.map((member) => {
+                const uuid = crypto.randomUUID();
+                return <ProfileBadge key={`MemberDropdown-${uuid}`} memberState={member} closeFn={toggleNewData} />;
+              })}
+            </SelectedMember>
+          </SelectedMemberWrapper>
         )}
         {selected.length === 0 && <PlaceHolderText>{placeHolder}</PlaceHolderText>}
         {isOpen ? <DropdownArrowUp /> : <DropdownArrowDown />}
@@ -68,9 +68,11 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 const PlaceHolderBox = styled.div<{ $isOpen: boolean }>`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   padding: 0 16px;
   height: 50px;
   user-select: none;
@@ -84,7 +86,15 @@ const PlaceHolderText = styled.span`
   color: ${({ theme }) => theme.colors.agoraBlack[300]};
   ${({ theme }) => theme.fontStyle.detail_2}
 `;
+const SelectedMemberWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  height: 32px;
+  overflow: hidden;
+`;
 const SelectedMember = styled.div`
+  position: absolute;
   display: flex;
   gap: 12px;
 `;

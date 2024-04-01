@@ -1,23 +1,23 @@
 import { GreenCircle, OrangeCircle, YellowCircle } from 'public/assets/svgs';
 import styled from 'styled-components';
+import { ProblemStatus } from '~/types/retro/sprint';
 
-export type BadgeStatus = 'problem' | 'try' | 'solve';
-interface BadgeProps {
-  label: string;
-  status: BadgeStatus;
-}
-const Badge = ({ label, status }: BadgeProps) => {
+type BadgeProps = ProblemStatus & {
+  onClick?: () => void;
+};
+
+const Badge = ({ label, value, onClick }: BadgeProps) => {
   return (
-    <Box $status={status}>
-      {status === 'problem' && <OrangeCircle />}
-      {status === 'try' && <YellowCircle />}
-      {status === 'solve' && <GreenCircle />}
+    <Box $status={value} onClick={onClick}>
+      {value === 'problem' && <OrangeCircle />}
+      {value === 'try' && <YellowCircle />}
+      {value === 'solve' && <GreenCircle />}
       <span>{label}</span>
     </Box>
   );
 };
 
-const Box = styled.span<{ $status: BadgeProps['status'] }>`
+const Box = styled.span<{ $status: ProblemStatus['value'] }>`
   position: relative;
   display: inline-flex;
   align-self: flex-start;
