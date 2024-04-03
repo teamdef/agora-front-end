@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Illust from '../common/display/Illust';
 import { zIndex } from '~/styles/mixin';
 import Container from './Container';
 import { useRouter } from 'next/router';
@@ -10,7 +9,7 @@ const GNB = () => {
     <Wrapper>
       <Container>
         <Logo onClick={() => router.push('/')}>
-          <Illust src="illust/agora_logo" width="111px" />
+          <img src="/assets/img/illust/agora_logo.png" />
         </Logo>
       </Container>
     </Wrapper>
@@ -32,6 +31,9 @@ const Logo = styled.div`
   cursor: pointer;
   img {
     padding-left: 32px;
+    width: 111px;
+    height: auto;
+    object-fit: cover;
   }
 `;
 
