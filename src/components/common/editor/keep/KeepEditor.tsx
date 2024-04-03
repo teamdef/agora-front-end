@@ -6,6 +6,7 @@ import { Keep } from '~/types/retro/sprint';
 import EditorHeader from '../EditorHeader';
 import { useCreateKeepMutation } from '~/query/retro/retroQueries';
 import { MemberType } from '~/query/common/commonQueries.types';
+import EditorDialog from '~/components/dialog/EditorDIalog';
 
 const PLACEHOLDER = '프로젝트를 진행하면서 좋았던 점, 지속하고 싶은 점에 대해 알려주세요.' as const;
 
@@ -30,22 +31,24 @@ const KeepEditor = ({ retroId, id, author, content }: KeepEditorProps) => {
     await createKeepMutation.mutateAsync(payload, { onSuccess: () => console.log('keep 등록 성공') });
   };
   return (
-    <Wrapper>
-      <EditorHeader text="지속하고 싶은 점은 무엇인가요?" />
-      <Content>
-        {/* <ProfileBadge memberState={author} /> */}
+    <EditorDialog>
+      <Wrapper>
+        <EditorHeader text="지속하고 싶은 점은 무엇인가요?" />
+        <Content>
+          {/* <ProfileBadge memberState={author} /> */}
 
-        <ContentTextField
-          maxLength={400}
-          value={keep}
-          onChange={keepHandler}
-          onBlur={saveNewContent}
-          placeholder={PLACEHOLDER}
-          fontStyle="body_2"
-          autoFocus={!content}
-        />
-      </Content>
-    </Wrapper>
+          <ContentTextField
+            maxLength={400}
+            value={keep}
+            onChange={keepHandler}
+            onBlur={saveNewContent}
+            placeholder={PLACEHOLDER}
+            fontStyle="body_2"
+            autoFocus={!content}
+          />
+        </Content>
+      </Wrapper>
+    </EditorDialog>
   );
 };
 
