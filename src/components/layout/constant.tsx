@@ -1,11 +1,10 @@
 import { PathsType, Paths } from '~/constants/Paths';
-import { IconSrc } from '../common/display/Icon';
 import { ReactElement } from 'react';
 import { Folder, Home, PaperPlane, Settings } from 'public/assets/svgs';
 export interface Menu {
   title: string;
   path: PathsType;
-  icon?: IconSrc | ReactElement;
+  icon?: ReactElement;
   subMenu?: Menu[];
 }
 export const GNB_MENUS: Menu[] = [{ title: '프로젝트', path: Paths.PROJECT }];
