@@ -31,8 +31,8 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <div id="react-portal-modal-container" />
-          <div id="react-portal-loading-container" />
+          <div id="default-dialog" />
+          <div id="confirm-dialog" />
         </body>
       </Html>
     );

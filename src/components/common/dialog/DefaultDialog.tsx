@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Modal from './common/Modal';
 import { useDefaultDialogStore } from '~/store/dialog/defaultDialog';
-// {children}:{chidlren:React.ReactNode}
+
 const DefaultDialog = () => {
   const state = useDefaultDialogStore();
 
@@ -11,19 +11,9 @@ const DefaultDialog = () => {
 
   return (
     <Modal portalId="default-dialog" onBackdropClick={state.onClose}>
-      <Wrapper>{state.content}</Wrapper>
+      {state.content}
     </Modal>
   );
 };
-
-const Wrapper = styled.div`
-  width: 100vw;
-  max-width: 648px;
-  max-height: 768px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0px 0px 14px 0px ${({ theme }) => `${theme.colors.agoraBlack[900]}25`};
-  padding: 28px 32px;
-`;
 
 export default DefaultDialog;
