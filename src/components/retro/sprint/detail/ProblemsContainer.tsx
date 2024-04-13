@@ -1,19 +1,21 @@
 import styled from 'styled-components';
 import Badge from '~/components/common/display/Badge';
 import { Problem, ProblemStatus } from '~/types/retro/sprint';
-import RetroItem from './ProblemCard';
+import ProblemCard from './ProblemCard';
 import CreateItemBox from './CreateItemBox';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 import ProblemEditor from '~/components/common/editor/problem/ProblemEditor';
 import { useRouter } from 'next/router';
 import { LOGIN_USER } from './KeepsBoard';
+import { MemberType } from '~/query/common/commonQueries.types';
 
 interface ProblemTryBoxProps {
   state: ProblemStatus;
-  items: Problem[];
+  problems: Problem[];
+  members: MemberType[];
 }
 
-const ProblemsContainer = ({ state, items }: ProblemTryBoxProps) => {
+const ProblemsContainer = ({ state, problems, members }: ProblemTryBoxProps) => {
   const router = useRouter();
   const { sprintId } = router.query;
   const problemEditorOpen = () => {
@@ -28,8 +30,8 @@ const ProblemsContainer = ({ state, items }: ProblemTryBoxProps) => {
         <Badge value={state.value} label={state.label} />
       </StatusBox>
       <Content>
-        {items.map((item) => {
-          return <RetroItem key={`RetroItem-${crypto.randomUUID()}`} data={item} />;
+        {problems.map((problem) => {
+          return <ProblemCard key={crypto.randomUUID()} problem={problem} />;
         })}
         {state.value === 'problem' && <CreateItemBox onClick={problemEditorOpen} />}
       </Content>

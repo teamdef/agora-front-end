@@ -1,44 +1,29 @@
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import { useReadSprintRetroDetailQuery } from '~/query/retro/retroQueries';
 import RetroContent from './RetroContent';
 import RetroInfo from './RetroInfo';
 import RetroSprintTitle from './RetroSprintTitle';
-import { useEffect } from 'react';
-import { memberListActions } from '~/store/member/memberList';
+import { retroSprintActions } from '~/store/retro/sprint';
 
 const RetroSprintDetail = () => {
   const router = useRouter();
   const query = router.query;
-  const { isSuccess, data: sprintDetail } = useReadSprintRetroDetailQuery({
+  const { isSuccess, data: retroSprint } = useReadSprintRetroDetailQuery({
     sprintId: query.sprintId as unknown as number,
   });
 
-  if (!isSuccess) {
-    return null;
-  }
-
-  const { title, createTime, members, creator, keeps, problems } = sprintDetail;
-
-  const retroInfoProps = {
-    creator,
-    createTime,
-    members,
-  };
-
-  const retroContentProps = {
-    members,
-    keeps,
-    problems,
-  };
   useEffect(() => {
-    memberListActions.setMemberList(members);
+    if (retroSprint) retroSprintActions.setRetroSprint(retroSprint);
   }, [isSuccess]);
+
+  if (!isSuccess) return null;
   return (
     <Wrapper>
-      <RetroSprintTitle title={title} />
-      <RetroInfo retroInfo={retroInfoProps} />
-      <RetroContent retroContent={retroContentProps} />
+      <RetroSprintTitle />
+      <RetroInfo />
+      <RetroContent />
     </Wrapper>
   );
 };

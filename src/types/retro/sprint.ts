@@ -1,5 +1,5 @@
-import { MemberType } from "~/query/common/commonQueries.types";
-
+import { ProblemsDTO, TryDTO } from '~/core/retro/retroService.types';
+import { MemberType } from '~/query/common/commonQueries.types';
 
 export const mock = {
   // 회고 기본 정보
@@ -183,18 +183,8 @@ export const mock = {
   ],
 };
 
-export interface Try {
-  id: number;
-  author: MemberType;
-  content: string;
-}
-export interface Problem {
-  status: ProblemStatus['value'];
-  id: number;
-  author: MemberType;
-  content: string;
-  tries: Try[];
-}
+export type Try = TryDTO;
+export type Problem = ProblemsDTO;
 
 export interface ProblemStatus {
   label: '문제 인식' | '개선중' | '문제 해결';

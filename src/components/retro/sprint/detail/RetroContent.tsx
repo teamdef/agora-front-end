@@ -1,19 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import Tab from '~/components/common/navigation/Tab';
-import RetroBoard from './RetroBoard';
-import { MemberType } from '~/query/common/commonQueries.types';
+import KeepsBoard from './KeepsBoard';
+import ProblemsBoard from './ProblemsBoard';
 
 const SPRINT_TAB_MENU = ['이번 회고록', '지난 회고록'] as const;
-export interface RetroContentProps {
-  retroContent: {
-    members: MemberType[];
-    keeps: [];
-    problems: [];
-  };
-}
 
-const RetroContent = ({ retroContent }: RetroContentProps) => {
+const RetroContent = () => {
   const [currentTab, setCurrentTab] = useState<number>(0);
 
   const currentTabHandler = (idx: number) => setCurrentTab(idx);
@@ -22,7 +15,10 @@ const RetroContent = ({ retroContent }: RetroContentProps) => {
     <Wrapper>
       <Title>회고록</Title>
       <Tab menu={SPRINT_TAB_MENU} current={currentTab} handler={currentTabHandler} />
-      <RetroBoard retroContent={retroContent} />
+      <RetroBoard>
+        <KeepsBoard />
+        <ProblemsBoard />
+      </RetroBoard>
     </Wrapper>
   );
 };
@@ -37,6 +33,8 @@ const Title = styled.h2`
   ${({ theme }) => theme.fontStyle.headline_2};
   color: ${({ theme }) => theme.colors.agoraBlack[900]};
 `;
+
+const RetroBoard = styled.div``;
 
 export default RetroContent;
 

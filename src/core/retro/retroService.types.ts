@@ -17,6 +17,11 @@ export type CreateProblemParams = {
   content: string;
   authorId: number;
 };
+export type CreateTryParams = {
+  problemId: number;
+  content: string;
+  authorId: number;
+};
 
 /** payload */
 export type CreateRetroSprintPayload = CreateRetroSprintDTO;
@@ -47,14 +52,14 @@ export interface CreateRetroSprintDTO {
 }
 
 export interface RetroSprintDetailDTO {
-  id: 0;
+  id: number;
   title: string;
-  author: MemberType;
+  creator: MemberType;
   createTime: string;
   members: MemberType[];
-  projectId: 0;
+  projectId: number;
   keeps: [];
-  problems: [];
+  problems: ProblemsDTO[];
 }
 
 /** union and etc type */
@@ -62,4 +67,20 @@ export interface RetroSprintDetailDTO {
 export interface PaginationType {
   pageNo: number;
   listSize: number;
+}
+
+export interface ProblemsDTO {
+  id: number;
+  retroId: number;
+  content: string;
+  authorId: number;
+  status: 'problem' | 'try' | 'solve';
+  tries: TryDTO[];
+}
+
+export interface TryDTO {
+  id: number;
+  problemId: number;
+  authorId: number;
+  content: string;
 }

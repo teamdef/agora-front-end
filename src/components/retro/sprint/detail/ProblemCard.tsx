@@ -2,29 +2,31 @@ import { Delete, Enlarge } from 'public/assets/svgs';
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
 import Button from '~/components/common/inputs/button/Button';
+import { useRetroSprintStore } from '~/store/retro/sprint';
 import { Problem } from '~/types/retro/sprint';
 
 interface ProblemTryProps {
-  data: Problem;
+  problem: Problem;
 }
 
-const ProblemCard = ({ data }: ProblemTryProps) => {
-  console.log(data.author);
+const ProblemCard = ({ problem }: ProblemTryProps) => {
+  const { members } = useRetroSprintStore((state) => state.retroSprint);
+
   return (
     <Wrapper>
       <Title>
-        {/* <ProfileBadge memberState={data.author} /> */}
+        <ProfileBadge memberState={members[problem.authorId]} />
         <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />
       </Title>
-      <Content>{data.content}</Content>
+      <Content>{problem.content}</Content>
       <BottomBox>
         <CommentBox>
           <CommentBoxTitle>
             <h4>무엇을 시도할 수 있나요?</h4>
-            <span>전체 {data.tries.length}</span>
+            <span>전체 {problem.tries.length}</span>
           </CommentBoxTitle>
-          {data.tries.map((item) => {
-            return <CommentItem key={`CommentItem-${crypto.randomUUID()}`}>{item.content}</CommentItem>;
+          {problem.tries.map((item) => {
+            return <CommentItem key={crypto.randomUUID()}>{item.content}</CommentItem>;
           })}
         </CommentBox>
         <Button

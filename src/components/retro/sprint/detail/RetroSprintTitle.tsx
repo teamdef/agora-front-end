@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import MoreDropdown from '~/components/common/dropdown/more/MoreDropdown';
 import TitleTextField from '~/components/common/inputs/textField/TitleTextField';
+import { useRetroSprintStore } from '~/store/retro/sprint';
 import { theme } from '~/styles/theme';
 
 const moreList = [
@@ -13,9 +14,10 @@ const moreList = [
   },
 ];
 
-const RetroSprintTitle = ({ title }: { title: string }) => {
+const RetroSprintTitle = () => {
   const [isOpenMore, setIsOpenMore] = useState<boolean>(false);
   const moreButtonRef = useRef<HTMLButtonElement>(null);
+  const title = useRetroSprintStore((state) => state.retroSprint.title);
   const toggleMore = () => setIsOpenMore((prev) => !prev);
 
   useEffect(

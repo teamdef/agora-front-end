@@ -12,6 +12,7 @@ const URLS = {
   RETRO_SPRINT_DETAIL: (sprintId: number) => `/retro/${sprintId}`,
   CREATE_PROBLEM: `/problem`,
   CREATE_KEEP: `/keep`,
+  CREATE_TRY: `/try`,
 };
 
 export default class RetroService {
@@ -40,13 +41,18 @@ export default class RetroService {
     return data;
   }
 
+  async createKeep(payload: types.CreateKeepParams) {
+    const { data } = await this.apiClient.post(URLS.CREATE_KEEP, payload);
+    return data;
+  }
+
   async createProblem(payload: types.CreateProblemParams) {
     const { data } = await this.apiClient.post(URLS.CREATE_PROBLEM, payload);
     return data;
   }
 
-  async createKeep(payload: types.CreateKeepParams) {
-    const { data } = await this.apiClient.post(URLS.CREATE_KEEP, payload);
+  async createTry(payload: types.CreateTryParams) {
+    const { data } = await this.apiClient.post(URLS.CREATE_TRY, payload);
     return data;
   }
 }
