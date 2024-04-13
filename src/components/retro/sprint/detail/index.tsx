@@ -4,20 +4,24 @@ import { useReadSprintRetroDetailQuery } from '~/query/retro/retroQueries';
 import RetroContent from './RetroContent';
 import RetroInfo from './RetroInfo';
 import RetroSprintTitle from './RetroSprintTitle';
+import { useEffect } from 'react';
+import { memberListActions } from '~/store/member/memberList';
 
 const RetroSprintDetail = () => {
   const router = useRouter();
   const query = router.query;
-  const readRetroSprintDetail = useReadSprintRetroDetailQuery({ sprintId: query.sprintId as unknown as number });
+  const { isSuccess, data: sprintDetail } = useReadSprintRetroDetailQuery({
+    sprintId: query.sprintId as unknown as number,
+  });
 
-  if (!readRetroSprintDetail.isSuccess) {
+  if (!isSuccess) {
     return null;
   }
 
-  const { title, createTime, members, author, keeps, problems } = readRetroSprintDetail.data;
+  const { title, createTime, members, creator, keeps, problems } = sprintDetail;
 
   const retroInfoProps = {
-    author,
+    creator,
     createTime,
     members,
   };
@@ -27,7 +31,9 @@ const RetroSprintDetail = () => {
     keeps,
     problems,
   };
-
+  useEffect(() => {
+    memberListActions.setMemberList(members);
+  }, [isSuccess]);
   return (
     <Wrapper>
       <RetroSprintTitle title={title} />

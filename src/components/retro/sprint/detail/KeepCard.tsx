@@ -5,10 +5,12 @@ import ProfileBadge from '~/components/common/display/ProfileBadge';
 import KeepEditor from '~/components/common/editor/keep/KeepEditor';
 import Button from '~/components/common/inputs/button/Button';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
+import { useMemberListStore } from '~/store/member/memberList';
 import { Keep } from '~/types/retro/sprint';
 
 const KeepCard = ({ keep }: { keep: Keep }) => {
   const router = useRouter();
+  const memberList = useMemberListStore((state) => state.memberList);
   const { sprintId } = router.query;
 
   const keepEditorOpen = () => {
@@ -20,7 +22,7 @@ const KeepCard = ({ keep }: { keep: Keep }) => {
   return (
     <Wrapper>
       <Header>
-        {/* <ProfileBadge memberState={keep.author} /> */}
+        <ProfileBadge memberState={memberList[keep.id]} />
         <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />
       </Header>
       <Content>{keep.content}</Content>

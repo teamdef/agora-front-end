@@ -21,6 +21,7 @@ export const useReadSprintRetroDetailQuery = (params: types.UseReadRetroSprintDe
   useQuery({
     queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL, params],
     queryFn: () => retroService.readRetroSprintDetail(params),
+    enabled: !!params.sprintId,
   });
 
 export const useCreateProblemMutation = () =>

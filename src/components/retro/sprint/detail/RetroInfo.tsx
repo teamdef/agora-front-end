@@ -10,8 +10,9 @@ interface RetroInfoProps {
   };
 }
 const RetroInfo = ({ retroInfo }: RetroInfoProps) => {
-  const { author, createTime, members } = retroInfo;
+  const { author, creator, createTime, members } = retroInfo;
   const formattedCreateTime = stringToDateTextFormatter(createTime);
+  console.log(creator);
   return (
     <Wrapper>
       <li>
@@ -20,7 +21,7 @@ const RetroInfo = ({ retroInfo }: RetroInfoProps) => {
       </li>
       <li>
         <h3>작성자</h3>
-        {/* <ProfileBadge memberState={author} /> */}
+        <ProfileBadge memberState={creator} />
       </li>
       <li>
         <h3>참여자</h3>
