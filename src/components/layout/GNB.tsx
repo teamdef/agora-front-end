@@ -9,7 +9,7 @@ const GNB = () => {
     <Wrapper>
       <Container>
         <Logo onClick={() => router.push('/')}>
-          <img src="/assets/img/illust/agora_logo.png" />
+          <img src="/assets/img/agora_logo.png" />
         </Logo>
       </Container>
     </Wrapper>
