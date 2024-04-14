@@ -28,7 +28,14 @@ const ProblemCard = ({ problem }: ProblemTryProps) => {
   const modifyProblemEditorOpen = () => {
     defaultDialogActions.open({
       content: (
-        <ProblemEditor id={problem.id} author={LOGIN_USER} content={problem.content} status={problem.status} isModify />
+        <ProblemEditor
+          id={problem.id}
+          author={LOGIN_USER}
+          content={problem.content}
+          status={problem.status}
+          retroId={id}
+          isModify
+        />
       ),
     });
   };

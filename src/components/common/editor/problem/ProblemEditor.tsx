@@ -29,7 +29,14 @@ const ProblemEditor = ({ retroId, status, id, author, content, tries, isModify }
                 스프린트를 진행하면서 발생했던 문제를 알려주세요.
               </Text>
             </SubTitle>
-            <ProblemEditorCard author={author} content={content} id={id} retroId={retroId} status={status} isModify />
+            <ProblemEditorCard
+              author={author}
+              content={content}
+              id={id}
+              retroId={retroId}
+              status={status}
+              isModify={isModify}
+            />
           </ProblemBox>
           {id && (
             <TryBox>
