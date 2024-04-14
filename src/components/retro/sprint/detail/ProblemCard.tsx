@@ -1,20 +1,30 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { Delete, Enlarge } from 'public/assets/svgs';
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
 import ProblemEditor from '~/components/common/editor/problem/ProblemEditor';
 import Button from '~/components/common/inputs/button/Button';
+import { useDeleteProblemMutation } from '~/query/retro/retroQueries';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 import { useRetroSprintStore } from '~/store/retro/sprint';
 import { Problem } from '~/types/retro/sprint';
 import { LOGIN_USER } from './KeepsBoard';
+import RETRO_QUERY_KEYS from '~/query/retro/queryKeys';
 
 interface ProblemTryProps {
   problem: Problem;
 }
 
 const ProblemCard = ({ problem }: ProblemTryProps) => {
+  const queryClient = useQueryClient();
   const { members, id } = useRetroSprintStore((state) => state.retroSprint);
-
+  const deleteProblemMutation = useDeleteProblemMutation();
+  const deleteProblem = () => {
+    const payload = { problemId: problem.id };
+    deleteProblemMutation.mutate(payload, {
+      onSuccess: () => queryClient.invalidateQueries({ queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL, id] }),
+    });
+  };
   const modifyProblemEditorOpen = () => {
     defaultDialogActions.open({
       content: (
@@ -27,7 +37,7 @@ const ProblemCard = ({ problem }: ProblemTryProps) => {
     <Wrapper>
       <Title>
         <ProfileBadge memberState={members[problem.authorId]} />
-        <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />
+        <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" onClick={deleteProblem} />
       </Title>
       <Content>{problem.content}</Content>
       <BottomBox>
@@ -69,6 +79,9 @@ const Title = styled.h4`
   padding-bottom: 10px;
   border-bottom: 1.2px solid ${({ theme }) => theme.colors.agoraBlue[100]};
   background: #fff;
+  svg {
+    cursor: pointer;
+  }
 `;
 
 const Content = styled.div`

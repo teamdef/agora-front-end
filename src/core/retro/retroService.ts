@@ -12,6 +12,8 @@ const URLS = {
   RETRO_SPRINT_DETAIL: (sprintId: number) => `/retro/${sprintId}`,
   CREATE_PROBLEM: `/problem`,
   UPDATE_PROBLEM: (problemId: number) => `/problem/${problemId}/content`,
+  DETAIL_PROBLEM: (problemId: number) => `/problem/${problemId}`,
+  DELETE_PROBLEM: (problemId: number) => `/problem/${problemId}`,
   CREATE_KEEP: `/keep`,
   CREATE_TRY: `/try`,
   UPDATE_TRY: (tryId: number) => `/try/${tryId}/content`,
@@ -54,6 +56,10 @@ export default class RetroService {
   }
   async updateProblem(payload: types.UpdateProblemPayload) {
     const { data } = await this.apiClient.patch(URLS.UPDATE_PROBLEM(payload.problemId), payload.content);
+    return data;
+  }
+  async deleteProblem(payload: types.DeleteProblemParams) {
+    const { data } = await this.apiClient.delete(URLS.DELETE_PROBLEM(payload.problemId));
     return data;
   }
 

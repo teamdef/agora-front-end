@@ -11,12 +11,12 @@ const RetroSprintDetail = () => {
   const router = useRouter();
   const query = router.query;
   const { isSuccess, data: retroSprint } = useReadSprintRetroDetailQuery({
-    sprintId: query.sprintId as unknown as number,
+    sprintId: Number(query.sprintId),
   });
 
   useEffect(() => {
     if (retroSprint) retroSprintActions.setRetroSprint(retroSprint);
-  }, [isSuccess]);
+  }, [isSuccess, retroSprint]);
 
   if (!isSuccess) return null;
   return (
