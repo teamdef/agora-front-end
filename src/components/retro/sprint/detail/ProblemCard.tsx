@@ -25,6 +25,7 @@ const ProblemCard = ({ problem }: ProblemTryProps) => {
             <h4>무엇을 시도할 수 있나요?</h4>
             <span>전체 {problem.tries.length}</span>
           </CommentBoxTitle>
+          {problem.tries.length === 0 && <EmptyText>등록된 내용이 없습니다.</EmptyText>}
           {problem.tries.map((item) => {
             return <CommentItem key={crypto.randomUUID()}>{item.content}</CommentItem>;
           })}
@@ -90,7 +91,13 @@ const CommentBoxTitle = styled.div`
   }
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
+`;
+const EmptyText = styled.span`
+  color: ${({ theme }) => theme.colors.agoraBlack[200]};
+  ${({ theme }) => theme.fontStyle.body_2};
+  padding: 9.5px 0;
 `;
 const CommentItem = styled.div`
   display: flex;

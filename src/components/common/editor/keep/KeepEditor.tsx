@@ -13,9 +13,10 @@ const PLACEHOLDER = '프로젝트를 진행하면서 좋았던 점, 지속하고
 type KeepEditorProps = {
   retroId: number;
   author: MemberType;
+  isModify?: boolean; // 기존 keep 수정일 경우 true
 } & Partial<Omit<Keep, 'author'>>;
 
-const KeepEditor = ({ retroId, id, author, content }: KeepEditorProps) => {
+const KeepEditor = ({ retroId, id, author, content, isModify }: KeepEditorProps) => {
   const createKeepMutation = useCreateKeepMutation();
   const [keep, setKeep] = useState<string>(content || '');
 

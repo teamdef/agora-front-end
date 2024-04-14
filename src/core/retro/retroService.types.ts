@@ -23,6 +23,11 @@ export type CreateTryParams = {
   authorId: number;
 };
 
+export type UpdateTryParams = {
+  tryId: number;
+  content: string;
+};
+
 /** payload */
 export type CreateRetroSprintPayload = CreateRetroSprintDTO;
 

@@ -41,3 +41,9 @@ export const useCreateTryMutation = () =>
     mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_TRY_CREATE,
     mutationFn: (payload: types.UseCreateTryParams) => retroService.createTry(payload),
   });
+
+export const useUpdateTryMutation = () =>
+  useMutation({
+    mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_TRY_UPDATE,
+    mutationFn: (payload: types.UseUpdateTryParams) => retroService.updateTry(payload),
+  });

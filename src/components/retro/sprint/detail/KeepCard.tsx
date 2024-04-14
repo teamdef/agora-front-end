@@ -17,12 +17,13 @@ const KeepCard = ({ keep, author }: KeepCardProps) => {
   const router = useRouter();
   const { sprintId } = router.query;
 
-  const keepEditorOpen = () => {
+  const modifyKeepEditorOpen = () => {
     defaultDialogActions.open({
-      content: <KeepEditor author={keep.author} retroId={parseInt(sprintId as string)} content={keep.content} />,
+      content: (
+        <KeepEditor author={keep.author} retroId={parseInt(sprintId as string)} content={keep.content} isModify />
+      ),
     });
   };
-
   return (
     <Wrapper>
       <Header>
@@ -31,7 +32,7 @@ const KeepCard = ({ keep, author }: KeepCardProps) => {
       </Header>
       <Content>{keep.content}</Content>
       <Button
-        onClick={keepEditorOpen}
+        onClick={modifyKeepEditorOpen}
         large
         label="자세히 보기"
         icon={<Enlarge style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />}

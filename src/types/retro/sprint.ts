@@ -194,5 +194,6 @@ export interface ProblemStatus {
 export interface Keep {
   id: number;
   author: MemberType;
+  authorId: number;
   content: string;
 }

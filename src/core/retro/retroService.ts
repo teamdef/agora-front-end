@@ -55,4 +55,8 @@ export default class RetroService {
     const { data } = await this.apiClient.post(URLS.CREATE_TRY, payload);
     return data;
   }
+  async updateTry(payload: types.UpdateTryParams) {
+    const { data } = await this.apiClient.patch(URLS.CREATE_TRY, payload);
+    return data;
+  }
 }
