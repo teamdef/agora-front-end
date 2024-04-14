@@ -1,29 +1,34 @@
 /** service에서 사용할 타입들을 정의합니다. */
 
 import { MemberType } from '~/query/common/commonQueries.types';
+import { ProblemStatus } from '~/types/retro/sprint';
 
 /** params */
 export type ReadRetroSprintListParams = PaginationType & { projectId: number };
 export type ReadRetroSprintDetailParams = { sprintId: number };
 
-export type CreateKeepParams = {
+export type CreateKeepPayload = {
   retroId: number;
   content: string;
   authorId: number;
 };
 
-export type CreateProblemParams = {
+export type CreateProblemPayload = {
   retroId: number;
   content: string;
   authorId: number;
 };
-export type CreateTryParams = {
+export type UpdateProblemPayload = {
+  problemId: number;
+  content: string;
+};
+export type CreateTryPayload = {
   problemId: number;
   content: string;
   authorId: number;
 };
 
-export type UpdateTryParams = {
+export type UpdateTryPayload = {
   tryId: number;
   content: string;
 };
@@ -79,7 +84,7 @@ export interface ProblemsDTO {
   retroId: number;
   content: string;
   authorId: number;
-  status: 'problem' | 'try' | 'solve';
+  status: ProblemStatus['value'];
   tries: TryDTO[];
 }
 

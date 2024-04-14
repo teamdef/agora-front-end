@@ -6,16 +6,14 @@ import EditorDialog from '~/components/dialog/EditorDIalog';
 
 const TryEditor = ({ tries }: { tries?: Try[] }) => {
   return (
-    <EditorDialog>
-      <Wrapper>
-        <Content>
-          {tries?.map((item) => {
-            return <div key={crypto.randomUUID()}>{item.content}</div>;
-          })}
-        </Content>
-        <Button label="새로 만들기" icon={<Pencil />} large />
-      </Wrapper>
-    </EditorDialog>
+    <Wrapper>
+      <Content>
+        {tries?.map((item) => {
+          return <div key={crypto.randomUUID()}>{item.content}</div>;
+        })}
+      </Content>
+      <Button label="새로 만들기" icon={<Pencil />} large />
+    </Wrapper>
   );
 };
 

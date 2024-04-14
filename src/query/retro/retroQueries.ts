@@ -27,23 +27,29 @@ export const useReadSprintRetroDetailQuery = (params: types.UseReadRetroSprintDe
 export const useCreateKeepMutation = () =>
   useMutation({
     mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_KEEP_CREATE,
-    mutationFn: (payload: types.UseCreateKeepParams) => retroService.createKeep(payload),
+    mutationFn: (payload: types.UseCreateKeepPayload) => retroService.createKeep(payload),
   });
 
 export const useCreateProblemMutation = () =>
   useMutation({
     mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_PROBLEM_CREATE,
-    mutationFn: (payload: types.UseCreateProblemParams) => retroService.createProblem(payload),
+    mutationFn: (payload: types.UseCreateProblemPayload) => retroService.createProblem(payload),
+  });
+
+export const useUpdateProblemMutation = () =>
+  useMutation({
+    mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_PROBLEM_CREATE,
+    mutationFn: (payload: types.UseUpdateProblemPayload) => retroService.updateProblem(payload),
   });
 
 export const useCreateTryMutation = () =>
   useMutation({
     mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_TRY_CREATE,
-    mutationFn: (payload: types.UseCreateTryParams) => retroService.createTry(payload),
+    mutationFn: (payload: types.UseCreateTryPayload) => retroService.createTry(payload),
   });
 
 export const useUpdateTryMutation = () =>
   useMutation({
     mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_TRY_UPDATE,
-    mutationFn: (payload: types.UseUpdateTryParams) => retroService.updateTry(payload),
+    mutationFn: (payload: types.UseUpdateTryPayload) => retroService.updateTry(payload),
   });

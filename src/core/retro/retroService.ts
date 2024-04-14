@@ -11,8 +11,10 @@ const URLS = {
   CREATE_RETRO_SPRINT: '/retro',
   RETRO_SPRINT_DETAIL: (sprintId: number) => `/retro/${sprintId}`,
   CREATE_PROBLEM: `/problem`,
+  UPDATE_PROBLEM: (problemId: number) => `/problem/${problemId}/content`,
   CREATE_KEEP: `/keep`,
   CREATE_TRY: `/try`,
+  UPDATE_TRY: (tryId: number) => `/try/${tryId}/content`,
 };
 
 export default class RetroService {
@@ -41,22 +43,26 @@ export default class RetroService {
     return data;
   }
 
-  async createKeep(payload: types.CreateKeepParams) {
+  async createKeep(payload: types.CreateKeepPayload) {
     const { data } = await this.apiClient.post(URLS.CREATE_KEEP, payload);
     return data;
   }
 
-  async createProblem(payload: types.CreateProblemParams) {
+  async createProblem(payload: types.CreateProblemPayload) {
     const { data } = await this.apiClient.post(URLS.CREATE_PROBLEM, payload);
     return data;
   }
+  async updateProblem(payload: types.UpdateProblemPayload) {
+    const { data } = await this.apiClient.patch(URLS.UPDATE_PROBLEM(payload.problemId), payload.content);
+    return data;
+  }
 
-  async createTry(payload: types.CreateTryParams) {
+  async createTry(payload: types.CreateTryPayload) {
     const { data } = await this.apiClient.post(URLS.CREATE_TRY, payload);
     return data;
   }
-  async updateTry(payload: types.UpdateTryParams) {
-    const { data } = await this.apiClient.patch(URLS.CREATE_TRY, payload);
+  async updateTry(payload: types.UpdateTryPayload) {
+    const { data } = await this.apiClient.patch(URLS.UPDATE_TRY(payload.tryId), payload.content);
     return data;
   }
 }

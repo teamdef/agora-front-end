@@ -6,6 +6,7 @@ import KeepEditor from '~/components/common/editor/keep/KeepEditor';
 import Button from '~/components/common/inputs/button/Button';
 import { MemberType } from '~/query/common/commonQueries.types';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
+import { useRetroSprintStore } from '~/store/retro/sprint';
 import { Keep } from '~/types/retro/sprint';
 
 interface KeepCardProps {
@@ -14,14 +15,11 @@ interface KeepCardProps {
 }
 
 const KeepCard = ({ keep, author }: KeepCardProps) => {
-  const router = useRouter();
-  const { sprintId } = router.query;
+  const { id } = useRetroSprintStore((state) => state.retroSprint);
 
   const modifyKeepEditorOpen = () => {
     defaultDialogActions.open({
-      content: (
-        <KeepEditor author={keep.author} retroId={parseInt(sprintId as string)} content={keep.content} isModify />
-      ),
+      content: <KeepEditor author={keep.author} retroId={id} content={keep.content} isModify />,
     });
   };
   return (

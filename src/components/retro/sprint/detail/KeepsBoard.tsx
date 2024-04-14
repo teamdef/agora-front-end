@@ -14,12 +14,13 @@ export const LOGIN_USER = {
   name: '진현우',
 };
 const KeepsBoard = () => {
-  const { keeps, members } = useRetroSprintStore((state) => state.retroSprint);
+  const { keeps, members, id } = useRetroSprintStore((state) => state.retroSprint);
+
   const router = useRouter();
   const { sprintId } = router.query;
   const keepEditorOpen = () => {
     defaultDialogActions.open({
-      content: <KeepEditor author={LOGIN_USER} retroId={parseInt(sprintId as string)} />,
+      content: <KeepEditor author={LOGIN_USER} retroId={id} />,
     });
   };
 

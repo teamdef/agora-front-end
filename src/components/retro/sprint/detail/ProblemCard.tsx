@@ -1,16 +1,27 @@
 import { Delete, Enlarge } from 'public/assets/svgs';
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
+import ProblemEditor from '~/components/common/editor/problem/ProblemEditor';
 import Button from '~/components/common/inputs/button/Button';
+import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 import { useRetroSprintStore } from '~/store/retro/sprint';
 import { Problem } from '~/types/retro/sprint';
+import { LOGIN_USER } from './KeepsBoard';
 
 interface ProblemTryProps {
   problem: Problem;
 }
 
 const ProblemCard = ({ problem }: ProblemTryProps) => {
-  const { members } = useRetroSprintStore((state) => state.retroSprint);
+  const { members, id } = useRetroSprintStore((state) => state.retroSprint);
+
+  const modifyProblemEditorOpen = () => {
+    defaultDialogActions.open({
+      content: (
+        <ProblemEditor id={problem.id} author={LOGIN_USER} content={problem.content} status={problem.status} isModify />
+      ),
+    });
+  };
 
   return (
     <Wrapper>
@@ -26,13 +37,14 @@ const ProblemCard = ({ problem }: ProblemTryProps) => {
             <span>전체 {problem.tries.length}</span>
           </CommentBoxTitle>
           {problem.tries.length === 0 && <EmptyText>등록된 내용이 없습니다.</EmptyText>}
-          {problem.tries.map((item) => {
+          {problem.tries?.map((item) => {
             return <CommentItem key={crypto.randomUUID()}>{item.content}</CommentItem>;
           })}
         </CommentBox>
         <Button
           large
           label="자세히 보기"
+          onClick={modifyProblemEditorOpen}
           icon={<Enlarge style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />}
         />
       </BottomBox>

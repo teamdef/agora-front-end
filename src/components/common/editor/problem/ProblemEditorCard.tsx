@@ -1,24 +1,31 @@
-import styled from 'styled-components';
-import { ProblemEditorProps } from './ProblemEditor';
-import Text from '../../typo/Text';
-import { theme } from '~/styles/theme';
-import ProfileBadge from '../../display/ProfileBadge';
-import Badge from '../../display/Badge';
-import ContentTextField from '../../inputs/textField/ContentTextField';
 import { useMemo, useState } from 'react';
-import { ProblemStatus } from '~/types/retro/sprint';
-import StateDropdown from '../../dropdown/state/StateDropdown';
-import StateSelectBox from '../../dropdown/state/StateSelectBox';
+import styled from 'styled-components';
 import { STATE_LIST } from '~/constants/sprint/problem';
-import { useCreateProblemMutation } from '~/query/retro/retroQueries';
+import { useCreateProblemMutation, useUpdateProblemMutation } from '~/query/retro/retroQueries';
+import { theme } from '~/styles/theme';
+import { ProblemStatus } from '~/types/retro/sprint';
+import Badge from '../../display/Badge';
+import ProfileBadge from '../../display/ProfileBadge';
+import StateSelectBox from '../../dropdown/state/StateSelectBox';
+import ContentTextField from '../../inputs/textField/ContentTextField';
+import Text from '../../typo/Text';
+import { ProblemEditorProps } from './ProblemEditor';
 
 type ProblemEditorCardProps = Omit<ProblemEditorProps, 'comments'>;
 
-const ProblemEditorCard = ({ id, retroId, author, content, status }: ProblemEditorCardProps) => {
+const ProblemEditorCard = ({ id, retroId, author, content, status, isModify }: ProblemEditorCardProps) => {
   const createProblemMutation = useCreateProblemMutation();
+  const updateProblemMutation = useUpdateProblemMutation();
   const [text, setText] = useState<string>(content || '');
-  const [badgeStatus, setBadgeStatus] = useState<ProblemStatus['value']>(status || 'problem');
+  const [badgeStatus, setBadgeStatus] = useState<ProblemStatus['value']>(status || 'START');
   const [openSelectBox, setOpenSelectBox] = useState<boolean>(false);
+  const validUpdateProblem = useMemo(() => {
+    console.log(status, content);
+    if (status && content && (status !== badgeStatus || text !== content)) return true;
+    return false;
+  }, [text, badgeStatus]);
+
+  console.log(validUpdateProblem);
 
   const label = useMemo(
     () => STATE_LIST.find((item) => item.value === badgeStatus)?.label as ProblemStatus['label'],
@@ -37,12 +44,20 @@ const ProblemEditorCard = ({ id, retroId, author, content, status }: ProblemEdit
   };
 
   const handleSubmit = async () => {
-    const payload = {
-      retroId,
-      content: text,
-      authorId: author.id,
-    };
-    await createProblemMutation.mutateAsync(payload, { onSuccess: () => console.log('problem 등록 성공') });
+    if (isModify && id && validUpdateProblem) {
+      const payload = {
+        problemId: id,
+        content: text,
+      };
+      await updateProblemMutation.mutateAsync(payload, { onSuccess: () => console.log('problem 수정 성공') });
+    } else if (retroId) {
+      const payload = {
+        retroId,
+        content: text,
+        authorId: author.id,
+      };
+      await createProblemMutation.mutateAsync(payload, { onSuccess: () => console.log('problem 등록 성공') });
+    }
   };
 
   return (

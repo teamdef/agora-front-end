@@ -6,17 +6,25 @@ import ProblemsContainer from './ProblemsContainer';
 const ProblemsBoard = () => {
   const { problems, members } = useRetroSprintStore((state) => state.retroSprint);
   const problemListByState = STATE_LIST.map((item) => ({
-    ...item,
-    id: crypto.randomUUID(),
-    content: problems.filter((problem) => problem.status === item.value),
+    state: item,
+    key: crypto.randomUUID(),
+    content: problems,
+    // problems.filter((problem) => problem.status === item.value),
   }));
 
   return (
     <Wrapper>
       <Title>문제는 무엇이고, 해결하기 위해 어떤 노력을 할 수 있나요?</Title>
       <Content>
-        {problemListByState.map((state) => {
-          return <ProblemsContainer key={crypto.randomUUID()} state={state} problems={problems} members={members} />;
+        {problemListByState.map((problems) => {
+          return (
+            <ProblemsContainer
+              key={problems.key}
+              state={problems.state}
+              problems={problems.content}
+              members={members}
+            />
+          );
         })}
       </Content>
     </Wrapper>

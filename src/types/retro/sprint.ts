@@ -188,7 +188,7 @@ export type Problem = ProblemsDTO;
 
 export interface ProblemStatus {
   label: '문제 인식' | '개선중' | '문제 해결';
-  value: 'problem' | 'try' | 'solve';
+  value: 'START' | 'IN-PROGRESS' | 'FINISH';
 }
 
 export interface Keep {

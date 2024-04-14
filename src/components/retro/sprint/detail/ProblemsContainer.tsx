@@ -8,6 +8,8 @@ import ProblemEditor from '~/components/common/editor/problem/ProblemEditor';
 import { useRouter } from 'next/router';
 import { LOGIN_USER } from './KeepsBoard';
 import { MemberType } from '~/query/common/commonQueries.types';
+import { useRetroSprintStore } from '~/store/retro/sprint';
+import { BADGE_STATUS } from '~/constants/sprint/problem';
 
 interface ProblemTryBoxProps {
   state: ProblemStatus;
@@ -15,12 +17,12 @@ interface ProblemTryBoxProps {
   members: MemberType[];
 }
 
-const ProblemsContainer = ({ state, problems, members }: ProblemTryBoxProps) => {
+const ProblemsContainer = ({ state, problems }: ProblemTryBoxProps) => {
   const router = useRouter();
-  const { sprintId } = router.query;
-  const problemEditorOpen = () => {
+  const { id } = useRetroSprintStore((state) => state.retroSprint);
+  const createProblemEditorOpen = () => {
     defaultDialogActions.open({
-      content: <ProblemEditor author={LOGIN_USER} retroId={parseInt(sprintId as string)} />,
+      content: <ProblemEditor author={LOGIN_USER} retroId={id} />,
     });
   };
 
@@ -33,7 +35,7 @@ const ProblemsContainer = ({ state, problems, members }: ProblemTryBoxProps) => 
         {problems.map((problem) => {
           return <ProblemCard key={crypto.randomUUID()} problem={problem} />;
         })}
-        {state.value === 'problem' && <CreateItemBox onClick={problemEditorOpen} />}
+        {state.value === BADGE_STATUS['START'].value && <CreateItemBox onClick={createProblemEditorOpen} />}
       </Content>
     </Wrapper>
   );
