@@ -7,7 +7,7 @@
 
 ## dialog 구현
 
-dialog의 명명은 mui 규칙을 따라가도록 하였습니다. 
+dialog의 명명은 mui 규칙을 따라가도록 하였습니다. .
 
 우선, portal을 이용해 다이얼로그 컴포넌트를 root에 렌더링 할 수 있고, backdrop에 렌더링 할 수 있도록 하는 Modal 컴포넌트를 만들었습니다.
 
