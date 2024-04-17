@@ -27,7 +27,27 @@ const LoginDialog = () => {
         로그인
       </Text>
       <Cancel onClick={handleDialogClose} width="32px" height="32px" className="cancel-button" />
-
+      <AgoraLogoWrapper>
+        <img src="/assets/img/agora_logo_x3.png" />
+      </AgoraLogoWrapper>
+      <InputWrapper>
+        <Input type="text" placeholder="아이디 또는 이메일" />
+        <Input type="password" placeholder="비밀번호" />
+      </InputWrapper>
+      <FindWrapper>
+        <Text variant="body_2" className="find-id-btn">
+          아이디 찾기
+        </Text>
+        <Text variant="body_2">|</Text>
+        <Text variant="body_2" className="find-pw-btn">
+          비밀번호 찾기
+        </Text>
+      </FindWrapper>
+      <LoginBtn>
+        <Text variant="body_1" color="#fff">
+          로그인
+        </Text>
+      </LoginBtn>
       <GoogleLoginButton onClick={googleLogin}>
         <img src="/assets/img/google_logo.png" alt="구글 로고" className="logo" />
         <div className="text">구글로 회원가입</div>
@@ -53,6 +73,16 @@ const Wrapper = styled.div`
   }
 `;
 
+const AgoraLogoWrapper = styled.div`
+  ${flexCenter}
+  width:100%;
+  margin-top: 75px;
+  > img {
+    width: 248.5px;
+    height: 56px;
+  }
+`;
+
 const GoogleLoginButton = styled.button`
   margin-top: 40px;
   width: 100%;
@@ -75,4 +105,49 @@ const GoogleLoginButton = styled.button`
   }
 `;
 
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 36px;
+`;
+const Input = styled.input`
+  font-family: Pretendard;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: solid 1px ${({ theme }) => theme.colors.agoraBlack[100]};
+  padding: 13px 24px;
+  color: ${({ theme }) => theme.colors.agoraBlack[700]};
+  font-size: 18px;
+  letter-spacing: -2%;
+  outline: none;
+  width: 100%;
+  font-weight: 500;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.agoraBlack[300]};
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -2%;
+  }
+`;
+
+const FindWrapper = styled.div`
+  display: flex;
+  justify-content: right;
+  margin-top: 10px;
+  gap: 4px;
+  > div {
+    cursor: pointer;
+  }
+`;
+
+const LoginBtn = styled.button`
+  background-color: ${({ theme }) => theme.colors.agoraBlue[400]};
+  border-radius: 8px;
+  height: 60px;
+  ${flexCenter};
+  width: 100%;
+  margin-top: 40px;
+`;
 export default LoginDialog;
