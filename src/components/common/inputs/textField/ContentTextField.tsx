@@ -17,6 +17,7 @@ const ContentTextField = ({ value, onChange, maxLength, autoFocus, placeholder, 
   const [count, setCount] = useState<number>(value.length);
   const textarea = useRef<HTMLTextAreaElement>(null);
   const handleResizeHeight = () => {
+    console.log(textarea.current);
     if (textarea.current !== null) {
       textarea.current.style.height = 'auto'; // 높이 초기화
       textarea.current.style.height = textarea.current.scrollHeight + 'px';

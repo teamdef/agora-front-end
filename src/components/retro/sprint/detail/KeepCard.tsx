@@ -19,7 +19,7 @@ const KeepCard = ({ keep, author }: KeepCardProps) => {
 
   const modifyKeepEditorOpen = () => {
     defaultDialogActions.open({
-      content: <KeepEditor author={keep.author} retroId={id} content={keep.content} isModify />,
+      content: <KeepEditor author={author} retroId={id} content={keep.content} isModify />,
     });
   };
   return (

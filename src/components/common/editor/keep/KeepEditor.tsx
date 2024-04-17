@@ -23,6 +23,7 @@ const KeepEditor = ({ retroId, id, author, content, isModify }: KeepEditorProps)
   const keepHandler = (text: string) => {
     setKeep(text);
   };
+  console.log(author);
   const saveNewContent = async () => {
     const payload = {
       retroId,
