@@ -17,14 +17,12 @@ export const useCreateRetroMutation = () =>
     mutationFn: (payload: types.UseCreateRetroSprintPayload) => retroService.createRetroSprint(payload),
   });
 
-export const useReadSprintRetroDetailQuery = (params: types.UseReadRetroSprintDetailParams) => {
-  console.log(typeof params.sprintId);
-  return useQuery({
+export const useReadSprintRetroDetailQuery = (params: types.UseReadRetroSprintDetailParams) =>
+  useQuery({
     queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL, params.sprintId],
     queryFn: () => retroService.readRetroSprintDetail(params),
     enabled: !!params.sprintId,
   });
-};
 
 export const useCreateKeepMutation = () =>
   useMutation({

@@ -17,15 +17,14 @@ const MemberSelectBox = ({ memberList, selected, valueHandler, closeHandler }: M
     valueHandler(_value);
     closeHandler();
   };
-  console.log();
+
   return (
     <Wrapper $isBlur={memberList.length > 4}>
       <SelectBox>
         {memberList.map((member: MemberType) => {
-          const uuid = crypto.randomUUID();
           const isActive = selected ? selected.includes(member) : false;
           return (
-            <Option key={`MemberSelectBox-${uuid}`} onClick={() => onClickOption(member)} $isActive={isActive}>
+            <Option key={crypto.randomUUID()} onClick={() => onClickOption(member)} $isActive={isActive}>
               <Content>
                 <img src={member.profileImg || DEFAULT_PROFILEIMG} alt="프로필 이미지" />
                 <span>{member.nickname}</span>

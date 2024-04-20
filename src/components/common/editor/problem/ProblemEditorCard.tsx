@@ -16,10 +16,10 @@ import RETRO_QUERY_KEYS from '~/query/retro/queryKeys';
 type ProblemEditorCardProps = Omit<ProblemEditorProps, 'comments'>;
 
 const ProblemEditorCard = ({ id, retroId, author, content, status, isModify }: ProblemEditorCardProps) => {
-  console.log(content);
   const queryClient = useQueryClient();
   const createProblemMutation = useCreateProblemMutation();
   const updateProblemMutation = useUpdateProblemMutation();
+
   const [text, setText] = useState<string>('');
   const [badgeStatus, setBadgeStatus] = useState<ProblemStatus['value']>(status || 'START');
   const [openSelectBox, setOpenSelectBox] = useState<boolean>(false);
@@ -51,7 +51,7 @@ const ProblemEditorCard = ({ id, retroId, author, content, status, isModify }: P
         problemId: id,
         content: text,
       };
-      console.log(retroId);
+
       await updateProblemMutation.mutateAsync(payload, {
         onSuccess: () => queryClient.invalidateQueries({ queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL, retroId] }),
       });
@@ -61,6 +61,7 @@ const ProblemEditorCard = ({ id, retroId, author, content, status, isModify }: P
         content: text,
         authorId: author.id,
       };
+
       await createProblemMutation.mutateAsync(payload, {
         onSuccess: () => queryClient.invalidateQueries({ queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL, retroId] }),
       });

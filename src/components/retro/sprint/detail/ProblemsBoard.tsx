@@ -9,7 +9,8 @@ const ProblemsBoard = () => {
     state: item,
     key: crypto.randomUUID(),
     content: problems,
-    // problems.filter((problem) => problem.status === item.value), 추후 api 변경되면 적용 필요
+    // TODO 추후 api 변경되면 적용 필요
+    // problems.filter((problem) => problem.status === item.value)
   }));
 
   return (

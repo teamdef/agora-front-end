@@ -19,12 +19,14 @@ const ProblemCard = ({ problem }: ProblemTryProps) => {
   const queryClient = useQueryClient();
   const { members, id } = useRetroSprintStore((state) => state.retroSprint);
   const deleteProblemMutation = useDeleteProblemMutation();
+
   const deleteProblem = () => {
     const payload = { problemId: problem.id };
     deleteProblemMutation.mutate(payload, {
       onSuccess: () => queryClient.invalidateQueries({ queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL, id] }),
     });
   };
+
   const modifyProblemEditorOpen = () => {
     defaultDialogActions.open({
       content: (

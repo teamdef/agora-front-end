@@ -6,6 +6,7 @@ import stringToDateTextFormatter from '~/utils/time/stringToDateTextFormatter';
 const RetroInfo = () => {
   const { creator: author, createTime, members } = useRetroSprintStore((state) => state.retroSprint);
   const formattedCreateTime = stringToDateTextFormatter(createTime);
+
   return (
     <Wrapper>
       <li>

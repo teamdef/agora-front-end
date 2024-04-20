@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 import Badge from '~/components/common/display/Badge';
-import { Problem, ProblemStatus } from '~/types/retro/sprint';
-import ProblemCard from './ProblemCard';
-import CreateItemBox from './CreateItemBox';
-import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 import ProblemEditor from '~/components/common/editor/problem/ProblemEditor';
-import { useRouter } from 'next/router';
-import { LOGIN_USER } from './KeepsBoard';
-import { MemberType } from '~/query/common/commonQueries.types';
-import { useRetroSprintStore } from '~/store/retro/sprint';
 import { BADGE_STATUS } from '~/constants/sprint/problem';
+import { MemberType } from '~/query/common/commonQueries.types';
+import { defaultDialogActions } from '~/store/dialog/defaultDialog';
+import { useRetroSprintStore } from '~/store/retro/sprint';
+import { Problem, ProblemStatus } from '~/types/retro/sprint';
+import CreateItemBox from './CreateItemBox';
+import { LOGIN_USER } from './KeepsBoard';
+import ProblemCard from './ProblemCard';
 
 interface ProblemTryBoxProps {
   state: ProblemStatus;
@@ -18,7 +17,6 @@ interface ProblemTryBoxProps {
 }
 
 const ProblemsContainer = ({ state, problems }: ProblemTryBoxProps) => {
-  const router = useRouter();
   const { id } = useRetroSprintStore((state) => state.retroSprint);
   const createProblemEditorOpen = () => {
     defaultDialogActions.open({

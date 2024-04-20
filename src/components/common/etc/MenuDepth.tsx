@@ -11,7 +11,7 @@ const MenuDepth = ({ menuDepth }: Props) => {
     <Wrapper>
       {menuDepth.map((menu, idx) => {
         return (
-          <div key={`menu-${menu}-${idx}`}>
+          <div key={crypto.randomUUID()}>
             <Text variant="subtitle_2" color={colors.agoraBlack[400]}>
               {menu}
             </Text>

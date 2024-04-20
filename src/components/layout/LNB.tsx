@@ -1,8 +1,9 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Text from '~/components/common/typo/Text';
 import { LNB_MENUS } from './constant';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+
 const LNB = () => {
   const { pathname } = useRouter();
   return (
@@ -14,7 +15,7 @@ const LNB = () => {
         const isMatch = pathname === menu.path;
         const hasSubMenu = menu?.subMenu;
         return (
-          <Group key={`${menu.path}`}>
+          <Group key={crypto.randomUUID()}>
             <Link href={`${menu.path}`} className={isMatch && !hasSubMenu ? 'active' : ''}>
               <GroupTitle>
                 {menu.icon}
@@ -27,7 +28,7 @@ const LNB = () => {
                 {menu.subMenu.map((subMenu) => {
                   const isMatch = pathname === subMenu.path;
                   return (
-                    <Link href={`${subMenu.path}`} key={`${subMenu.path}`}>
+                    <Link href={`${subMenu.path}`} key={crypto.randomUUID()}>
                       <GroupItem className={isMatch ? 'active' : ''}>
                         <Text variant="body_1">{subMenu.title}</Text>
                       </GroupItem>

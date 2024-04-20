@@ -16,8 +16,6 @@ export const LOGIN_USER = {
 const KeepsBoard = () => {
   const { keeps, members, id } = useRetroSprintStore((state) => state.retroSprint);
 
-  const router = useRouter();
-  const { sprintId } = router.query;
   const keepEditorOpen = () => {
     defaultDialogActions.open({
       content: <KeepEditor author={LOGIN_USER} retroId={id} />,
