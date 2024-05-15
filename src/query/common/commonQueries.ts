@@ -3,7 +3,7 @@ import * as types from './commonQueries.types';
 import COMMON_QUERY_KEYS from './queryKeys';
 import { useQuery } from '@tanstack/react-query';
 
-const commonService = new CommonService({ isMock: false });
+const commonService = new CommonService({ isMock: false, isPublic: false });
 
 export const useReadCommonMembersQuery = () =>
   useQuery({

@@ -3,7 +3,7 @@ import RetroService from '~/core/retro/retroService';
 import RETRO_QUERY_KEYS from './queryKeys';
 import * as types from './retroQueries.types';
 
-const retroService = new RetroService({ isMock: false });
+const retroService = new RetroService({ isMock: false, isPublic: false });
 
 export const useReadRetroSprintListQuery = (params: types.UseReadRetroSprintParams) =>
   useQuery({

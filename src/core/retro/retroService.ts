@@ -22,8 +22,8 @@ const URLS = {
 export default class RetroService {
   private apiClient: ApiClient;
 
-  constructor({ isMock }: { isMock: boolean }) {
-    this.apiClient = new ApiClient({ isMock });
+  constructor({ isMock, isPublic }: { isMock: boolean; isPublic: boolean }) {
+    this.apiClient = new ApiClient({ isMock, isPublic });
   }
 
   async readRetroSprintList(params: types.ReadRetroSprintListParams): Promise<types.ReadRetroSprintListResponse> {
