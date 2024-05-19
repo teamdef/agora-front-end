@@ -51,7 +51,9 @@ export default class RetroService {
     return data;
   }
   async updateRetroSprintTitle(params: types.UpdateRetroSprintTitleParams) {
-    const { data } = await this.apiClient.patch(URLS.UPDATE_RETRO_SPRINT_TITLE(params.sprintId));
+    const { data } = await this.apiClient.patch(URLS.UPDATE_RETRO_SPRINT_TITLE(params.sprintId), {
+      title: params.title,
+    });
     return data;
   }
   async createKeep(payload: types.CreateKeepPayload) {
