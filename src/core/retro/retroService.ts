@@ -10,7 +10,8 @@ const URLS = {
   READ_RETRO_SPRINT_LIST: '/retro',
   CREATE_RETRO_SPRINT: '/retro',
   RETRO_SPRINT_DETAIL: (sprintId: number) => `/retro/${sprintId}`,
-  RETRO_SPRINT_DELETE: (sprintId: number) => `/retro/${sprintId}`,
+  DELETE_RETRO_SPRINT: (sprintId: number) => `/retro/${sprintId}`,
+  UPDATE_RETRO_SPRINT_TITLE: (sprintId: number) => `/retro/${sprintId}`,
   CREATE_PROBLEM: `/problem`,
   UPDATE_PROBLEM: (problemId: number) => `/problem/${problemId}/content`,
   DETAIL_PROBLEM: (problemId: number) => `/problem/${problemId}`,
@@ -46,7 +47,11 @@ export default class RetroService {
     return data;
   }
   async deleteRetroSprint(params: types.DeleteRetroSprintParams) {
-    const { data } = await this.apiClient.delete(URLS.RETRO_SPRINT_DELETE(params.sprintId));
+    const { data } = await this.apiClient.delete(URLS.DELETE_RETRO_SPRINT(params.sprintId));
+    return data;
+  }
+  async updateRetroSprintTitle(params: types.UpdateRetroSprintTitleParams) {
+    const { data } = await this.apiClient.patch(URLS.UPDATE_RETRO_SPRINT_TITLE(params.sprintId));
     return data;
   }
   async createKeep(payload: types.CreateKeepPayload) {

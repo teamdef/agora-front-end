@@ -34,12 +34,21 @@ export const useDeleteRetroSprintMutation = (params: types.UseDeleteRetroSprintP
     mutationFn: (payload: types.UseDeleteRetroSprintParams) => retroService.deleteRetroSprint(payload),
   });
 
+// 회고 제목 변경
+export const useUpdateRetroSprintTitleMutation = (params: types.UseUpdateRetroSprintTitleParams) =>
+  useMutation({
+    mutationKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_TITLE_UPDATE, params.sprintId],
+    mutationFn: (payload: types.UseUpdateRetroSprintTitleParams) => retroService.updateRetroSprintTitle(payload),
+  });
+
+// keep 생성
 export const useCreateKeepMutation = () =>
   useMutation({
     mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_KEEP_CREATE,
     mutationFn: (payload: types.UseCreateKeepPayload) => retroService.createKeep(payload),
   });
 
+// problem 생성
 export const useCreateProblemMutation = () =>
   useMutation({
     mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_PROBLEM_CREATE,
