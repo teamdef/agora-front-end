@@ -25,7 +25,7 @@ const Wrapper = styled.div<Pick<Props, 'required'>>`
   width: 100%;
   gap: 56px;
   .label {
-    width: 80px;
+    min-width: 80px;
     flex: none;
   }
   .input {
