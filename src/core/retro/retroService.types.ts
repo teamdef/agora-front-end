@@ -6,6 +6,7 @@ import { ProblemStatus } from '~/types/retro/sprint';
 /** params */
 export type ReadRetroSprintListParams = PaginationType & { projectId: number };
 export type ReadRetroSprintDetailParams = { sprintId: number };
+export type DeleteRetroSprintParams = { sprintId: number };
 
 export type CreateKeepPayload = {
   retroId: number;

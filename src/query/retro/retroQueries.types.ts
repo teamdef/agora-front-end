@@ -2,6 +2,7 @@ import type * as types from '~/core/retro/retroService.types';
 
 export type UseCreateRetroSprintPayload = types.CreateRetroSprintPayload;
 export type UseReadRetroSprintParams = types.ReadRetroSprintListParams;
+export type UseDeleteRetroSprintParams = types.DeleteRetroSprintParams;
 export type UseReadRetroSprintDetailParams = types.ReadRetroSprintDetailParams;
 export type UseCreateKeepPayload = types.CreateKeepPayload;
 export type UseCreateProblemPayload = types.CreateProblemPayload;

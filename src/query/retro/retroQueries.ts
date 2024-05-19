@@ -5,23 +5,33 @@ import * as types from './retroQueries.types';
 
 const retroService = new RetroService({ isMock: false, isPublic: false });
 
+// 회고 목록 조회
 export const useReadRetroSprintListQuery = (params: types.UseReadRetroSprintParams) =>
   useQuery({
     queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_LIST, params.projectId],
     queryFn: () => retroService.readRetroSprintList(params),
   });
 
+// 회고 생성
 export const useCreateRetroMutation = () =>
   useMutation({
     mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_CREATE,
     mutationFn: (payload: types.UseCreateRetroSprintPayload) => retroService.createRetroSprint(payload),
   });
 
-export const useReadSprintRetroDetailQuery = (params: types.UseReadRetroSprintDetailParams) =>
+// 회고 상세 조회
+export const useReadRetroSprintDetailQuery = (params: types.UseReadRetroSprintDetailParams) =>
   useQuery({
     queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL, params.sprintId],
     queryFn: () => retroService.readRetroSprintDetail(params),
     enabled: !!params.sprintId,
+  });
+
+// 회고 삭제
+export const useDeleteRetroSprintMutation = (params: types.UseDeleteRetroSprintParams) =>
+  useMutation({
+    mutationKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_DELETE, params.sprintId],
+    mutationFn: (payload: types.UseDeleteRetroSprintParams) => retroService.deleteRetroSprint(payload),
   });
 
 export const useCreateKeepMutation = () =>

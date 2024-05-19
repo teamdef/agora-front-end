@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import { useReadSprintRetroDetailQuery } from '~/query/retro/retroQueries';
+import { useReadRetroSprintDetailQuery } from '~/query/retro/retroQueries';
 import RetroContent from './RetroContent';
 import RetroInfo from './RetroInfo';
 import RetroSprintTitle from './RetroSprintTitle';
@@ -10,7 +10,7 @@ import { retroSprintActions } from '~/store/retro/sprint';
 const RetroSprintDetail = () => {
   const router = useRouter();
   const query = router.query;
-  const { isSuccess, data: retroSprint } = useReadSprintRetroDetailQuery({
+  const { isSuccess, data: retroSprint } = useReadRetroSprintDetailQuery({
     sprintId: Number(query.sprintId),
   });
 

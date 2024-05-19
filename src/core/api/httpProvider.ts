@@ -13,7 +13,7 @@ const TIMEOUT = 10 * 1000;
  */
 
 const PRIVATE_HEADER = {
-  Authorization: process.env.NEXT_PUBLIC_DEV_API_TOKEN,
+  // Authorization: process.env.NEXT_PUBLIC_DEV_API_TOKEN,
   'Content-Type': 'application/json',
 };
 const PUBLIC_HEADER = {
