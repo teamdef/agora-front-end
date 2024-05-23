@@ -18,7 +18,7 @@ export default class HTTPProvider {
     this.client = axios.create({
       baseURL: isMock ? MOCK_BASE_URL : BASE_URL,
       timeout: TIMEOUT,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', Authorization: process.env.NEXT_PUBLIC_DEV_API_TOKEN },
       responseType: 'json' as const,
     });
   }

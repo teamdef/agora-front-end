@@ -5,11 +5,18 @@ import UserList from './UserList';
 import { RetroSprintListItemType } from '~/query/retro/retroQueries.types';
 import Link from 'next/link';
 import { Paths } from '~/constants/Paths';
+import { useRouter } from 'next/router';
 
 interface Props {
   retroList: RetroSprintListItemType[];
 }
 const RetroSprintList = ({ retroList }: Props) => {
+  const router = useRouter();
+
+  const handleClick = (id: number) => {
+    router.push(`/detail/sprint/${id}`);
+  };
+  
   return (
     <Wrapper>
       <ListHeader>
@@ -34,12 +41,10 @@ const RetroSprintList = ({ retroList }: Props) => {
         {retroList.length > 0 &&
           retroList.map((retro) => {
             return (
-              <ListBodyItem key={retro.id}>
-                <Link href={Paths.RETRO_SPRINT_DETAIL(retro.id)} className="col-1">
-                  <Text variant="detail_1" color={colors.agoraBlack[700]}>
-                    {retro.title}
-                  </Text>
-                </Link>
+              <ListBodyItem key={retro.id} onClick={() => handleClick(retro.id)}>
+                <Text variant="detail_1" color={colors.agoraBlack[700]} className="col-1">
+                  {retro.title}
+                </Text>
                 <Text className="col-2" variant="detail_2" color={colors.agoraBlack[700]}>
                   {retro.createTime.substring(0, 10)}
                 </Text>

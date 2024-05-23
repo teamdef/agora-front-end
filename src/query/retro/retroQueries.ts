@@ -9,6 +9,7 @@ export const useReadRetroSprintListQuery = (params: types.UseReadRetroSprintPara
   useQuery({
     queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_LIST, params.projectId],
     queryFn: () => retroService.readRetroSprintList(params),
+    enabled: params.projectId !== undefined,
   });
 
 export const useCreateRetroMutation = () =>

@@ -9,10 +9,7 @@ import ProjectService from '~/core/project/projectService';
 const ProjectList = () => {
   const { data: projectList, isSuccess } = useReadProjectListQuery();
 
-  useEffect(() => {
-    const projectService = new ProjectService({ isMock: false });
-    projectService.readProjectList();
-  }, []);
+
 
   if (!isSuccess) {
     return null;

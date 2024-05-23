@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Text from '~/components/common/typo/Text';
 import { ProjectListItemType } from '~/query/project/projectQueries.types';
@@ -7,8 +8,12 @@ interface Props {
   project: ProjectListItemType;
 }
 const ProjectListItem = ({ project }: Props) => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(`/project/${project.projectId}/retro/sprint`);
+  };
   return (
-    <Wrapper>
+    <Wrapper onClick={handleClick}>
       <Text variant="headline_2">{project.projectTitle}</Text>
       <Text variant="body_1" color={theme.colors.agoraBlack[400]}>
         {project.projectDescription}

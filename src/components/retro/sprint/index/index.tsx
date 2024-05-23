@@ -7,11 +7,25 @@ import Link from 'next/link';
 import { Paths } from '~/constants/Paths';
 import RetroSprintList from './RetroSprintList';
 import { useReadRetroSprintListQuery } from '~/query/retro/retroQueries';
+import { useRouter } from 'next/router';
 
 const RetroSprint = () => {
+  const router = useRouter();
+  const { projectId } = router.query;
+
+  console.log(projectId);
+
   const currentPageNo = 1;
   const totalPageCount = 10;
-  const readSprintRetroListQuery = useReadRetroSprintListQuery({ pageNo: currentPageNo, listSize: 20, projectId: 1 });
+  const readSprintRetroListQuery = useReadRetroSprintListQuery({
+    pageNo: currentPageNo,
+    listSize: 20,
+    projectId: Number(projectId),
+  });
+
+  const handleCreateClick = () => {
+    router.push(`/project/${projectId}/retro/sprint/create`);
+  };
 
   if (!readSprintRetroListQuery.isSuccess) {
     return null;
@@ -29,11 +43,9 @@ const RetroSprint = () => {
       <BottomSection>
         <div></div>
         <Pagination totalPage={totalPageCount} currentPage={currentPageNo} pagehandler={() => console.log(1)} />
-        <Link href={Paths.RETRO_SPRINT_CREATE}>
-          <ButtonWrapper>
-            <Button label="새로만들기" small />
-          </ButtonWrapper>
-        </Link>
+        <ButtonWrapper>
+          <Button onClick={handleCreateClick} label="새로만들기" small />
+        </ButtonWrapper>
       </BottomSection>
     </Wrapper>
   );

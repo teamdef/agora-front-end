@@ -18,6 +18,7 @@ import { useEffect } from 'react';
 
 const RetroSprintCreate = () => {
   const router = useRouter();
+  const { projectId } = router.query;
 
   const readCommonMembers = useReadCommonMembersQuery();
   const [title, handleTitleChange] = useTextFieldInput('');
@@ -37,14 +38,14 @@ const RetroSprintCreate = () => {
     const joinMemberIds = selectedMembers.map((member) => member.id);
 
     const payload = {
-      projectId: 1,
+      projectId: Number(projectId),
       authorId: 1,
       title,
       joinMemberIds,
       content: '',
       createTime: getDateAndTimeISOString(),
     };
-    await createRetroMutation.mutateAsync(payload, { onSuccess: () => console.log('등록 성공!!') });
+    await createRetroMutation.mutateAsync(payload);
     /** 목록 refetch 필요 */
     window.alert('회고 생성에 성공하였습니다. 목록 화면으로 이동합니다.');
     router.back();
