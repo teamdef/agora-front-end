@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
 import GNBLayout from '~/components/layout/GNBLayout';
-import Projects from '~/components/project/list';
+import CreateProject from '~/components/myProject/create/MyProjectCreate';
 
 const Page = () => {
-  return <Projects />;
+  return <CreateProject />;
 };
 
 Page.getLayout = function getLayout(page: ReactElement) {

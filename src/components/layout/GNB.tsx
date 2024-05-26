@@ -11,6 +11,7 @@ const GNB = () => {
         <Logo onClick={() => router.push('/')}>
           <img src="/assets/img/illust/agora_logo.png" />
         </Logo>
+        <button onClick={() => router.push('/my-project')}>프로젝트</button>
       </Container>
     </Wrapper>
   );

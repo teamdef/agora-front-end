@@ -7,7 +7,7 @@ import FormRow from '~/components/retro/sprint/create/FormRow';
 import useTextFieldInput from '~/hooks/useTextFieldInput';
 import { useCreateProjectMutation } from '~/query/project/projectQueries';
 
-const CreateProject = () => {
+const MyProjectCreate = () => {
   const router = useRouter();
   const createProjectMutation = useCreateProjectMutation();
   const [projectTitle, handleProjectTitleChange] = useTextFieldInput('');
@@ -26,7 +26,7 @@ const CreateProject = () => {
     createProjectMutation.mutate(payload, {
       onSuccess: () => {
         alert('프로젝트 생성 성공');
-        router.push('/projects');
+        router.push('/my-project');
       },
       onError: () => alert('프로젝트 생성 실패'),
     });
@@ -53,4 +53,4 @@ const Wrapper = styled.div`
 `;
 
 const FormSection = styled.div``;
-export default CreateProject;
+export default MyProjectCreate;

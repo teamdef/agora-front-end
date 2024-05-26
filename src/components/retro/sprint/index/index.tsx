@@ -13,7 +13,6 @@ const RetroSprint = () => {
   const router = useRouter();
   const { projectId } = router.query;
 
-  console.log(projectId);
 
   const currentPageNo = 1;
   const totalPageCount = 10;
@@ -24,7 +23,7 @@ const RetroSprint = () => {
   });
 
   const handleCreateClick = () => {
-    router.push(`/project/${projectId}/retro/sprint/create`);
+    router.push(`/${projectId}/retro/sprint/create`);
   };
 
   if (!readSprintRetroListQuery.isSuccess) {

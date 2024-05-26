@@ -10,7 +10,7 @@ interface Props {
 const ProjectListItem = ({ project }: Props) => {
   const router = useRouter();
   const handleClick = () => {
-    router.push(`/project/${project.projectId}/retro/sprint`);
+    router.push(`/${project.projectId}/retro/sprint`);
   };
   return (
     <Wrapper onClick={handleClick}>

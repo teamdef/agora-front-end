@@ -13,10 +13,11 @@ interface Props {
 const RetroSprintList = ({ retroList }: Props) => {
   const router = useRouter();
 
+  const { projectId } = router.query;
   const handleClick = (id: number) => {
-    router.push(`/detail/sprint/${id}`);
+    router.push(`/${projectId}/retro/sprint/${id}`);
   };
-  
+
   return (
     <Wrapper>
       <ListHeader>

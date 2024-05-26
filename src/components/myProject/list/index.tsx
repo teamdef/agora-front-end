@@ -3,11 +3,11 @@ import Button from '~/components/common/inputs/button/Button';
 import ProjectList from './ProjectList';
 import { useRouter } from 'next/router';
 
-const Projects = () => {
+const MyProject = () => {
   const router = useRouter();
 
   const handleCreateClick = () => {
-    router.push('/projects/create');
+    router.push('/my-project/create');
   };
 
   return (
@@ -21,4 +21,4 @@ const Projects = () => {
 const Wrapper = styled.div`
   padding: 48px 48px 120px 48px;
 `;
-export default Projects;
+export default MyProject;

@@ -1,15 +1,9 @@
 import styled from 'styled-components';
 import ProjectListItem from './ProjectListItem';
-import Button from '~/components/common/inputs/button/Button';
 import { useReadProjectListQuery } from '~/query/project/projectQueries';
-import { Suspense, useEffect } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
-import ProjectService from '~/core/project/projectService';
 
-const ProjectList = () => {
+const MyProjectList = () => {
   const { data: projectList, isSuccess } = useReadProjectListQuery();
-
-
 
   if (!isSuccess) {
     return null;
@@ -29,10 +23,4 @@ const Wrapper = styled.div`
   margin-bottom: 48px;
 `;
 
-const ProjectListWrapper = styled.div`
-  display: flex;
-  gap: 16px;
-  margin-bottom: 48px;
-`;
-
-export default ProjectList;
+export default MyProjectList;

@@ -11,10 +11,8 @@ export const useReadProjectListQuery = () =>
     queryFn: () => projectService.readProjectList(),
   });
 
-export const useCreateProjectMutation = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
+export const useCreateProjectMutation = () =>
+  useMutation({
     mutationKey: PROJECT_QUERY_KEYS.PROJECT_CREATE,
     mutationFn: (payload: types.UseCreateProjectPayload) => projectService.createProject(payload),
   });
-};

@@ -5,12 +5,14 @@ import * as types from './retroQueries.types';
 
 const retroService = new RetroService({ isMock: false });
 
-export const useReadRetroSprintListQuery = (params: types.UseReadRetroSprintParams) =>
-  useQuery({
-    queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_LIST, params.projectId],
+export const useReadRetroSprintListQuery = (params: types.UseReadRetroSprintParams) => {
+  const { projectId } = params;
+  return useQuery({
+    queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_LIST, projectId],
     queryFn: () => retroService.readRetroSprintList(params),
-    enabled: params.projectId !== undefined,
+    enabled: projectId === 0 || projectId ? true : false,
   });
+};
 
 export const useCreateRetroMutation = () =>
   useMutation({
@@ -22,6 +24,7 @@ export const useReadSprintRetroDetailQuery = (params: types.UseReadRetroSprintDe
   useQuery({
     queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL, params],
     queryFn: () => retroService.readRetroSprintDetail(params),
+    enabled: !!params.sprintId,
   });
 
 export const useCreateProblemMutation = () =>

@@ -2,9 +2,13 @@ import styled from 'styled-components';
 import Text from '~/components/common/typo/Text';
 import { LNB_MENUS } from './constant';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { PathsType } from '~/constants/Paths';
 const LNB = () => {
-  const { pathname } = useRouter();
+  const { pathname, query, push } = useRouter();
+
+  const handlePathClick = (path: PathsType) => {
+    push({ pathname: `/${query.projectId}${path}` });
+  };
   return (
     <Wrapper>
       <Text variant="detail_2" className="menu-title">
@@ -15,23 +19,23 @@ const LNB = () => {
         const hasSubMenu = menu?.subMenu;
         return (
           <Group key={`${menu.path}`}>
-            <Link href={`${menu.path}`} className={isMatch && !hasSubMenu ? 'active' : ''}>
+            <div onClick={() => handlePathClick(menu.path)} className={isMatch && !hasSubMenu ? 'active' : ''}>
               <GroupTitle>
                 {menu.icon}
                 <Text variant="headline_2">{menu.title}</Text>
               </GroupTitle>
-            </Link>
+            </div>
 
             {menu?.subMenu && (
               <GroupList>
                 {menu.subMenu.map((subMenu) => {
                   const isMatch = pathname === subMenu.path;
                   return (
-                    <Link href={`${subMenu.path}`} key={`${subMenu.path}`}>
+                    <div onClick={() => handlePathClick(subMenu.path)} key={`${subMenu.path}`}>
                       <GroupItem className={isMatch ? 'active' : ''}>
                         <Text variant="body_1">{subMenu.title}</Text>
                       </GroupItem>
-                    </Link>
+                    </div>
                   );
                 })}
               </GroupList>
