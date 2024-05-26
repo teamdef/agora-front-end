@@ -6,6 +6,8 @@ import { PathsType } from '~/constants/Paths';
 const LNB = () => {
   const { pathname, query, push } = useRouter();
 
+  const pathnameWithoutProjectId = `/${pathname.split('/').slice(2).join('/')}`;
+
   const handlePathClick = (path: PathsType) => {
     push({ pathname: `/${query.projectId}${path}` });
   };
@@ -15,7 +17,7 @@ const LNB = () => {
         Menu
       </Text>
       {LNB_MENUS.map((menu) => {
-        const isMatch = pathname === menu.path;
+        const isMatch = pathnameWithoutProjectId === menu.path;
         const hasSubMenu = menu?.subMenu;
         return (
           <Group key={`${menu.path}`}>
@@ -29,7 +31,7 @@ const LNB = () => {
             {menu?.subMenu && (
               <GroupList>
                 {menu.subMenu.map((subMenu) => {
-                  const isMatch = pathname === subMenu.path;
+                  const isMatch = pathnameWithoutProjectId === subMenu.path;
                   return (
                     <div onClick={() => handlePathClick(subMenu.path)} key={`${subMenu.path}`}>
                       <GroupItem className={isMatch ? 'active' : ''}>

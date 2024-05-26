@@ -19,8 +19,10 @@ const MyProjectList = () => {
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction:column;
   gap: 16px;
   margin-bottom: 48px;
+  width: 100%;
 `;
 
 export default MyProjectList;

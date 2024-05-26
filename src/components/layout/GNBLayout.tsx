@@ -11,10 +11,12 @@ const GNBLayout = ({ children }: { children: React.ReactNode }) => {
 };
 
 const Wrapper = styled.div`
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
 `;
 
-const ChildrenWrapper = styled.div``;
+const ChildrenWrapper = styled.div`
+
+`;
 
 export default GNBLayout;
