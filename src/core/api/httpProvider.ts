@@ -11,14 +11,23 @@ const TIMEOUT = 10 * 1000;
  * @see https://stack94.tistory.com/entry/TypeScript-Axios-TypeScript-%EC%A0%81%EC%9A%A9%ED%95%98%EC%97%AC-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%B3%B4%EC%9E%90
  *  msw서버를 사용할 것인지, 실제 서버 호출할 것인지 선택가능할 듯
  */
+
+const PRIVATE_HEADER = {
+  Authorization: process.env.NEXT_PUBLIC_DEV_API_TOKEN,
+  'Content-Type': 'application/json',
+};
+const PUBLIC_HEADER = {
+  'Content-Type': 'application/json',
+};
+
 export default class HTTPProvider {
   private client: AxiosInstance;
 
-  constructor({ isMock }: { isMock: boolean }) {
+  constructor({ isMock, isPublic }: { isMock: boolean; isPublic: boolean }) {
     this.client = axios.create({
       baseURL: isMock ? MOCK_BASE_URL : BASE_URL,
       timeout: TIMEOUT,
-      headers: { 'Content-Type': 'application/json', Authorization: process.env.NEXT_PUBLIC_DEV_API_TOKEN },
+      headers: isPublic ? PUBLIC_HEADER : PRIVATE_HEADER,
       responseType: 'json' as const,
     });
   }

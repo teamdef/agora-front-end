@@ -1,17 +1,12 @@
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
-import { MemberType } from '~/query/common/commonQueries.types';
+import { useRetroSprintStore } from '~/store/retro/sprint';
 import stringToDateTextFormatter from '~/utils/time/stringToDateTextFormatter';
-interface RetroInfoProps {
-  retroInfo: {
-    author: MemberType;
-    createTime: string;
-    members: MemberType[];
-  };
-}
-const RetroInfo = ({ retroInfo }: RetroInfoProps) => {
-  const { author, createTime, members } = retroInfo;
+
+const RetroInfo = () => {
+  const { creator: author, createTime, members } = useRetroSprintStore((state) => state.retroSprint);
   const formattedCreateTime = stringToDateTextFormatter(createTime);
+
   return (
     <Wrapper>
       <li>
@@ -20,13 +15,13 @@ const RetroInfo = ({ retroInfo }: RetroInfoProps) => {
       </li>
       <li>
         <h3>작성자</h3>
-        {/* <ProfileBadge memberState={author} /> */}
+        <ProfileBadge memberState={author} />
       </li>
       <li>
         <h3>참여자</h3>
         <MemberList>
           {members.map((member) => {
-            return <ProfileBadge key={`ProfileBadge-${crypto.randomUUID()}`} memberState={member} />;
+            return <ProfileBadge key={crypto.randomUUID()} memberState={member} />;
           })}
         </MemberList>
       </li>

@@ -1,24 +1,26 @@
 import styled from 'styled-components';
 import Badge from '~/components/common/display/Badge';
-import { Problem, ProblemStatus } from '~/types/retro/sprint';
-import RetroItem from './ProblemCard';
-import CreateItemBox from './CreateItemBox';
-import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 import ProblemEditor from '~/components/common/editor/problem/ProblemEditor';
-import { useRouter } from 'next/router';
+import { BADGE_STATUS } from '~/constants/sprint/problem';
+import { MemberType } from '~/query/common/commonQueries.types';
+import { defaultDialogActions } from '~/store/dialog/defaultDialog';
+import { useRetroSprintStore } from '~/store/retro/sprint';
+import { Problem, ProblemStatus } from '~/types/retro/sprint';
+import CreateItemBox from './CreateItemBox';
 import { LOGIN_USER } from './KeepsBoard';
+import ProblemCard from './ProblemCard';
 
 interface ProblemTryBoxProps {
   state: ProblemStatus;
-  items: Problem[];
+  problems: Problem[];
+  members: MemberType[];
 }
 
-const ProblemsContainer = ({ state, items }: ProblemTryBoxProps) => {
-  const router = useRouter();
-  const { sprintId } = router.query;
-  const problemEditorOpen = () => {
+const ProblemsContainer = ({ state, problems }: ProblemTryBoxProps) => {
+  const { id } = useRetroSprintStore((state) => state.retroSprint);
+  const createProblemEditorOpen = () => {
     defaultDialogActions.open({
-      content: <ProblemEditor author={LOGIN_USER} retroId={parseInt(sprintId as string)} />,
+      content: <ProblemEditor author={LOGIN_USER} retroId={id} />,
     });
   };
 
@@ -28,10 +30,10 @@ const ProblemsContainer = ({ state, items }: ProblemTryBoxProps) => {
         <Badge value={state.value} label={state.label} />
       </StatusBox>
       <Content>
-        {items.map((item) => {
-          return <RetroItem key={`RetroItem-${crypto.randomUUID()}`} data={item} />;
+        {problems.map((problem) => {
+          return <ProblemCard key={crypto.randomUUID()} problem={problem} />;
         })}
-        {state.value === 'problem' && <CreateItemBox onClick={problemEditorOpen} />}
+        {state.value === BADGE_STATUS['START'].value && <CreateItemBox onClick={createProblemEditorOpen} />}
       </Content>
     </Wrapper>
   );

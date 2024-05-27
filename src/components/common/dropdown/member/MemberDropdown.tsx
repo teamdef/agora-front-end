@@ -40,8 +40,7 @@ const MemberDropdown = ({ memberList, valueHandler, selected, placeHolder }: Dro
           <SelectedMemberWrapper>
             <SelectedMember>
               {selected.map((member) => {
-                const uuid = crypto.randomUUID();
-                return <ProfileBadge key={`MemberDropdown-${uuid}`} memberState={member} closeFn={toggleNewData} />;
+                return <ProfileBadge key={crypto.randomUUID()} memberState={member} closeFn={toggleNewData} />;
               })}
             </SelectedMember>
           </SelectedMemberWrapper>

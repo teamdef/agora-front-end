@@ -10,15 +10,22 @@ const URLS = {
   READ_RETRO_SPRINT_LIST: '/retro',
   CREATE_RETRO_SPRINT: '/retro',
   RETRO_SPRINT_DETAIL: (sprintId: number) => `/retro/${sprintId}`,
+  DELETE_RETRO_SPRINT: (sprintId: number) => `/retro/${sprintId}`,
+  UPDATE_RETRO_SPRINT_TITLE: (sprintId: number) => `/retro/${sprintId}`,
   CREATE_PROBLEM: `/problem`,
+  UPDATE_PROBLEM: (problemId: number) => `/problem/${problemId}/content`,
+  DETAIL_PROBLEM: (problemId: number) => `/problem/${problemId}`,
+  DELETE_PROBLEM: (problemId: number) => `/problem/${problemId}`,
   CREATE_KEEP: `/keep`,
+  CREATE_TRY: `/try`,
+  UPDATE_TRY: (tryId: number) => `/try/${tryId}/content`,
 };
 
 export default class RetroService {
   private apiClient: ApiClient;
 
-  constructor({ isMock }: { isMock: boolean }) {
-    this.apiClient = new ApiClient({ isMock });
+  constructor({ isMock, isPublic }: { isMock: boolean; isPublic: boolean }) {
+    this.apiClient = new ApiClient({ isMock, isPublic });
   }
 
   async readRetroSprintList(params: types.ReadRetroSprintListParams): Promise<types.ReadRetroSprintListResponse> {
@@ -39,14 +46,40 @@ export default class RetroService {
     );
     return data;
   }
-
-  async createProblem(payload: types.CreateProblemParams) {
-    const { data } = await this.apiClient.post(URLS.CREATE_PROBLEM, payload);
+  async deleteRetroSprint(params: types.DeleteRetroSprintParams) {
+    const { data } = await this.apiClient.delete(URLS.DELETE_RETRO_SPRINT(params.sprintId));
+    return data;
+  }
+  async updateRetroSprintTitle(params: types.UpdateRetroSprintTitleParams) {
+    const { data } = await this.apiClient.patch(URLS.UPDATE_RETRO_SPRINT_TITLE(params.sprintId), {
+      title: params.title,
+    });
+    return data;
+  }
+  async createKeep(payload: types.CreateKeepPayload) {
+    const { data } = await this.apiClient.post(URLS.CREATE_KEEP, payload);
     return data;
   }
 
-  async createKeep(payload: types.CreateKeepParams) {
-    const { data } = await this.apiClient.post(URLS.CREATE_KEEP, payload);
+  async createProblem(payload: types.CreateProblemPayload) {
+    const { data } = await this.apiClient.post(URLS.CREATE_PROBLEM, payload);
+    return data;
+  }
+  async updateProblem(payload: types.UpdateProblemPayload) {
+    const { data } = await this.apiClient.patch(URLS.UPDATE_PROBLEM(payload.problemId), payload.content);
+    return data;
+  }
+  async deleteProblem(payload: types.DeleteProblemParams) {
+    const { data } = await this.apiClient.delete(URLS.DELETE_PROBLEM(payload.problemId));
+    return data;
+  }
+
+  async createTry(payload: types.CreateTryPayload) {
+    const { data } = await this.apiClient.post(URLS.CREATE_TRY, payload);
+    return data;
+  }
+  async updateTry(payload: types.UpdateTryPayload) {
+    const { data } = await this.apiClient.patch(URLS.UPDATE_TRY(payload.tryId), payload.content);
     return data;
   }
 }

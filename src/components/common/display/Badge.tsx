@@ -1,5 +1,6 @@
 import { GreenCircle, OrangeCircle, YellowCircle } from 'public/assets/svgs';
 import styled from 'styled-components';
+import { STATE_LIST } from '~/constants/sprint/problem';
 import { ProblemStatus } from '~/types/retro/sprint';
 
 type BadgeProps = ProblemStatus & {
@@ -9,9 +10,9 @@ type BadgeProps = ProblemStatus & {
 const Badge = ({ label, value, onClick }: BadgeProps) => {
   return (
     <Box $status={value} onClick={onClick}>
-      {value === 'problem' && <OrangeCircle />}
-      {value === 'try' && <YellowCircle />}
-      {value === 'solve' && <GreenCircle />}
+      {value === STATE_LIST[0].value && <OrangeCircle />}
+      {value === STATE_LIST[1].value && <YellowCircle />}
+      {value === STATE_LIST[2].value && <GreenCircle />}
       <span>{label}</span>
     </Box>
   );
@@ -35,11 +36,11 @@ const Box = styled.span<{ $status: ProblemStatus['value'] }>`
   }
   ${({ theme, $status }) => {
     switch ($status) {
-      case 'problem':
+      case 'START':
         return `background-color: ${theme.colors.badge.problem[50]};`;
-      case 'try':
+      case 'IN-PROGRESS':
         return `background-color: ${theme.colors.badge.try[50]};`;
-      case 'solve':
+      case 'FINISH':
         return `background-color: ${theme.colors.badge.solve[50]};`;
     }
   }}

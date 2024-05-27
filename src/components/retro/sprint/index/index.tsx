@@ -3,8 +3,6 @@ import Text from '~/components/common/typo/Text';
 import { colors } from '~/styles/theme';
 import Button from '~/components/common/inputs/button/Button';
 import Pagination from '~/components/common/navigation/Pagination';
-import Link from 'next/link';
-import { Paths } from '~/constants/Paths';
 import RetroSprintList from './RetroSprintList';
 import { useReadRetroSprintListQuery } from '~/query/retro/retroQueries';
 import { useRouter } from 'next/router';
@@ -16,7 +14,7 @@ const RetroSprint = () => {
 
   const currentPageNo = 1;
   const totalPageCount = 10;
-  const readSprintRetroListQuery = useReadRetroSprintListQuery({
+  const { data, isSuccess } = useReadRetroSprintListQuery({
     pageNo: currentPageNo,
     listSize: 20,
     projectId: Number(projectId),
@@ -26,9 +24,7 @@ const RetroSprint = () => {
     router.push(`/${projectId}/retro/sprint/create`);
   };
 
-  if (!readSprintRetroListQuery.isSuccess) {
-    return null;
-  }
+  if (!isSuccess) return null;
   return (
     <Wrapper>
       <HeaderSection>
@@ -37,7 +33,7 @@ const RetroSprint = () => {
         </Text>
       </HeaderSection>
       <ListSection>
-        <RetroSprintList retroList={readSprintRetroListQuery.data} />
+        <RetroSprintList retroList={data} />
       </ListSection>
       <BottomSection>
         <div></div>

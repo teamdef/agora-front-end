@@ -5,6 +5,7 @@ import { Keep, mock } from '~/types/retro/sprint';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 import KeepEditor from '~/components/common/editor/keep/KeepEditor';
 import { useRouter } from 'next/router';
+import { useRetroSprintStore } from '~/store/retro/sprint';
 
 export const LOGIN_USER = {
   id: 4,
@@ -12,13 +13,12 @@ export const LOGIN_USER = {
   nickname: '진현우',
   name: '진현우',
 };
-const KeepsBoard = ({ keeps }: { keeps: Keep[] }) => {
-  const router = useRouter();
-  const { sprintId } = router.query;
+const KeepsBoard = () => {
+  const { keeps, members, id } = useRetroSprintStore((state) => state.retroSprint);
 
   const keepEditorOpen = () => {
     defaultDialogActions.open({
-      content: <KeepEditor author={LOGIN_USER} retroId={parseInt(sprintId as string)} />,
+      content: <KeepEditor author={LOGIN_USER} retroId={id} />,
     });
   };
 
@@ -27,7 +27,7 @@ const KeepsBoard = ({ keeps }: { keeps: Keep[] }) => {
       <Title>지속하고 싶은 점은 무엇인가요?</Title>
       <Content>
         {keeps.map((keep: Keep) => {
-          return <KeepCard key={crypto.randomUUID()} keep={keep} />;
+          return <KeepCard key={crypto.randomUUID()} keep={keep} author={members[keep.authorId]} />;
         })}
         <CreateItemBox onClick={keepEditorOpen} />
       </Content>
