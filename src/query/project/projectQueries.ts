@@ -3,7 +3,7 @@ import ProjectService from '~/core/project/projectService';
 import PROJECT_QUERY_KEYS from './queryKeys';
 import * as types from './projectQueries.types';
 
-const projectService = new ProjectService({ isMock: false });
+const projectService = new ProjectService({ isMock: false, isPublic: false });
 
 export const useReadProjectListQuery = () =>
   useQuery({
