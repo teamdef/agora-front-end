@@ -5,12 +5,14 @@ import * as types from './retroQueries.types';
 
 const retroService = new RetroService({ isMock: false, isPublic: false });
 
-// 회고 목록 조회
-export const useReadRetroSprintListQuery = (params: types.UseReadRetroSprintParams) =>
-  useQuery({
-    queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_LIST, params.projectId],
+export const useReadRetroSprintListQuery = (params: types.UseReadRetroSprintParams) => {
+  const { projectId } = params;
+  return useQuery({
+    queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_LIST, projectId],
     queryFn: () => retroService.readRetroSprintList(params),
+    enabled: projectId === 0 || projectId ? true : false,
   });
+};
 
 // 회고 생성
 export const useCreateRetroMutation = () =>

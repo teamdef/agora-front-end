@@ -3,15 +3,26 @@ import Text from '~/components/common/typo/Text';
 import { colors } from '~/styles/theme';
 import Button from '~/components/common/inputs/button/Button';
 import Pagination from '~/components/common/navigation/Pagination';
-import Link from 'next/link';
-import { Paths } from '~/constants/Paths';
 import RetroSprintList from './RetroSprintList';
 import { useReadRetroSprintListQuery } from '~/query/retro/retroQueries';
+import { useRouter } from 'next/router';
 
 const RetroSprint = () => {
+  const router = useRouter();
+  const { projectId } = router.query;
+
+
   const currentPageNo = 1;
   const totalPageCount = 10;
-  const { data, isSuccess } = useReadRetroSprintListQuery({ pageNo: currentPageNo, listSize: 20, projectId: 1 });
+  const { data, isSuccess } = useReadRetroSprintListQuery({
+    pageNo: currentPageNo,
+    listSize: 20,
+    projectId: Number(projectId),
+  });
+
+  const handleCreateClick = () => {
+    router.push(`/${projectId}/retro/sprint/create`);
+  };
 
   if (!isSuccess) return null;
   return (
@@ -27,11 +38,9 @@ const RetroSprint = () => {
       <BottomSection>
         <div></div>
         <Pagination totalPage={totalPageCount} currentPage={currentPageNo} pagehandler={() => console.log(1)} />
-        <Link href={Paths.RETRO_SPRINT_CREATE}>
-          <ButtonWrapper>
-            <Button label="새로만들기" small />
-          </ButtonWrapper>
-        </Link>
+        <ButtonWrapper>
+          <Button onClick={handleCreateClick} label="새로만들기" small />
+        </ButtonWrapper>
       </BottomSection>
     </Wrapper>
   );

@@ -1,38 +1,43 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Text from '~/components/common/typo/Text';
 import { LNB_MENUS } from './constant';
-
+import { useRouter } from 'next/router';
+import { PathsType } from '~/constants/Paths';
 const LNB = () => {
-  const { pathname } = useRouter();
+  const { pathname, query, push } = useRouter();
+
+  const pathnameWithoutProjectId = `/${pathname.split('/').slice(2).join('/')}`;
+
+  const handlePathClick = (path: PathsType) => {
+    push({ pathname: `/${query.projectId}${path}` });
+  };
   return (
     <Wrapper>
       <Text variant="detail_2" className="menu-title">
         Menu
       </Text>
       {LNB_MENUS.map((menu) => {
-        const isMatch = pathname === menu.path;
+        const isMatch = pathnameWithoutProjectId === menu.path;
         const hasSubMenu = menu?.subMenu;
         return (
-          <Group key={crypto.randomUUID()}>
-            <Link href={`${menu.path}`} className={isMatch && !hasSubMenu ? 'active' : ''}>
+          <Group key={`${menu.path}`}>
+            <div onClick={() => handlePathClick(menu.path)} className={isMatch && !hasSubMenu ? 'active' : ''}>
               <GroupTitle>
                 {menu.icon}
                 <Text variant="headline_2">{menu.title}</Text>
               </GroupTitle>
-            </Link>
+            </div>
 
             {menu?.subMenu && (
               <GroupList>
                 {menu.subMenu.map((subMenu) => {
-                  const isMatch = pathname === subMenu.path;
+                  const isMatch = pathnameWithoutProjectId === subMenu.path;
                   return (
-                    <Link href={`${subMenu.path}`} key={crypto.randomUUID()}>
+                    <div onClick={() => handlePathClick(subMenu.path)} key={`${subMenu.path}`}>
                       <GroupItem className={isMatch ? 'active' : ''}>
                         <Text variant="body_1">{subMenu.title}</Text>
                       </GroupItem>
-                    </Link>
+                    </div>
                   );
                 })}
               </GroupList>

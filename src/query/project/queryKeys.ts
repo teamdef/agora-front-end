@@ -1,0 +1,9 @@
+const PROJECT = 'PROJECT';
+const LIST = 'LIST';
+const CREATE = 'CREATE';
+const PROJECT_QUERY_KEYS = {
+  PROJECT_LIST: [PROJECT, LIST],
+  PROJECT_CREATE: [PROJECT, CREATE],
+};
+
+export default PROJECT_QUERY_KEYS;
