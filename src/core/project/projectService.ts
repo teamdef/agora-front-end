@@ -14,8 +14,8 @@ const URLS = {
 export default class ProjectService {
   private apiClient: ApiClient;
 
-  constructor({ isMock }: { isMock: boolean }) {
-    this.apiClient = new ApiClient({ isMock });
+  constructor({ isMock, isPublic }: { isMock: boolean; isPublic: boolean }) {
+    this.apiClient = new ApiClient({ isMock, isPublic });
   }
 
   async readProjectList(): Promise<types.ReadProjectListResponse> {
