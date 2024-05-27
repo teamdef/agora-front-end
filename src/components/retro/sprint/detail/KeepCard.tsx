@@ -4,28 +4,33 @@ import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
 import KeepEditor from '~/components/common/editor/keep/KeepEditor';
 import Button from '~/components/common/inputs/button/Button';
+import { MemberType } from '~/query/common/commonQueries.types';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
+import { useRetroSprintStore } from '~/store/retro/sprint';
 import { Keep } from '~/types/retro/sprint';
 
-const KeepCard = ({ keep }: { keep: Keep }) => {
-  const router = useRouter();
-  const { sprintId } = router.query;
+interface KeepCardProps {
+  keep: Keep;
+  author: MemberType;
+}
 
-  const keepEditorOpen = () => {
+const KeepCard = ({ keep, author }: KeepCardProps) => {
+  const { id } = useRetroSprintStore((state) => state.retroSprint);
+
+  const modifyKeepEditorOpen = () => {
     defaultDialogActions.open({
-      content: <KeepEditor author={keep.author} retroId={parseInt(sprintId as string)} content={keep.content} />,
+      content: <KeepEditor author={author} retroId={id} id={keep.id} content={keep.content} isModify />,
     });
   };
-
   return (
     <Wrapper>
       <Header>
-        {/* <ProfileBadge memberState={keep.author} /> */}
+        <ProfileBadge memberState={author} />
         <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />
       </Header>
       <Content>{keep.content}</Content>
       <Button
-        onClick={keepEditorOpen}
+        onClick={modifyKeepEditorOpen}
         large
         label="자세히 보기"
         icon={<Enlarge style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />}

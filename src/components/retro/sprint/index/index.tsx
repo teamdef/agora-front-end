@@ -11,11 +11,9 @@ import { useReadRetroSprintListQuery } from '~/query/retro/retroQueries';
 const RetroSprint = () => {
   const currentPageNo = 1;
   const totalPageCount = 10;
-  const readSprintRetroListQuery = useReadRetroSprintListQuery({ pageNo: currentPageNo, listSize: 20, projectId: 1 });
+  const { data, isSuccess } = useReadRetroSprintListQuery({ pageNo: currentPageNo, listSize: 20, projectId: 1 });
 
-  if (!readSprintRetroListQuery.isSuccess) {
-    return null;
-  }
+  if (!isSuccess) return null;
   return (
     <Wrapper>
       <HeaderSection>
@@ -24,7 +22,7 @@ const RetroSprint = () => {
         </Text>
       </HeaderSection>
       <ListSection>
-        <RetroSprintList retroList={readSprintRetroListQuery.data} />
+        <RetroSprintList retroList={data} />
       </ListSection>
       <BottomSection>
         <div></div>

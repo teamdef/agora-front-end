@@ -20,7 +20,7 @@ const MoreDropdown = ({ items, toggleMore }: MoreDropdownProps) => {
     <Wrapper>
       {items.map((item: MoreDropdownItem) => {
         return (
-          <MoreItem key={`MoreDropdownItem-${crypto.randomUUID()}`} onClick={() => onClickHandler(item.onClick)}>
+          <MoreItem key={crypto.randomUUID()} onClick={() => onClickHandler(item.onClick)}>
             {item.icon}
             {item.title}
           </MoreItem>

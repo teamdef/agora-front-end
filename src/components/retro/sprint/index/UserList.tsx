@@ -13,7 +13,7 @@ const UserList = ({ members }: Props) => {
     <Wrapper>
       <UserListWrapper>
         {members.slice(0, 4).map((member) => {
-          return <ProfileBadge memberState={member} key={`ProfileBadge-${crypto.randomUUID()}`} />;
+          return <ProfileBadge memberState={member} key={crypto.randomUUID()} />;
         })}
       </UserListWrapper>
       {members.length > 5 && (

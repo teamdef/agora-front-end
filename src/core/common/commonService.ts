@@ -6,8 +6,8 @@ const URLS = { READ_COMMON_MEMBERS: '/members' };
 export default class CommonService {
   private apiClient: ApiClient;
 
-  constructor({ isMock }: { isMock: boolean }) {
-    this.apiClient = new ApiClient({ isMock });
+  constructor({ isMock, isPublic }: { isMock: boolean; isPublic: boolean }) {
+    this.apiClient = new ApiClient({ isMock, isPublic });
   }
 
   async readCommonMembers(): Promise<types.ReadCommonMembersResponse> {

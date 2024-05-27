@@ -1,6 +1,6 @@
-import { Check, GreenCircle, OrangeCircle, YellowCircle } from 'public/assets/svgs';
+import { Check } from 'public/assets/svgs';
 import styled from 'styled-components';
-import { STATE_LIST } from '~/constants/sprint/problem';
+import { BADGE_STATUS, STATE_LIST } from '~/constants/sprint/problem';
 import { theme } from '~/styles/theme';
 import { ProblemStatus } from '~/types/retro/sprint';
 
@@ -24,9 +24,7 @@ const StateSelectBox = ({ selected, valueHandler, closeHandler }: StateSelectBox
           return (
             <Option key={crypto.randomUUID()} onClick={() => onClickOption(state.value)} $isActive={isActive}>
               <Content>
-                {state.value === 'problem' && <OrangeCircle />}
-                {state.value === 'try' && <YellowCircle />}
-                {state.value === 'solve' && <GreenCircle />}
+                {BADGE_STATUS[state.value].icon}
                 <span>{state.label}</span>
               </Content>
               {isActive && <Check viewBox="0 0 25 25" color={theme.colors.agoraBlue[400]} width={18} height={18} />}

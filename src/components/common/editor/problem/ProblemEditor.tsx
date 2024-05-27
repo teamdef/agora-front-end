@@ -9,11 +9,12 @@ import { MemberType } from '~/query/common/commonQueries.types';
 import EditorDialog from '~/components/dialog/EditorDIalog';
 
 export type ProblemEditorProps = {
-  retroId: number;
+  retroId?: number;
   author: MemberType;
+  isModify?: boolean;
 } & Partial<Omit<Problem, 'author'>>;
 
-const ProblemEditor = ({ retroId, status, id, author, content, tries }: ProblemEditorProps) => {
+const ProblemEditor = ({ retroId, status, id, author, content, tries, isModify }: ProblemEditorProps) => {
   return (
     <EditorDialog>
       <Wrapper>
@@ -28,7 +29,14 @@ const ProblemEditor = ({ retroId, status, id, author, content, tries }: ProblemE
                 스프린트를 진행하면서 발생했던 문제를 알려주세요.
               </Text>
             </SubTitle>
-            <ProblemEditorCard author={author} content={content} id={id} retroId={retroId} status={status} />
+            <ProblemEditorCard
+              author={author}
+              content={content}
+              id={id}
+              retroId={retroId}
+              status={status}
+              isModify={isModify}
+            />
           </ProblemBox>
           {id && (
             <TryBox>

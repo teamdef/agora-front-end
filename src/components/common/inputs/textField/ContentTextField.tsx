@@ -16,12 +16,14 @@ const ContentTextField = ({ value, onChange, maxLength, autoFocus, placeholder, 
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [count, setCount] = useState<number>(value.length);
   const textarea = useRef<HTMLTextAreaElement>(null);
+
   const handleResizeHeight = () => {
     if (textarea.current !== null) {
       textarea.current.style.height = 'auto'; // 높이 초기화
       textarea.current.style.height = textarea.current.scrollHeight + 'px';
     }
   };
+
   const valueHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length >= maxLength && count >= maxLength) {
       return null;
@@ -31,6 +33,7 @@ const ContentTextField = ({ value, onChange, maxLength, autoFocus, placeholder, 
     onChange(e.target.value);
     setCount(e.target.value.length);
   };
+
   const onBlurHandler = () => {
     onBlur && onBlur();
     setIsFocus(false);
