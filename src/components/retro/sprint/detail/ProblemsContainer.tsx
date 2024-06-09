@@ -23,7 +23,7 @@ const ProblemsContainer = ({ state, problems }: ProblemTryBoxProps) => {
       content: <ProblemEditor author={LOGIN_USER} retroId={id} />,
     });
   };
-
+  console.log(state);
   return (
     <Wrapper>
       <StatusBox>

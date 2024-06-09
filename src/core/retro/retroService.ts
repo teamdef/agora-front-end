@@ -5,6 +5,7 @@
 
 import ApiClient from '~/core/api/apiClient';
 import type * as types from './retroService.types';
+import { ProblemStatus } from '~/types/retro/sprint';
 
 const URLS = {
   READ_RETRO_SPRINT_LIST: '/retro',
@@ -14,6 +15,8 @@ const URLS = {
   UPDATE_RETRO_SPRINT_TITLE: (sprintId: number) => `/retro/${sprintId}`,
   CREATE_PROBLEM: `/problem`,
   UPDATE_PROBLEM: (problemId: number) => `/problem/${problemId}/content`,
+  UPDATE_PROBLEM_STATUS: (payload: { problemId: number; status: ProblemStatus['value'] }) =>
+    `/problem/${payload.problemId}/status/${payload.status}`,
   DETAIL_PROBLEM: (problemId: number) => `/problem/${problemId}`,
   DELETE_PROBLEM: (problemId: number) => `/problem/${problemId}`,
   CREATE_KEEP: `/keep`,
@@ -70,7 +73,13 @@ export default class RetroService {
     return data;
   }
   async updateProblem(payload: types.UpdateProblemPayload) {
-    const { data } = await this.apiClient.patch(URLS.UPDATE_PROBLEM(payload.problemId), payload.content);
+    const { data } = await this.apiClient.patch(URLS.UPDATE_PROBLEM(payload.problemId), {
+      content: payload.content,
+    });
+    return data;
+  }
+  async updateProblemStatus(payload: types.UpdateProblemStatusPayload) {
+    const { data } = await this.apiClient.patch(URLS.UPDATE_PROBLEM_STATUS(payload));
     return data;
   }
   async deleteProblem(payload: types.DeleteProblemParams) {

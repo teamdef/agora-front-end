@@ -1,7 +1,7 @@
-import { OrangeCircle, YellowCircle } from 'public/assets/svgs';
+import { GreenCircle, OrangeCircle, YellowCircle } from 'public/assets/svgs';
 
 export const START = 'START';
-export const INPROGRESS = 'IN-PROGRESS';
+export const INPROGRESS = 'IN_PROGRESS';
 export const FINISH = 'FINISH';
 
 export const STATE_LIST = [
@@ -16,14 +16,14 @@ export const BADGE_STATUS = {
     value: 'START',
     icon: <OrangeCircle />,
   },
-  'IN-PROGRESS': {
+  IN_PROGRESS: {
     label: '개선중',
-    value: 'IN-PROGRESS',
+    value: 'IN_PROGRESS',
     icon: <YellowCircle />,
   },
   FINISH: {
     label: '문제 해결',
     value: 'FINISH',
-    icon: <YellowCircle />,
+    icon: <GreenCircle />,
   },
 } as const;

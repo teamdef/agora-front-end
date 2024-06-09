@@ -9,6 +9,7 @@ export type UseCreateKeepPayload = types.CreateKeepPayload;
 export type UseDeleteKeepParams = types.DeleteKeepParams;
 export type UseCreateProblemPayload = types.CreateProblemPayload;
 export type UseUpdateProblemPayload = types.UpdateProblemPayload;
+export type UseUpdateProblemStatusPayload = types.UpdateProblemStatusPayload;
 export type UseDeleteProblemParams = types.DeleteProblemParams;
 export type UseCreateTryPayload = types.CreateTryPayload;
 export type UseUpdateTryPayload = types.UpdateTryPayload;

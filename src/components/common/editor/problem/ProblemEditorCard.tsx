@@ -2,7 +2,11 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { STATE_LIST } from '~/constants/sprint/problem';
-import { useCreateProblemMutation, useUpdateProblemMutation } from '~/query/retro/retroQueries';
+import {
+  useCreateProblemMutation,
+  useUpdateProblemMutation,
+  useUpdateProblemStatusMutation,
+} from '~/query/retro/retroQueries';
 import { theme } from '~/styles/theme';
 import { ProblemStatus } from '~/types/retro/sprint';
 import Badge from '../../display/Badge';
@@ -15,19 +19,19 @@ import RETRO_QUERY_KEYS from '~/query/retro/queryKeys';
 
 type ProblemEditorCardProps = Omit<ProblemEditorProps, 'comments'>;
 
-const ProblemEditorCard = ({ id, retroId, author, content, status, isModify }: ProblemEditorCardProps) => {
+const ProblemEditorCard = ({ id, retroId, author, content, status }: ProblemEditorCardProps) => {
   const queryClient = useQueryClient();
   const createProblemMutation = useCreateProblemMutation();
   const updateProblemMutation = useUpdateProblemMutation();
-
+  const updateProblemStatusMutation = useUpdateProblemStatusMutation();
   const [text, setText] = useState<string>('');
   const [badgeStatus, setBadgeStatus] = useState<ProblemStatus['value']>(status || 'START');
   const [openSelectBox, setOpenSelectBox] = useState<boolean>(false);
 
   const validUpdateProblem = useMemo(() => {
-    if (status && content && (status !== badgeStatus || text !== content)) return true;
+    if (status && content && text !== content) return true;
     return false;
-  }, [text, badgeStatus]);
+  }, [text, content, status]);
 
   const label = useMemo(
     () => STATE_LIST.find((item) => item.value === badgeStatus)?.label as ProblemStatus['label'],
@@ -35,10 +39,20 @@ const ProblemEditorCard = ({ id, retroId, author, content, status, isModify }: P
   );
 
   const dropdownHandler = () => {
-    setOpenSelectBox((prev) => !prev);
+    if (id) {
+      setOpenSelectBox((prev) => !prev);
+    }
   };
-  const badgeStatusHandler = (value: ProblemStatus['value']) => {
-    setBadgeStatus(value);
+  const badgeStatusHandler = async (value: ProblemStatus['value']) => {
+    if (id) {
+      await updateProblemStatusMutation.mutateAsync(
+        { problemId: id, status: value },
+        {
+          onSuccess: () => queryClient.invalidateQueries({ queryKey: RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL }),
+        },
+      );
+      setBadgeStatus(value);
+    }
   };
 
   const textHandler = (value: string) => {
@@ -46,25 +60,27 @@ const ProblemEditorCard = ({ id, retroId, author, content, status, isModify }: P
   };
 
   const handleSubmit = async () => {
-    if (isModify && id && validUpdateProblem) {
-      const payload = {
-        problemId: id,
-        content: text,
-      };
+    console.log(text, content);
+    if (validUpdateProblem) {
+      if (id) {
+        const payload = {
+          problemId: id,
+          content: text,
+        };
 
-      await updateProblemMutation.mutateAsync(payload, {
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL, retroId] }),
-      });
-    } else if (retroId) {
-      const payload = {
-        retroId,
-        content: text,
-        authorId: author.id,
-      };
-
-      await createProblemMutation.mutateAsync(payload, {
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL, retroId] }),
-      });
+        await updateProblemMutation.mutateAsync(payload, {
+          onSuccess: () => queryClient.invalidateQueries({ queryKey: RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL }),
+        });
+      } else if (retroId) {
+        const payload = {
+          retroId,
+          content: text,
+          authorId: author.id,
+        };
+        await createProblemMutation.mutateAsync(payload, {
+          onSuccess: () => queryClient.invalidateQueries({ queryKey: RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL }),
+        });
+      }
     }
   };
 

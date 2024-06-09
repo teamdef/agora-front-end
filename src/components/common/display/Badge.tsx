@@ -38,7 +38,7 @@ const Box = styled.span<{ $status: ProblemStatus['value'] }>`
     switch ($status) {
       case 'START':
         return `background-color: ${theme.colors.badge.problem[50]};`;
-      case 'IN-PROGRESS':
+      case 'IN_PROGRESS':
         return `background-color: ${theme.colors.badge.try[50]};`;
       case 'FINISH':
         return `background-color: ${theme.colors.badge.solve[50]};`;

@@ -71,6 +71,11 @@ export const useUpdateProblemMutation = () =>
     mutationFn: (payload: types.UseUpdateProblemPayload) => retroService.updateProblem(payload),
   });
 
+export const useUpdateProblemStatusMutation = () =>
+  useMutation({
+    mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_PROBLEM_UPDATE,
+    mutationFn: (payload: types.UseUpdateProblemStatusPayload) => retroService.updateProblemStatus(payload),
+  });
 export const useDeleteProblemMutation = () =>
   useMutation({
     mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_PROBLEM_DELETE,

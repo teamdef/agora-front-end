@@ -23,7 +23,7 @@ const ProblemCard = ({ problem }: ProblemTryProps) => {
   const deleteProblem = () => {
     const payload = { problemId: problem.id };
     deleteProblemMutation.mutate(payload, {
-      onSuccess: () => queryClient.invalidateQueries({ queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL, id] }),
+      onSuccess: () => queryClient.invalidateQueries({ queryKey: RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL }),
     });
   };
 

@@ -25,6 +25,10 @@ export type UpdateProblemPayload = {
   problemId: number;
   content: string;
 };
+export type UpdateProblemStatusPayload = {
+  problemId: number;
+  status: ProblemStatus['value'];
+};
 export type DeleteProblemParams = { problemId: number };
 
 export type CreateTryPayload = {
