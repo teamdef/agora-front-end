@@ -25,7 +25,6 @@ const KeepsBoard = () => {
       <Title>지속하고 싶은 점은 무엇인가요?</Title>
       <Content>
         {keeps.map((keep: Keep) => {
-          console.log(keep);
           return <KeepCard key={crypto.randomUUID()} keep={keep} author={members[keep.authorId]} />;
         })}
         <CreateItemBox onClick={keepEditorOpen} />

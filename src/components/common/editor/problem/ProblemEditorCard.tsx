@@ -60,27 +60,25 @@ const ProblemEditorCard = ({ id, retroId, author, content, status }: ProblemEdit
   };
 
   const handleSubmit = async () => {
-    console.log(text, content);
-    if (validUpdateProblem) {
-      if (id) {
-        const payload = {
-          problemId: id,
-          content: text,
-        };
+    if (id && validUpdateProblem) {
+      const payload = {
+        problemId: id,
+        content: text,
+      };
 
-        await updateProblemMutation.mutateAsync(payload, {
-          onSuccess: () => queryClient.invalidateQueries({ queryKey: RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL }),
-        });
-      } else if (retroId) {
-        const payload = {
-          retroId,
-          content: text,
-          authorId: author.id,
-        };
-        await createProblemMutation.mutateAsync(payload, {
-          onSuccess: () => queryClient.invalidateQueries({ queryKey: RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL }),
-        });
-      }
+      await updateProblemMutation.mutateAsync(payload, {
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL }),
+      });
+    } else if (retroId && text) {
+      const payload = {
+        retroId,
+        content: text,
+        authorId: author.id,
+      };
+
+      await createProblemMutation.mutateAsync(payload, {
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL }),
+      });
     }
   };
 
@@ -100,12 +98,18 @@ const ProblemEditorCard = ({ id, retroId, author, content, status }: ProblemEdit
           <Text variant="subtitle_1" color={theme.colors.agoraBlack[800]}>
             상태
           </Text>
-          <BadgeBox>
-            <Badge label={label} value={badgeStatus} onClick={dropdownHandler} />
-            {openSelectBox && (
-              <StateSelectBox selected={badgeStatus} valueHandler={badgeStatusHandler} closeHandler={dropdownHandler} />
-            )}
-          </BadgeBox>
+          {id && (
+            <BadgeBox>
+              <Badge label={label} value={badgeStatus} onClick={dropdownHandler} />
+              {openSelectBox && (
+                <StateSelectBox
+                  selected={badgeStatus}
+                  valueHandler={badgeStatusHandler}
+                  closeHandler={dropdownHandler}
+                />
+              )}
+            </BadgeBox>
+          )}
         </InfoTextBox>
       </ProblemInfo>
       <ContentTextField maxLength={300} value={text} onChange={textHandler} onBlur={handleSubmit} />
