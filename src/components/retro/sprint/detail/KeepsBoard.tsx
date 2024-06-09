@@ -1,17 +1,16 @@
 import styled from 'styled-components';
+import KeepEditor from '~/components/common/editor/keep/KeepEditor';
+import { defaultDialogActions } from '~/store/dialog/defaultDialog';
+import { useRetroSprintStore } from '~/store/retro/sprint';
+import { Keep } from '~/types/retro/sprint';
 import CreateItemBox from './CreateItemBox';
 import KeepCard from './KeepCard';
-import { Keep, mock } from '~/types/retro/sprint';
-import { defaultDialogActions } from '~/store/dialog/defaultDialog';
-import KeepEditor from '~/components/common/editor/keep/KeepEditor';
-import { useRouter } from 'next/router';
-import { useRetroSprintStore } from '~/store/retro/sprint';
 
 export const LOGIN_USER = {
-  id: 4,
-  profileImg: '',
-  nickname: '진현우',
-  name: '진현우',
+  id: 1,
+  name: '배광호',
+  nickname: '광호닉',
+  profileImg: 'https://catchmeimages.s3.ap-northeast-2.amazonaws.com/2023-04-14_HmUWZNOKyOuav4NKQGUs.png',
 };
 const KeepsBoard = () => {
   const { keeps, members, id } = useRetroSprintStore((state) => state.retroSprint);
@@ -21,12 +20,12 @@ const KeepsBoard = () => {
       content: <KeepEditor author={LOGIN_USER} retroId={id} />,
     });
   };
-
   return (
     <Wrapper>
       <Title>지속하고 싶은 점은 무엇인가요?</Title>
       <Content>
         {keeps.map((keep: Keep) => {
+          console.log(keep);
           return <KeepCard key={crypto.randomUUID()} keep={keep} author={members[keep.authorId]} />;
         })}
         <CreateItemBox onClick={keepEditorOpen} />

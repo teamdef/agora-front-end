@@ -24,7 +24,7 @@ export const useCreateRetroMutation = () =>
 // 회고 상세 조회
 export const useReadRetroSprintDetailQuery = (params: types.UseReadRetroSprintDetailParams) =>
   useQuery({
-    queryKey: [RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL, params.sprintId],
+    queryKey: RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL,
     queryFn: () => retroService.readRetroSprintDetail(params),
     enabled: !!params.sprintId,
   });
@@ -48,6 +48,14 @@ export const useCreateKeepMutation = () =>
   useMutation({
     mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_KEEP_CREATE,
     mutationFn: (payload: types.UseCreateKeepPayload) => retroService.createKeep(payload),
+  });
+
+// keep 삭제
+
+export const useDeleteKeepMutation = () =>
+  useMutation({
+    mutationKey: RETRO_QUERY_KEYS.RETRO_SPRINT_KEEP_DELETE,
+    mutationFn: (payload: types.UseDeleteKeepParams) => retroService.deleteKeep(payload),
   });
 
 // problem 생성

@@ -8,6 +8,7 @@ interface ProfileBadgeProps {
   closeFn?: (value: MemberType) => void;
 }
 const ProfileBadge = ({ memberState, closeFn }: ProfileBadgeProps) => {
+  if (!memberState) return null;
   const DEFAULT_IMG = '/assets/svgs/UserImage.svg';
 
   const onErrorHandler = (e: SyntheticEvent<HTMLImageElement, Event>) => {
@@ -21,7 +22,7 @@ const ProfileBadge = ({ memberState, closeFn }: ProfileBadgeProps) => {
 
   return (
     <Wrapper>
-      <img src={memberState.profileImg || DEFAULT_IMG} onError={onErrorHandler} alt="프로필뱃지 이미지" />
+      <img src={memberState.profileImg ?? DEFAULT_IMG} onError={onErrorHandler} alt="프로필뱃지 이미지" />
       <span>{memberState.nickname}</span>
       {closeFn && <Cancel onClick={(e: MouseEvent) => onCloseHandler(e, memberState)} />}
     </Wrapper>

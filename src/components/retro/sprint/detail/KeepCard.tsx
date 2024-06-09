@@ -1,10 +1,12 @@
-import { useRouter } from 'next/router';
+import { useQueryClient } from '@tanstack/react-query';
 import { Delete, Enlarge } from 'public/assets/svgs';
 import styled from 'styled-components';
 import ProfileBadge from '~/components/common/display/ProfileBadge';
 import KeepEditor from '~/components/common/editor/keep/KeepEditor';
 import Button from '~/components/common/inputs/button/Button';
 import { MemberType } from '~/query/common/commonQueries.types';
+import RETRO_QUERY_KEYS from '~/query/retro/queryKeys';
+import { useDeleteKeepMutation } from '~/query/retro/retroQueries';
 import { defaultDialogActions } from '~/store/dialog/defaultDialog';
 import { useRetroSprintStore } from '~/store/retro/sprint';
 import { Keep } from '~/types/retro/sprint';
@@ -15,18 +17,26 @@ interface KeepCardProps {
 }
 
 const KeepCard = ({ keep, author }: KeepCardProps) => {
-  const { id } = useRetroSprintStore((state) => state.retroSprint);
+  const deleteKeepMutation = useDeleteKeepMutation();
+  const queryClient = useQueryClient(); // QueryClient 인스턴스에 접근
 
+  const { id } = useRetroSprintStore((state) => state.retroSprint);
   const modifyKeepEditorOpen = () => {
     defaultDialogActions.open({
       content: <KeepEditor author={author} retroId={id} id={keep.id} content={keep.content} isModify />,
     });
   };
+  const deleteKeep = async () => {
+    await deleteKeepMutation.mutateAsync(
+      { keepId: keep.id },
+      { onSuccess: () => queryClient.invalidateQueries({ queryKey: RETRO_QUERY_KEYS.RETRO_SPRINT_DETAIL }) },
+    );
+  };
   return (
     <Wrapper>
       <Header>
         <ProfileBadge memberState={author} />
-        <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" />
+        <Delete style={{ width: '18px', height: '18px' }} viewBox="0 0 25 25" onClick={deleteKeep} />
       </Header>
       <Content>{keep.content}</Content>
       <Button
@@ -56,6 +66,9 @@ const Header = styled.h4`
   padding-bottom: 10px;
   border-bottom: 1.2px solid ${({ theme }) => theme.colors.agoraBlue[100]};
   background: #fff;
+  > svg {
+    cursor: pointer;
+  }
 `;
 
 const Content = styled.div`

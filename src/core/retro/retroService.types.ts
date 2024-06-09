@@ -8,6 +8,7 @@ export type ReadRetroSprintListParams = PaginationType & { projectId: number };
 export type ReadRetroSprintDetailParams = { sprintId: number };
 export type DeleteRetroSprintParams = { sprintId: number };
 export type UpdateRetroSprintTitleParams = { sprintId: number; title: string };
+export type DeleteKeepParams = { keepId: number };
 
 export type CreateKeepPayload = {
   retroId: number;

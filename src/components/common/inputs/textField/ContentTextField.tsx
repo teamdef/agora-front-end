@@ -10,9 +10,19 @@ interface TextField {
   placeholder?: string;
   fontStyle?: keyof FontStyleType;
   autoFocus?: boolean;
+  disabled?: boolean;
 }
 
-const ContentTextField = ({ value, onChange, maxLength, autoFocus, placeholder, onBlur, fontStyle }: TextField) => {
+const ContentTextField = ({
+  disabled,
+  value,
+  onChange,
+  maxLength,
+  autoFocus,
+  placeholder,
+  onBlur,
+  fontStyle,
+}: TextField) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [count, setCount] = useState<number>(value.length);
   const textarea = useRef<HTMLTextAreaElement>(null);
@@ -46,6 +56,7 @@ const ContentTextField = ({ value, onChange, maxLength, autoFocus, placeholder, 
   return (
     <Box $value={value} $isFocus={isFocus} $fontStyle={fontStyle}>
       <textarea
+        disabled={disabled}
         ref={textarea}
         value={value}
         rows={1}
@@ -83,6 +94,10 @@ const Box = styled.div<{ $value: string; $isFocus: boolean; $fontStyle?: keyof F
     }
     white-space: pre-line;
     word-break: break-all;
+    &:disabled {
+      cursor: not-allowed;
+      background-color: transparent;
+    }
     &::placeholder {
       position: absolute;
       top: 50%;

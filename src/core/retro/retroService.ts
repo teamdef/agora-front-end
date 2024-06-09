@@ -18,6 +18,7 @@ const URLS = {
   DELETE_PROBLEM: (problemId: number) => `/problem/${problemId}`,
   CREATE_KEEP: `/keep`,
   CREATE_TRY: `/try`,
+  DELETE_KEEP: (keepId: number) => `/keep/${keepId}`,
   UPDATE_TRY: (tryId: number) => `/try/${tryId}/content`,
 };
 
@@ -60,7 +61,10 @@ export default class RetroService {
     const { data } = await this.apiClient.post(URLS.CREATE_KEEP, payload);
     return data;
   }
-
+  async deleteKeep(params: types.DeleteKeepParams) {
+    const { data } = await this.apiClient.delete(URLS.DELETE_KEEP(params.keepId));
+    return data;
+  }
   async createProblem(payload: types.CreateProblemPayload) {
     const { data } = await this.apiClient.post(URLS.CREATE_PROBLEM, payload);
     return data;
